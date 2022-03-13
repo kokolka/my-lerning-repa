@@ -11,7 +11,8 @@ const MyPost = () => {
                 New post
             </div>
             <div className={prof.post}>
-                <Post/>
+                <Post message='Hi, how are you?' likeCounts='10'/>
+                <Post message='Are you busy?' likeCounts='4'/>
             </div>
         </div>
     );
