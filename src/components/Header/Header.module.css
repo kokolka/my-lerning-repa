@@ -1,8 +1,4 @@
-.header{
-    margin: 10px 0 0 0;
-    grid-area: h;
-    background-color: rgb(119, 119, 245);
-}
-.header img{
+.logoPage{
+    display: block;
     width: 20px;
 }

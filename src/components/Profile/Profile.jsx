@@ -5,7 +5,8 @@ import prof from './Profile.module.css';
 
 const Profile = () => {
     return (
-        <div className={prof.content}>
+        <div>
+        {/* <div className={prof.content}> */}
             <div>
                 <img src='https://w-dog.ru/wallpapers/14/6/324153998540799/bezmyatezhnost-gorizont-sineva.jpg' />
             </div>
