@@ -1,16 +1,21 @@
 import React from 'react';
-import prof from './MyPost.module.css';
+import s from './MyPost.module.css';
 import Post from './Post/Post';
 //import './Profile.css';
 
 const MyPost = () => {
     return (
-        <div>
+        <div className={s.postsBlok}>
             My post
             <div>
-                New post
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
-            <div className={prof.post}>
+            <div className={s.posts}>
                 <Post message='Hi, how are you?' likeCounts='10'/>
                 <Post message='Are you busy?' likeCounts='4'/>
             </div>

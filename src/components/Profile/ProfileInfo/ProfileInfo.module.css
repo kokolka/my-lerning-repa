@@ -1,0 +1,22 @@
+.profile{
+
+}
+
+.profile_background *{
+    display: block;
+    width: 1000px;
+}
+
+.profile_info{
+    display: grid;
+    grid-template-columns: 150px 800px;
+    padding: 10px;
+}
+
+.profile_ava *{
+    display: block;
+    width: 120px; 
+}
+.profile_description{
+    display: block;
+}
