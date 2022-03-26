@@ -1,15 +1,14 @@
 import React from 'react';
-import prof from './Post.module.css';
-//import './Profile.css';
+import s from './Post.module.css';
 
 const Post = (props) => {
     return (
-        <div className={prof.item}>
+        <div className={s.item}>
             <img src='https://steamuserimages-a.akamaihd.net/ugc/107355289194191020/345573EF77314191D5F6A7226451A176B8409095/?imw=512&amp;imh=512&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true' ></img>
             <p>{props.message}</p>
             <div>
                 <span>Like:</span>
-                <span className={prof.likeCounts}>{props.likeCounts}</span>
+                <span className={s.likeCounts}>{props.likeCounts}</span>
             </div>
         </div>
     );
