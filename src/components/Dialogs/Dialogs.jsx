@@ -19,7 +19,7 @@ const Dialogs = (props) => {
         { id: 2, message: 'Hi' },
         { id: 3, message: 'How are you?' }
     ];
-
+    
     let dialogsElements = dialogsData
         .map(el => <Dialog name={el.name} id={el.id} />);
 

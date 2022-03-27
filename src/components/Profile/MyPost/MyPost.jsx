@@ -2,14 +2,15 @@ import React from 'react';
 import s from './MyPost.module.css';
 import Post from './Post/Post';
 
-const MyPost = () => {
+const MyPost = (props) => {
 
     let postsData = [
         { id: 1, message: 'Hi, how are you?', likeCounts: 10 },
         { id: 2, message: 'Are you busy?', likeCounts: 4 }
-    ]
-    let postsElements = postsData
-        .map(p => <Post message={p.message} likeCounts={p.likeCounts} />)
+    ];
+
+    let postsElements = props.pd
+        .map(p => <Post message={p.message} likeCounts={p.likeCounts} />);
 
     return (
         <div className={s.postsBlok}>
