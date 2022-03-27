@@ -10,7 +10,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 
-const App = () => {
+const App = (props) => {
   return (
     <Router>
       <div className='app-wrapper'>
@@ -22,8 +22,8 @@ const App = () => {
         </div>
         <div className='app-wrapper__content'>
           <Routes>
-            <Route path='/profile' element={<Profile/>} />
-            <Route path='/dialogs/*' element={<Dialogs />} />
+            <Route path='/profile' element={<Profile pd={props.pd}/>} />
+            <Route path='/dialogs/*' element={<Dialogs dd={props.dd} md={props.md}/>} />
             <Route path='/news' element={<News/>} />
             <Route path='/music' element={<Music />} />
             <Route path='/setting' element={<Setting />} />
@@ -33,6 +33,5 @@ const App = () => {
     </Router>
   );
 }
-
 
 export default App;
