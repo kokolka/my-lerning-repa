@@ -1,25 +1,34 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import classes from './Navbar.module.css';
-//import './Navbar.css';
+import Friends from './Friends/Friends';
+import s from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    let friendFotoElement =
+        props.ff.map(el => <Friends foto={el.foto}/>);
+
     return (
         <nav>
-            <div className={classes.item}>
-                <NavLink to = "/profile" className = { navData => navData.isActive ? classes.active : classes.item }>Profile</NavLink>
+            <div className={s.item}>
+                <NavLink to="/profile" className={navData => navData.isActive ? s.active : s.item}>Profile</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to = '/dialogs' className = { navData => navData.isActive ? classes.active : classes.item }>Messages</NavLink>
+            <div className={s.item}>
+                <NavLink to='/dialogs' className={navData => navData.isActive ? s.active : s.item}>Messages</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to = '/news' className = { navData => navData.isActive ? classes.active : classes.item }>News</NavLink>
+            <div className={s.item}>
+                <NavLink to='/news' className={navData => navData.isActive ? s.active : s.item}>News</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to = '/music' className = { navData => navData.isActive ? classes.active : classes.item }>Music</NavLink>
+            <div className={s.item}>
+                <NavLink to='/music' className={navData => navData.isActive ? s.active : s.item}>Music</NavLink>
             </div>
-            <div className={classes.item}>
-                <NavLink to = '/setting' className = { navData => navData.isActive ? classes.active : classes.item }>Setting</NavLink>
+            <div className={s.item}>
+                <NavLink to='/setting' className={navData => navData.isActive ? s.active : s.item}>Setting</NavLink>
+            </div>
+            <div className={s.friends}>
+                <h3>Friends</h3>
+                <div className={s.block_foto}>
+                    {friendFotoElement}
+                </div>
             </div>
         </nav>
     );

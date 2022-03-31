@@ -4,19 +4,14 @@ import Message from './Message/Message';
 import s from './Dialogs.module.css'
 
 
+
 const Dialogs = (props) => {
-    
-    // let activeDialog = (d) => {
-    //     if(dialogsElements){
-    //         d.name
-    //     }
-    // }
 
-    let dialogsElements = props.dd
-        .map(el => <Dialog name={el.name} id={el.id} />);
+    let dialogsElements = 
+        props.dataDialogs.dialogsData.map(el => <Dialog name={el.name} id={el.id} foto={el.foto}/>);
 
-    let messagesElements = props.md
-        .map(message => <Message message={message.message} />)
+    let messagesElements = 
+        props.dataDialogs.messagesData.map(message => <Message message={message.message} />)
 
     return (
         <div className={s.dialogs}>
@@ -25,7 +20,9 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 <div>
-                    Kirill
+                    {
+                        props.dataDialogs.dialogsData[1].name
+                    }
                 </div>
                 {messagesElements}
             </div>

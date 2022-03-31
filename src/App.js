@@ -18,12 +18,12 @@ const App = (props) => {
           <Header />
         </div>
         <div className='app-wrapper__nav'>
-          <Navbar />
+          <Navbar ff={props.state.navlink.dialogsData}/>
         </div>
         <div className='app-wrapper__content'>
           <Routes>
-            <Route path='/profile' element={<Profile pd={props.pd}/>} />
-            <Route path='/dialogs/*' element={<Dialogs dd={props.dd} md={props.md}/>} />
+            <Route path='/profile' element={<Profile dataProfile={props.state.profile}/>} />
+            <Route path='/dialogs/*' element={<Dialogs dataDialogs={props.state.dialogs}/>} />
             <Route path='/news' element={<News/>} />
             <Route path='/music' element={<Music />} />
             <Route path='/setting' element={<Setting />} />
