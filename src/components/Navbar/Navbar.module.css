@@ -33,4 +33,6 @@ h3{
 
 .block_foto{
     display: flex;
+
+    justify-content: center;
 }

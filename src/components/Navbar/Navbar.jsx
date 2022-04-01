@@ -5,7 +5,12 @@ import s from './Navbar.module.css';
 
 const Navbar = (props) => {
     let friendFotoElement =
-        props.ff.map(el => <Friends foto={el.foto}/>);
+        props.ff.map((el) => {
+                if(el.id <= 3){
+                    return <Friends foto={el.foto}/>;
+                }
+            }
+        );
 
     return (
         <nav>

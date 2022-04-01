@@ -8,7 +8,16 @@ const Dialog = (props) => {
     return (
         <div className={s.dialog}>
             <img src={props.foto}></img>
-            <NavLink to={path} className={sa => sa.isActive ? (s.active) : s.dialog}>{props.name}</NavLink>
+            <NavLink to={path} className={(sa) => {
+                    // sa.isActive ? (s.active) : s.dialog
+                    if(sa.isActive){
+                        return s.active;
+                    }else{
+                        return s.dialog;
+                    }
+                }
+            }
+            >{props.name}</NavLink>
         </div>
     )
 }

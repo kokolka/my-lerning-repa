@@ -20,13 +20,12 @@
 }
 
 .dialog a:hover{
-
     color: rgb(44, 44, 44);
     background-color: rgba(0, 89, 255, 0.158);
 }
 
 .dialog a.active{
-    
+    margin: 10px 0 10px 20px;
 
     color: black;
     background-color: rgba(0, 89, 255, 0.363);
