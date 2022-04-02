@@ -1,10 +1,12 @@
+import { rerenderEntireTree } from "../render";
+
 let state = {
     profile:{
         postsData: [
             { id: 1, message: 'Hi, how are you?', likeCounts: 10 },
             { id: 2, message: 'Are you busy?', likeCounts: 4 },
-            { id: 2, message: 'I\'am not', likeCounts: 25 },
-            { id: 2, message: 'Good', likeCounts: 1 }
+            { id: 3, message: 'I\'am not', likeCounts: 25 },
+            { id: 4, message: 'Good', likeCounts: 1 }
         ]
     },
     
@@ -34,14 +36,23 @@ let state = {
 }
 
 export let addPost = (postMessage) =>{
-    debugger;
     let newPost = {
-        id:5, 
+        id: state.profile.postsData.length + 1, 
         message: postMessage, 
         likeCounts: 0
     };
-    
     state.profile.postsData.push(newPost);
-}
+    rerenderEntireTree(state);
+};
+
+export let addMessage = (sendMessage) => {
+    let newMessage = {
+        id: state.profile.postsData.length + 1, 
+        message: sendMessage,
+        who: 2 
+    };
+    state.dialogs.messagesData.push(newMessage);
+    rerenderEntireTree(state);
+};
 
 export default state;

@@ -9,9 +9,12 @@ const MyPost = (props) => {
     let newPostElement = React.createRef();
 
     let messageAlert = () =>{
-        debugger;
         let text = newPostElement.current.value;
-        props.addPost(text);
+        if(text != ''){
+            props.addPost(text);
+        }
+
+        newPostElement.current.value = ''; //зануление поля textarea
     }
 
     return (
