@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter  as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import Dialogs from './components/Dialogs/Dialogs';
@@ -12,7 +12,6 @@ import Setting from './components/Setting/Setting';
 
 const App = (props) => {
   return (
-    <Router>
       <div className='app-wrapper'>
         <div className='app-wrapper__header'>
           <Header />
@@ -30,7 +29,6 @@ const App = (props) => {
           </Routes>
         </div>
       </div>
-    </Router>
   );
 }
 

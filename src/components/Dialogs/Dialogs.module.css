@@ -7,5 +7,36 @@
 }
 
 .messages{
+    display: grid;
+
+    grid-template-rows: 2fr 1fr;
+
+    height: 520px;
     padding: 10px;
+}
+
+.message_area{
+    height: 400px;
+
+    display: grid;
+    align-items: end;
+    
+    overflow-y: auto;
+    margin: 0 0 20px 0;
+}
+
+.send{
+    display: grid;
+    grid-template-columns: auto 100px;
+}
+.send textarea{
+    font-size: 18px;
+    width: 670px;
+    height: 40px;
+
+    padding: 5px;
+    border-radius: 5px;
+}
+.send button{
+    height: 50px;
 }
