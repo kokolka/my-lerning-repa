@@ -7,7 +7,8 @@ let state = {
             { id: 2, message: 'Are you busy?', likeCounts: 4 },
             { id: 3, message: 'I\'am not', likeCounts: 25 },
             { id: 4, message: 'Good', likeCounts: 1 }
-        ]
+        ],
+        newPostText: ''
     },
     
     dialogs:{
@@ -22,7 +23,8 @@ let state = {
             { id: 1, message: 'Hi', who: 1},
             { id: 2, message: 'Hi', who: 2 },
             { id: 3, message: 'How are you?', who: 1 }
-        ]
+        ],
+        newMessage: 'Mda'
     },
     navlink:{
         dialogsData: [
@@ -35,23 +37,37 @@ let state = {
     }
 }
 
-export let addPost = (postMessage) =>{
-    let newPost = {
-        id: state.profile.postsData.length + 1, 
-        message: postMessage, 
-        likeCounts: 0
-    };
-    state.profile.postsData.push(newPost);
+export let addPost = () =>{
+    if(state.profile.newPostText != ''){
+        let newPost = {
+            id: state.profile.postsData.length + 1, 
+            message: state.profile.newPostText, 
+            likeCounts: 0
+        };
+        state.profile.postsData.push(newPost);
+        rerenderEntireTree(state);
+        state.profile.newPostText = '';
+    }
+};
+export let updateNewPostText = (newText) =>{
+    state.profile.newPostText = newText;
     rerenderEntireTree(state);
 };
 
-export let addMessage = (sendMessage) => {
-    let newMessage = {
-        id: state.profile.postsData.length + 1, 
-        message: sendMessage,
-        who: 2 
-    };
-    state.dialogs.messagesData.push(newMessage);
+export let addMessage = () => {
+    if(state.dialogs.newMessage != ''){
+        let newMessage = {
+            id: state.profile.postsData.length + 1, 
+            message: state.dialogs.newMessage,
+            who: 2 
+        };
+        state.dialogs.messagesData.push(newMessage);
+        rerenderEntireTree(state);
+        state.dialogs.newMessage = '';
+    }
+};
+export let updateNewMessage = (newMessage) =>{
+    state.dialogs.newMessage = newMessage;
     rerenderEntireTree(state);
 };
 
