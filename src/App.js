@@ -17,18 +17,25 @@ const App = (props) => {
         <Header />
       </div>
       <div className='app-wrapper__nav'>
+        {/* <Navbar ff={props.store.state.navlink.dialogsData} /> */}
         <Navbar ff={props.state.navlink.dialogsData} />
       </div>
       <div className='app-wrapper__content'>
         <Routes>
           <Route path='/profile'
             element={<Profile
+              // dataProfile={props.store.state.profile}
+              // addPost={props.store.addPost}
+              // updateNewPostText={props.store.updateNewPostText}
               dataProfile={props.state.profile}
               addPost={props.addPost}
               updateNewPostText={props.updateNewPostText}
             />} />
           <Route path='/dialogs/*'
             element={<Dialogs
+              // dataDialogs={props.store.state.dialogs}
+              // addMessage={props.store.addMessage}
+              // updateNewMessage={props.store.updateNewMessage}
               dataDialogs={props.state.dialogs}
               addMessage={props.addMessage}
               updateNewMessage={props.updateNewMessage}

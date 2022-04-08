@@ -16,6 +16,7 @@ const Dialogs = (props) => {
     let textMessage = React.createRef();
 
     let sendMessage = () => {
+        debugger;
         props.addMessage();
     }
     let onChangeMessage = () => {
