@@ -22,7 +22,7 @@ let store = {
                 { id: 2, message: 'Hi', who: 2 },
                 { id: 3, message: 'How are you?', who: 1 }
             ],
-            newMessage: 'Mda'
+            newMessage: ''
         },
         navlink:{
             dialogsData: [
@@ -34,49 +34,50 @@ let store = {
             ]
         }
     },
+    _callSubscriber(){
+    },
+
     getState(){
         debugger; 
         return this._state;
     },
-    addPost(){
-        if(this._state.profile.newPostText != ''){
-            let newPost = {
-                id: this._state.profile.postsData.length + 1, 
-                message: this._state.profile.newPostText, 
-                likeCounts: 0
-            };
-            this._state.profile.postsData.push(newPost);
-            this._callSubscriber(this._state);
-            this._state.profile.newPostText = '';
-        }
-    },
-    updateNewPostText(newText){
-        this._state.profile.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-    addMessage(){
-        debugger;
-        if(this._state.dialogs.newMessage != ''){
-            let newMessage = {
-                id: this._state.profile.postsData.length + 1, 
-                message: this._state.dialogs.newMessage,
-                who: 2 
-            };
-            this._state.dialogs.messagesData.push(newMessage);
-            this._callSubscriber(this._state);
-            this._state.dialogs.newMessage = '';
-        }
-    },
-    updateNewMessage(newMessage){
-        this._state.dialogs.newMessage = newMessage;
-        this._callSubscriber(this._state);
-    },
     subscribe(observer){
         this._callSubscriber = observer;
     },
-    _callSubscriber(){
-
+    
+    dispatch(action){
+        if(action.type === 'ADD-POST'){
+            if(this._state.profile.newPostText != ''){
+                let newPost = {
+                    id: this._state.profile.postsData.length + 1, 
+                    message: this._state.profile.newPostText, 
+                    likeCounts: 0
+                };
+                this._state.profile.postsData.push(newPost);
+                this._callSubscriber(this._state);
+                this._state.profile.newPostText = '';
+            }
+        }else if(action.type === 'UPDATE-NEW-POST-TEXT'){
+            this._state.profile.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        }else if(action.type === 'ADD-MESSAGE'){
+            if(this._state.dialogs.newMessage != ''){
+                let newMessage = {
+                    id: this._state.profile.postsData.length + 1, 
+                    message: this._state.dialogs.newMessage,
+                    who: 2 
+                };
+                this._state.dialogs.messagesData.push(newMessage);
+                this._callSubscriber(this._state);
+                this._state.dialogs.newMessage = '';
+            }
+        }else if(action.type === 'UPDATE-NEW-MESSAGE'){
+            this._state.dialogs.newMessage = action.newMessage;
+            this._callSubscriber(this._state);
+        }
     }
+    
+    
 }
 
 export default store;
