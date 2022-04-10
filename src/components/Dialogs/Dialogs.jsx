@@ -14,13 +14,14 @@ const Dialogs = (props) => {
     let messagesElements =
         props.dataDialogs.messagesData.map(message => <Message message={message.message} who={message.who} />)
 
-    let textMessage = React.createRef();
+    //let textMessage = React.createRef();
 
     let sendMessage = () => {
         props.dispatch(addMessageActionCreator());
     }
-    let onChangeMessage = () => {
-        let text = textMessage.current.value;
+    let onChangeMessage = (e) => {
+        //let text = textMessage.current.value;
+        let text = e.target.value;
         props.dispatch(updateNewMessageActionCreator(text));
     }
 
@@ -31,9 +32,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 <div>
-                    {
-                        props.dataDialogs.dialogsData[1].name
-                    }
+                    {props.dataDialogs.dialogsData[1].name}
                 </div>
                 <div className={s.message_area}>
                     {messagesElements}
@@ -41,12 +40,13 @@ const Dialogs = (props) => {
                 <div className={s.send}>
                     <div>
                         <textarea
+                            placeholder='Enter your message'
                             onChange={onChangeMessage}
-                            ref={textMessage}
+                            //ref={textMessage}
                             value={props.dataDialogs.newMessage}
                         />
                     </div>
-                    <button onClick={sendMessage}>Отправить</button>
+                    <button onClick={sendMessage}>Send</button>
                 </div>
             </div>
         </div>
