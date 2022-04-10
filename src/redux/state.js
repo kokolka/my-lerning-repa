@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
+
 let store = {
     _state: {
         profile:{
@@ -46,7 +51,7 @@ let store = {
     },
     
     dispatch(action){
-        if(action.type === 'ADD-POST'){
+        if(action.type === ADD_POST){
             if(this._state.profile.newPostText != ''){
                 let newPost = {
                     id: this._state.profile.postsData.length + 1, 
@@ -57,10 +62,10 @@ let store = {
                 this._callSubscriber(this._state);
                 this._state.profile.newPostText = '';
             }
-        }else if(action.type === 'UPDATE-NEW-POST-TEXT'){
+        }else if(action.type === UPDATE_NEW_POST_TEXT){
             this._state.profile.newPostText = action.newText;
             this._callSubscriber(this._state);
-        }else if(action.type === 'ADD-MESSAGE'){
+        }else if(action.type === ADD_MESSAGE){
             if(this._state.dialogs.newMessage != ''){
                 let newMessage = {
                     id: this._state.profile.postsData.length + 1, 
@@ -71,7 +76,7 @@ let store = {
                 this._callSubscriber(this._state);
                 this._state.dialogs.newMessage = '';
             }
-        }else if(action.type === 'UPDATE-NEW-MESSAGE'){
+        }else if(action.type === UPDATE_NEW_MESSAGE){
             this._state.dialogs.newMessage = action.newMessage;
             this._callSubscriber(this._state);
         }
@@ -79,6 +84,25 @@ let store = {
     
     
 }
+
+export const addPostActionCreator = () => {
+    return {type: ADD_POST};
+};
+export const updateNewPostTextActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    };
+};
+export const addMessageActionCreator = () => {
+    return {type: ADD_MESSAGE};
+};
+export const updateNewMessageActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_MESSAGE, 
+        newMessage: text
+    };
+};
 
 export default store;
 window.store = store;
