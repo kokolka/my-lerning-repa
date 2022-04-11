@@ -1,5 +1,5 @@
 import React from 'react';
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/profile-reducer';
 import s from './MyPost.module.css';
 import Post from './Post/Post';
 
@@ -7,13 +7,10 @@ const MyPost = (props) => {
     let postsElements =
         props.pd.map(p => <Post message={p.message} likeCounts={p.likeCounts} />);
 
-    //let newPostElement = React.createRef();
-
     let messageAlert = () => {
         props.dispatch(addPostActionCreator());
     }
     let onPostChange = (e) => {
-        //let text = newPostElement.current.value;
         let text = e.target.value;
         props.dispatch(updateNewPostTextActionCreator(text));
     }
@@ -26,7 +23,6 @@ const MyPost = (props) => {
                     <textarea
                         placeholder='Enter your post'
                         onChange={onPostChange}
-                        //ref={newPostElement}
                         value={props.newPostText}
                     />
                 </div>

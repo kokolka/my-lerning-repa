@@ -2,7 +2,7 @@ import React from 'react';
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 import s from './Dialogs.module.css'
-import { addMessageActionCreator, updateNewMessageActionCreator } from '../../redux/state';
+import { addMessageActionCreator, updateNewMessageActionCreator } from '../../redux/dialog-reducer';
 
 
 
@@ -14,13 +14,10 @@ const Dialogs = (props) => {
     let messagesElements =
         props.dataDialogs.messagesData.map(message => <Message message={message.message} who={message.who} />)
 
-    //let textMessage = React.createRef();
-
     let sendMessage = () => {
         props.dispatch(addMessageActionCreator());
     }
     let onChangeMessage = (e) => {
-        //let text = textMessage.current.value;
         let text = e.target.value;
         props.dispatch(updateNewMessageActionCreator(text));
     }
@@ -42,7 +39,6 @@ const Dialogs = (props) => {
                         <textarea
                             placeholder='Enter your message'
                             onChange={onChangeMessage}
-                            //ref={textMessage}
                             value={props.dataDialogs.newMessage}
                         />
                     </div>
