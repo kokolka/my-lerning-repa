@@ -10,27 +10,19 @@ import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import DialogsComponent from './components/Dialogs/DialogsComponent';
 
-const App = (props) => {
-  debugger;
+const App = () => {
   return (
     <div className='app-wrapper'>
       <div className='app-wrapper__header'>
         <Header />
       </div>
       <div className='app-wrapper__nav'>
-        <Navbar 
-          ff={props.store.getState().navlink.dialogsData} />
+        <Navbar />
       </div>
       <div className='app-wrapper__content'>
         <Routes>
-          <Route path='/profile'
-            element={<Profile
-              store={props.store}
-            />} />
-          <Route path='/dialogs/*'
-            element={<DialogsComponent
-              store={props.store}
-            />} />
+          <Route path='/profile' element={<Profile/>} />
+          <Route path='/dialogs/*' element={<DialogsComponent/>} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/setting' element={<Setting />} />
