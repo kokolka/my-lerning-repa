@@ -4,6 +4,7 @@ import Friends from './Friends/Friends';
 import s from './Navbar.module.css';
 
 const Navbar = (props) => {
+    debugger;
     let friendFotoElement =
         props.ff.map((el) => {
                 if(el.id <= 3){
