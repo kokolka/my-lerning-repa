@@ -1,5 +1,5 @@
 import React from 'react';
-import MyPostComponent from './MyPost/MyPostComponent';
+import MyPostComponent from './MyPost/MyPostContainer';
 import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
