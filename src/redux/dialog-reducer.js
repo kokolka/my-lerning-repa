@@ -26,11 +26,16 @@ const dialogReducer = (state = initialState, action) => {
                 message: state.newMessage,
                 who: 2
             };
-            state.messagesData.push(newMessage);
-            state.newMessage = '';
+            let stateCopy = {...state};
+            stateCopy.messagesData = [...state.messagesData];
+            stateCopy.messagesData.push(newMessage);
+            stateCopy.newMessage = '';
+            return stateCopy;
         }
     } else if (action.type === UPDATE_NEW_MESSAGE) {
-        state.newMessage = action.newMessage;
+        let stateCopy = {...state};
+        stateCopy.newMessage = action.newMessage;
+        return stateCopy;
     }
 
     return state;

@@ -20,11 +20,16 @@ const profileReducer = (state = initialState, action) => {
                 message: state.newPostText, 
                 likeCounts: 0
             };
-            state.postsData.push(newPost);
-            state.newPostText = '';
+            let stareCopy = {...state};
+            stareCopy.postsData = [...state.postsData];
+            stareCopy.postsData.push(newPost);
+            stareCopy.newPostText = '';
+            return stareCopy;
         }
     }else if(action.type === UPDATE_NEW_POST_TEXT){
-        state.newPostText = action.newText;
+        let stareCopy = {...state};
+        stareCopy.newPostText = action.newText;
+        return stareCopy;
     }
 
     return state;
