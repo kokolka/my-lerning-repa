@@ -6,10 +6,10 @@ import s from './Dialogs.module.css';
 const Dialogs = (props) => {
 
     let dialogsElements =
-        props.dialogsData.map(el => <Dialog name={el.name} id={el.id} foto={el.foto} />);
+        props.dialogsData.map(el => <Dialog name={el.name} key={el.id} foto={el.foto} />);
 
     let messagesElements =
-        props.messagesData.map(message => <Message message={message.message} who={message.who} />)
+        props.messagesData.map(message => <Message message={message.message} key={message.id} who={message.who} />)
 
     let sendMessage = () => {
         props.onSendMessage();

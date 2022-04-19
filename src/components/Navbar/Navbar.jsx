@@ -7,7 +7,7 @@ const Navbar = (props) => {
     let friendFotoElement = props.ff.map(
         (el) => {
             if (el.id <= 3) {
-                return <Friends foto={el.foto} />;
+                return <Friends foto={el.foto} key={el.id}/>;
             }
         }
     );
