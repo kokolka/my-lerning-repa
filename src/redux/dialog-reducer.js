@@ -19,35 +19,29 @@ let initialState = {
 
 const dialogReducer = (state = initialState, action) => {
 
-    if (action.type === ADD_MESSAGE) {
-        if (state.newMessage != '') {
-            let newMessage = {
-                id: state.messagesData.length + 1,
-                message: state.newMessage,
-                who: 2
-            };
-            //let stateCopy = 
-            return {
+    switch(action.type){
+        case ADD_MESSAGE:{
+            if (state.newMessage != '') {
+                let newMessage = {
+                    id: state.messagesData.length + 1,
+                    message: state.newMessage,
+                    who: 2
+                };
+                return {
+                    ...state,
+                    newMessage: '',
+                    messagesData: [...state.messagesData, newMessage]
+                };
+            }
+        } 
+        case UPDATE_NEW_MESSAGE:{
+            return{
                 ...state,
-                newMessage: '',
-                messagesData: [...state.messagesData, newMessage]
+                newMessage: action.newMessage
             };
-            //stateCopy.messagesData = [...state.messagesData];
-            //stateCopy.messagesData.push(newMessage);
-            //stateCopy.newMessage = '';
-            //return stateCopy;
         }
-    } else if (action.type === UPDATE_NEW_MESSAGE) {
-        //let stateCopy = 
-        return{
-            ...state,
-            newMessage: action.newMessage
-        };
-        //stateCopy.newMessage = action.newMessage;
-        //return stateCopy;
+        default: return state;
     }
-
-    return state;
 };
 
 export const addMessageActionCreator = () => {

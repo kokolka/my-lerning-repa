@@ -1,3 +1,84 @@
-.foto{
-    width: 60px;
+.userBox{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+    margin: 15px;
+    border-radius: 15px;
+    background-color: rgba(159, 204, 241, 0.575);
+
+
+
+    display: grid;
+
+    grid-template-columns: 15% 85%;
 }
+
+/*  */
+
+.userBox_foto{
+    margin: 20px 10px 20px 20px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgb(159, 204, 241);
+}
+.foto{
+    display: block;
+    margin: 0 auto 5px auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.followButton{
+    display: block;
+    margin: 0 auto;
+
+    background-color: rgb(119, 170, 212);
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(119, 170, 212);
+}
+.followButton:hover{
+    background-color: rgba(119, 170, 212, 0.63);
+}
+.followButton:active{
+    background-color: rgb(96, 148, 190);
+}
+/*  */
+
+.userBox_userData{
+
+    display: grid;
+
+    grid-template-columns: 75% 25%;
+}
+.userData_profile{
+    margin: 20px 10px 20px 10px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgb(159, 204, 241);
+
+    display: grid;
+
+    grid-template-rows: 3fr 1fr;
+}
+.userName{
+    padding: 10px 0 0 0;
+}
+
+.userLocation{
+    margin: 20px 20px 20px 10px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgb(159, 204, 241);
+
+    display: grid;
+
+    grid-template-rows: 3fr 1fr;
+}
+.userLocation_city{
+    padding: 10px 0 0 10px;
+}
+.userLocation_country{
+    padding: 0 0 0 10px;
+}
+

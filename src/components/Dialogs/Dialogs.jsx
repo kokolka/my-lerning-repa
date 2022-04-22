@@ -5,8 +5,10 @@ import s from './Dialogs.module.css';
 
 const Dialogs = (props) => {
 
+    debugger;
+
     let dialogsElements =
-        props.dialogsData.map(el => <Dialog name={el.name} key={el.id} foto={el.foto} />);
+        props.dialogsData.map(el => <Dialog id = {el.id} name={el.name} key={el.id} foto={el.foto} />);
 
     let messagesElements =
         props.messagesData.map(message => <Message message={message.message} key={message.id} who={message.who} />)
