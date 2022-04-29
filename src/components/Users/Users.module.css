@@ -12,6 +12,10 @@
     grid-template-columns: 15% 85%;
 }
 
+.activePage{
+    font-weight: bold;
+}
+
 /*  */
 
 .userBox_foto{

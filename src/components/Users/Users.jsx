@@ -10,33 +10,45 @@ class Users extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => {
-                    debugger;
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items);
+                this.props.setTotalCount(response.data.totalCount);
+            }
+            );
 
-                    return this.props.setUsers(response.data.items);
-                }
-                );
-        }
     }
 
-    // getUsers = () => {
-    //     if (this.props.users.length === 0) {
-    //         debugger;
-    //         axios.get('https://social-network.samuraijs.com/api/1.0/users')
-    //             .then(response => {
-    //                 debugger;
-
-    //                 return this.props.setUsers(response.data.items);
-    //             }
-    //             );
-    //     }
-    // }
+    onPageChanged = (page) =>{
+        this.props.setCurrentPage(page);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+            .then(response => {
+                return this.props.setUsers(response.data.items);
+            }
+            ); 
+    }
 
     render() {
+
+        let pagesCount = Math.ceil(this.props.pageTotalCount / this.props.pageSize);
+
+        let arrPages = [];
+        for (let i = 1; i <= pagesCount; i++) {
+            arrPages.push(i);
+        }
+        debugger;
         return (
             <div>
+                <div>
+                    {arrPages.map(el => {
+                        return (
+                            <span className={el === this.props.currentPage ? s.activePage : s.pasivPage}
+                                onClick={() => { this.onPageChanged(el) }}
+                            >{el}</span>
+                        );
+                    })}
+                </div>
+
                 {/* <button onClick={this.getUsers} className={s.buttonGetUsers}>Get users</button> */}
                 {
                     this.props.users.map(u => {
