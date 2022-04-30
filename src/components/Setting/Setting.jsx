@@ -6,6 +6,9 @@ const Setting = () => {
     return (
         <div>
             Setting
+            <p>
+                {`https://social-network.samuraijs.com/docs`}
+            </p>
         </div>
     );
 }
