@@ -9,7 +9,6 @@ import {
     setUsers, 
     toggleIsFetching, 
     unfollow } from '../../redux/users-reducer';
-import Preloader from '../common/Preloader/Preloader';
 
 class UsersComponent extends React.Component {
 
