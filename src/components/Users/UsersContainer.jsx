@@ -2,7 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import Users from './Users';
 import { connect } from 'react-redux';
-import { followAC, setCurrentPageAC, setTotalCountAC, setUsersAC, toggleIsFetchingAC, unfollowAC } from '../../redux/users-reducer';
+import { 
+    follow, 
+    setCurrentPage, 
+    setTotalCount, 
+    setUsers, 
+    toggleIsFetching, 
+    unfollow } from '../../redux/users-reducer';
 import Preloader from '../common/Preloader/Preloader';
 
 class UsersComponent extends React.Component {
@@ -65,29 +71,36 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userID) => {
-            dispatch(followAC(userID))
-        },
-        unfollow: (userID) => {
-            dispatch(unfollowAC(userID))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (page) => {
-            dispatch(setCurrentPageAC(page))
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(setTotalCountAC(totalCount))
-        },
-        toggleIsFetching: (fetching) => {
-            dispatch(toggleIsFetchingAC(fetching))
-        }
-    }
-}
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userID) => {
+//             dispatch(followAC(userID))
+//         },
+//         unfollow: (userID) => {
+//             dispatch(unfollowAC(userID))
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCurrentPage: (page) => {
+//             dispatch(setCurrentPageAC(page))
+//         },
+//         setTotalCount: (totalCount) => {
+//             dispatch(setTotalCountAC(totalCount))
+//         },
+//         toggleIsFetching: (fetching) => {
+//             dispatch(toggleIsFetchingAC(fetching))
+//         }
+//     }
+// }
 
-let UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersComponent);
+let UsersContainer = connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalCount,
+    toggleIsFetching
+})(UsersComponent);
 
 export default UsersContainer;

@@ -6,9 +6,11 @@ const Setting = () => {
     return (
         <div>
             Setting
-            <p>
-                {`https://social-network.samuraijs.com/docs`}
-            </p>
+            <div>
+                <a href='https://social-network.samuraijs.com/docs' target='_blank'>
+                    Server
+                </a>
+            </div>
         </div>
     );
 }
