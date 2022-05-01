@@ -37,9 +37,9 @@ class UsersComponent extends React.Component {
     render() {
         return (
             <>
-                {this.props.isFetching ?
+                {/* {this.props.isFetching ?
                     <Preloader/>
-                    : null}
+                    : null} */}
                 <Users
                     pageSize={this.props.pageSize}
                     pageTotalCount={this.props.pageTotalCount}
@@ -48,6 +48,7 @@ class UsersComponent extends React.Component {
                     unfollow={this.props.unfollow}
                     follow={this.props.follow}
                     users={this.props.users}
+                    isFetching={this.props.isFetching}
                 />
             </>
         );

@@ -1,3 +1,12 @@
+.numberPage{
+
+    text-align: center;
+}
+.numberPage_box{
+    display: inline-block;
+
+}
+
 .userBox{
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 
@@ -14,6 +23,15 @@
 
 .activePage{
     font-weight: bold;
+
+    display: inline-block;
+
+    padding: 10px 5px;
+}
+.pasivPage{
+    display: inline-block;
+
+    padding: 10px 5px;
 }
 
 /*  */
