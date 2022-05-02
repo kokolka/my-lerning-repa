@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router';
 import prof from './ProfileInfo.module.css';
 import noPhoto from '../../../assets/imeges/noPhoto.png';
 import iconFacebook from '../../../assets/imeges/iconsFacebook.png';
@@ -12,6 +13,16 @@ import iconMainLink from '../../../assets/imeges/iconsLinkedIn30.png';
 import Preloader from '../../common/Preloader/Preloader';
 
 const ProfileInfo = (props) => {
+
+    let paramPage = useParams();
+    let userIdFromURL = paramPage.id;
+    debugger;
+    if (!userIdFromURL) {
+        userIdFromURL = "2";
+    }
+    debugger;
+
+    props.getParamsWithUrl(userIdFromURL)
 
     let socialNetwork = (network) => {
         if (props.profile.contacts.facebook != null && network === 'facebook') {
@@ -31,7 +42,6 @@ const ProfileInfo = (props) => {
         } else if (props.profile.contacts.mainLink != null && network === 'mainLink') {
             return iconMainLink
         } else {
-            debugger
             return '';
         }
     }
@@ -39,7 +49,7 @@ const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
-    debugger
+
     return (
         <div className={prof.profile}>
             <div className={prof.profile_background}>
