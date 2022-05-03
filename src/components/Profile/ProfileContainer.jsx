@@ -17,21 +17,43 @@ class ProfileContainer extends React.Component {
     getParamsWithUrl = (data) => {
         debugger;
         this.param = data;
-        if (this.param !== this.lastIdParam) {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + this.param)
-                .then(response => {
-                    this.props.setUserProfile(response.data);
-                })
+        if (this.param != this.props.currentPageUser) {
+            this.props.setUserProfile({ userID: this.param });
+            this.props.setCurrentIdUser(this.param)
+            // this.lastIdParam = this.param;
+            debugger;
+            // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + this.param)
+            //     .then(response => {
+            //         this.props.setUserProfile(response.data);
+            //         debugger;
+            //     })
         }
 
-        this.lastIdParam = this.param;
+        //this.lastIdParam = this.param;
+    }
+
+    componentDidUpdate(prevProps) {
+        debugger;
+        if (prevProps.profile) {
+            if (this.param != prevProps.profile.userId) {
+                debugger;
+                axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + this.param)
+                    .then(response => {
+                        debugger;
+                        this.props.setUserProfile(response.data);
+                        debugger;
+                    })
+            }
+        }
     }
 
     componentDidMount() {
         debugger;
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + this.param)
             .then(response => {
+                debugger;
                 this.props.setUserProfile(response.data);
+                debugger;
             })
     }
 
@@ -43,7 +65,8 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    currentPageUser: state.profilePage.currentPageUser
 })
 
 export default connect(mapStateToProps, {

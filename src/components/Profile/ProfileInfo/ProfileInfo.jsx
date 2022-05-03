@@ -18,17 +18,14 @@ const ProfileInfo = (props) => {
 
     let paramPage = useParams();
     let userIdFromURL = paramPage.id;
-    debugger;
     if (!userIdFromURL) {
         userIdFromURL = "2";
     }
-    debugger;
 
     if (lastIdParam !== userIdFromURL) {
         debugger;
         props.getParamsWithUrl(userIdFromURL)
     }
-    debugger;
 
     let socialNetwork = (network) => {
         if (props.profile.contacts.facebook != null && network === 'facebook') {
@@ -52,7 +49,8 @@ const ProfileInfo = (props) => {
         }
     }
 
-    if (!props.profile) {
+    if (props.profile == null || Object.keys(props.profile).length < 2) {
+        debugger;
         return <Preloader />
     }
 
