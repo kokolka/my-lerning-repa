@@ -1,39 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
-import {setUserProfile} from '../../redux/profile-reducer';
+import { setUserProfile, setCurrentIdUser } from '../../redux/profile-reducer';
 import axios from 'axios';
 
+
 class ProfileContainer extends React.Component {
-    constructor(props, param, flagState){
+    constructor(props, param, lastIdParam) {
         debugger;
         super(props);
         this.param = param;
-        this.flagState = flagState;
+        this.lastIdParam = lastIdParam;
         this.getParamsWithUrl = this.getParamsWithUrl.bind(this);
     }
 
-    getParamsWithUrl = (data) =>{
+    getParamsWithUrl = (data) => {
         debugger;
         this.param = data;
-        if(this.flagState == true){
-            this.componentDidMount();
+        if (this.param !== this.lastIdParam) {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + this.param)
+                .then(response => {
+                    this.props.setUserProfile(response.data);
+                })
         }
-        this.flagState = false;
+
+        this.lastIdParam = this.param;
     }
-    
-    componentDidMount(){
+
+    componentDidMount() {
         debugger;
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + this.param)
             .then(response => {
                 this.props.setUserProfile(response.data);
-                this.flagState = true;
             })
     }
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} getParamsWithUrl={this.getParamsWithUrl}/>
+            <Profile {...this.props} profile={this.props.profile} getParamsWithUrl={this.getParamsWithUrl} param={this.param} />
         )
     }
 }
@@ -43,5 +47,6 @@ let mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, {
-    setUserProfile
+    setUserProfile,
+    setCurrentIdUser
 })(ProfileContainer);

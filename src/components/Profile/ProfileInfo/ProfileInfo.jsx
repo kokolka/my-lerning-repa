@@ -14,6 +14,8 @@ import Preloader from '../../common/Preloader/Preloader';
 
 const ProfileInfo = (props) => {
 
+    let lastIdParam = props.param;
+
     let paramPage = useParams();
     let userIdFromURL = paramPage.id;
     debugger;
@@ -22,7 +24,11 @@ const ProfileInfo = (props) => {
     }
     debugger;
 
-    props.getParamsWithUrl(userIdFromURL)
+    if (lastIdParam !== userIdFromURL) {
+        debugger;
+        props.getParamsWithUrl(userIdFromURL)
+    }
+    debugger;
 
     let socialNetwork = (network) => {
         if (props.profile.contacts.facebook != null && network === 'facebook') {
@@ -55,6 +61,7 @@ const ProfileInfo = (props) => {
             <div className={prof.profile_background}>
                 <img src='https://w-dog.ru/wallpapers/14/6/324153998540799/bezmyatezhnost-gorizont-sineva.jpg' />
             </div>
+            {/* {flag === false? <Preloader/>: */}
             <div className={prof.profile_info}>
                 <div className={prof.profile_ava}>
                     {/* <img src='https://data.whicdn.com/images/238932713/original.jpg' /> */}
