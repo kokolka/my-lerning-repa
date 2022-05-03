@@ -20,16 +20,7 @@ class ProfileContainer extends React.Component {
         if (this.param != this.props.currentPageUser) {
             this.props.setUserProfile({ userID: this.param });
             this.props.setCurrentIdUser(this.param)
-            // this.lastIdParam = this.param;
-            debugger;
-            // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + this.param)
-            //     .then(response => {
-            //         this.props.setUserProfile(response.data);
-            //         debugger;
-            //     })
         }
-
-        //this.lastIdParam = this.param;
     }
 
     componentDidUpdate(prevProps) {
@@ -41,7 +32,6 @@ class ProfileContainer extends React.Component {
                     .then(response => {
                         debugger;
                         this.props.setUserProfile(response.data);
-                        debugger;
                     })
             }
         }
@@ -53,7 +43,6 @@ class ProfileContainer extends React.Component {
             .then(response => {
                 debugger;
                 this.props.setUserProfile(response.data);
-                debugger;
             })
     }
 

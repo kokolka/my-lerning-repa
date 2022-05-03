@@ -1,4 +1,12 @@
 .logoPage{
-    display: block;
+    display: inline-block;
     width: 20px;
+}
+
+.login_block{
+    display: inline-block;
+    float: right;
+}
+.login_block a{
+    color: white;
 }
