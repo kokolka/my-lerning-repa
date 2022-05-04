@@ -26,7 +26,6 @@ let Users = (props) => {
     //         ]
     //     );
     // }
-    debugger;
     return (
         <div>
             <button onClick={getUsers} className={s.buttonGetUsers}>Get users</button>
@@ -40,8 +39,12 @@ let Users = (props) => {
                                 </div>
                                 <div>
                                     {u.statusFriend
-                                        ? <button className={s.followButton} onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
-                                        : <button className={s.followButton} onClick={() => { props.follow(u.id) }}>Follow</button>}
+                                        ? <button className={s.followButton} onClick={() => { 
+                                            props.unfollow(u.id); 
+                                        }}>Unfollow</button>
+                                        : <button className={s.followButton} onClick={() => {
+                                            props.follow(u.id);
+                                        }}>Follow</button>}
                                 </div>
                             </div>
                             <div className={s.userBox_userData}>
