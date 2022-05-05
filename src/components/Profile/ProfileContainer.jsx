@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Profile from './Profile';
 import { setUserProfile, setCurrentIdUser } from '../../redux/profile-reducer';
 import axios from 'axios';
+import { profileAPI } from '../../api/api';
 
 
 class ProfileContainer extends React.Component {
@@ -28,10 +29,10 @@ class ProfileContainer extends React.Component {
         if (prevProps.profile) {
             if (this.param != prevProps.profile.userId) {
                 debugger;
-                axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + this.param)
-                    .then(response => {
+                profileAPI.getUserPage(this.param)
+                    .then(data => {
                         debugger;
-                        this.props.setUserProfile(response.data);
+                        this.props.setUserProfile(data);
                     })
             }
         }
@@ -39,10 +40,10 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         debugger;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + this.param)
-            .then(response => {
+        profileAPI.getUserPage(this.param)
+            .then(data => {
                 debugger;
-                this.props.setUserProfile(response.data);
+                this.props.setUserProfile(data);
             })
     }
 

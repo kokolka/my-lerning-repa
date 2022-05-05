@@ -16,6 +16,23 @@ export const usersAPI = {
     }
 }
 
+export const followAPI = {
+    followUser(id){
+        return instance.post(`follow/${id}`, {}).then(response => response.data)
+    },
+    deleteUser(id){
+        return instance.delete(`follow/${id}`).then(response => response.data)
+    }
+}
 
+export const authAPI = {
+    meUser(){
+        return instance.get(`auth/me`).then(response => response.data)
+    }
+}
 
-
+export const profileAPI = {
+    getUserPage(id){
+        return instance.get(`profile/${id}`).then(response => response.data)
+    }
+}
