@@ -2,13 +2,15 @@ import React from 'react';
 import axios from 'axios';
 import Users from './Users';
 import { connect } from 'react-redux';
-import { 
-    follow, 
-    setCurrentPage, 
-    setTotalCount, 
-    setUsers, 
-    toggleIsFetching, 
-    unfollow } from '../../redux/users-reducer';
+import {
+    follow,
+    setCurrentPage,
+    setTotalCount,
+    setUsers,
+    toggleIsFetching,
+    unfollow
+} from '../../redux/users-reducer';
+import { usersAPI } from '../../api/api';
 
 class UsersComponent extends React.Component {
 
@@ -18,29 +20,23 @@ class UsersComponent extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalCount(response.data.totalCount);
-                this.props.toggleIsFetching(false);
-            }
-            );
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items);
+            this.props.setTotalCount(data.totalCount);
+            this.props.toggleIsFetching(false);
+        }
+        );
 
     }
 
     onPageChanged = (page) => {
         this.props.setCurrentPage(page);
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.toggleIsFetching(false);
-            }
-            );
+        usersAPI.getUsers(page, this.props.pageSize).then(data => {
+            this.props.setUsers(data.items);
+            this.props.toggleIsFetching(false);
+        }
+        );
     }
 
     render() {
