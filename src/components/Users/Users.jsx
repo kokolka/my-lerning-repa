@@ -4,7 +4,7 @@ import s from './Users.module.css';
 import noPhoto from '../../assets/imeges/noPhoto.png';
 import Preloader from "../common/Preloader/Preloader";
 import { NavLink } from "react-router-dom";
-import { followAPI } from "../../api/api";
+import { usersAPI } from "../../api/api";
 
 let Users = (props) => {
 
@@ -68,31 +68,16 @@ let Users = (props) => {
                                 </div>
                                 <div>
                                     {u.followed
-                                        ? <button disabled={props.followingIsProgress.some(id => id === u.id)} className={s.followButton} onClick={() => {
-                                            props.toggleIsFollowingProgress(true, u.id);
-                                            followAPI.deleteUser(u.id)
-                                                .then(data => {
-                                                    if (data.resultCode == 0) {
-                                                        props.unfollow(u.id);
-                                                    };
-                                                    props.toggleIsFollowingProgress(false, u.id);
-                                                })
-                                        }
-                                        }>
-                                            Unfollow</button>
-                                        : <button disabled={props.followingIsProgress.some(id => id === u.id)} className={s.followButton} onClick={() => {
-                                            debugger;
-                                            props.toggleIsFollowingProgress(true, u.id);
-                                            debugger;
-                                            followAPI.followUser(u.id)
-                                                .then(data => {
-                                                    if (data.resultCode == 0) {
-                                                        props.follow(u.id);
-                                                    };
-                                                    props.toggleIsFollowingProgress(false, u.id);
-                                                }
-                                                )
-                                        }}>Follow</button>
+                                        ? <button
+                                            disabled={props.followingIsProgress.some(id => id === u.id)}
+                                            className={s.followButton}
+                                            onClick={() => { props.unfollow(u.id); }}
+                                        >Unfollow</button>
+                                        : <button
+                                            disabled={props.followingIsProgress.some(id => id === u.id)}
+                                            className={s.followButton}
+                                            onClick={() => { props.follow(u.id); }}
+                                        >Follow</button>
                                     }
                                 </div>
                             </div>

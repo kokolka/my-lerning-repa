@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -21,9 +23,9 @@ let initialState = {
 
 const usersReducer = (state = initialState, action) => {
 
-    switch(action.type){
+    switch (action.type) {
         case FOLLOW:
-            return{
+            return {
                 ...state,
                 users: state.users.map((u) => {
                     if (u.id === action.userID) {
@@ -34,7 +36,7 @@ const usersReducer = (state = initialState, action) => {
                 )
             };
         case UNFOLLOW:
-            return{
+            return {
                 ...state,
                 users: state.users.map((u) => {
                     if (u.id === action.userID) {
@@ -45,30 +47,33 @@ const usersReducer = (state = initialState, action) => {
                 )
             };
         case SET_USERS:
-            return {...state,
+            return {
+                ...state,
                 //users: [...state.users, ...action.users]} //склеиваем два массива, тот который был и тот который прищёл
-                users: action.users}
+                users: action.users
+            }
         case SET_CURRENT_PAGE:
-            return{...state, currentPage: action.page}
+            return { ...state, currentPage: action.page }
         case SET_TOTAL_COUNT:
-            return{...state, pageTotalCount: action.pageTotalCount}
+            return { ...state, pageTotalCount: action.pageTotalCount }
         case TOGGLE_IS_FETCHING:
-            return{...state, isFetching: action.isFetching}
+            return { ...state, isFetching: action.isFetching }
         case TOGGLE_IS_FOLLOWING_PROGRESS:
-            return{...state, 
+            return {
+                ...state,
                 followingIsProgress: action.isFetching
-                ?[...state.followingIsProgress, action.userId]
-                : state.followingIsProgress.filter(id => id !== action.userId)
+                    ? [...state.followingIsProgress, action.userId]
+                    : state.followingIsProgress.filter(id => id !== action.userId)
             }
         default:
             return state;
-    }   
+    }
 };
 
-export const follow = (userID) => {
+export const acceptFollow = (userID) => {
     return { type: FOLLOW, userID };
 };
-export const unfollow = (userID) => {
+export const acceptUnfollow = (userID) => {
     return { type: UNFOLLOW, userID };
 };
 export const setUsers = (users) => {
@@ -84,7 +89,50 @@ export const toggleIsFetching = (isFetching) => {
     return { type: TOGGLE_IS_FETCHING, isFetching };
 };
 export const toggleIsFollowingProgress = (isFetching, userId) => {
-    return { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId};
+    return { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId };
 };
+
+export const getUsers = (currentPage, pageSize) => {
+
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setUsers(data.items));
+            dispatch(setTotalCount(data.totalCount));
+            dispatch(toggleIsFetching(false));
+        }
+        );
+    }
+}
+
+export const follow = (userID) => {
+
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userID));
+        usersAPI.followUser(userID)
+            .then(data => {
+                if (data.resultCode == 0) {
+                    dispatch(acceptFollow(userID));
+                };
+                dispatch(toggleIsFollowingProgress(false, userID));
+            }
+            )
+    }
+}
+
+export const unfollow = (userID) => {
+
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userID));
+        usersAPI.deleteUser(userID)
+            .then(data => {
+                if (data.resultCode == 0) {
+                    dispatch(acceptUnfollow(userID));
+                };
+                dispatch(toggleIsFollowingProgress(false, userID));
+            })
+    }
+}
 
 export default usersReducer;

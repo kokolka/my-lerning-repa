@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
-import { setUserProfile, setCurrentIdUser } from '../../redux/profile-reducer';
+import { setUserProfile, setCurrentIdUser, getUserPageFunction } from '../../redux/profile-reducer';
 import axios from 'axios';
 import { profileAPI } from '../../api/api';
 
@@ -16,7 +16,6 @@ class ProfileContainer extends React.Component {
     }
 
     getParamsWithUrl = (data) => {
-        debugger;
         this.param = data;
         if (this.param != this.props.currentPageUser) {
             this.props.setUserProfile({ userID: this.param });
@@ -25,26 +24,15 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        debugger;
         if (prevProps.profile) {
             if (this.param != prevProps.profile.userId) {
-                debugger;
-                profileAPI.getUserPage(this.param)
-                    .then(data => {
-                        debugger;
-                        this.props.setUserProfile(data);
-                    })
+                this.props.getUserPageFunction(this.param);
             }
         }
     }
 
     componentDidMount() {
-        debugger;
-        profileAPI.getUserPage(this.param)
-            .then(data => {
-                debugger;
-                this.props.setUserProfile(data);
-            })
+        this.props.getUserPageFunction(this.param);
     }
 
     render() {
@@ -61,5 +49,6 @@ let mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
     setUserProfile,
-    setCurrentIdUser
+    setCurrentIdUser,
+    getUserPageFunction
 })(ProfileContainer);

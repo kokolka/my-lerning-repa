@@ -1,3 +1,5 @@
+import { profileAPI } from "../api/api";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -17,35 +19,35 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
 
-    switch(action.type){
-        case ADD_POST:{
-            if(state.newPostText != ''){
+    switch (action.type) {
+        case ADD_POST: {
+            if (state.newPostText != '') {
                 let newPost = {
-                    id: state.postsData.length + 1, 
-                    message: state.newPostText, 
+                    id: state.postsData.length + 1,
+                    message: state.newPostText,
                     likeCounts: 0
-                }; 
-                return{
+                };
+                return {
                     ...state,
                     newPostText: '',
                     postsData: [...state.postsData, newPost]
                 };
             }
         }
-        case UPDATE_NEW_POST_TEXT:{
-            return{
+        case UPDATE_NEW_POST_TEXT: {
+            return {
                 ...state,
                 newPostText: action.newText
             };
         }
-        case SET_USER_PROFILE:{
-            return{
+        case SET_USER_PROFILE: {
+            return {
                 ...state,
                 profile: action.profile
             };
         }
-        case SET_CURRENT_ID_USER:{
-            return{
+        case SET_CURRENT_ID_USER: {
+            return {
                 ...state,
                 currentPageUser: action.currentPageUser
             };
@@ -55,16 +57,25 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const addPostActionCreator = () => {
-    return {type: ADD_POST};
+    return { type: ADD_POST };
 };
 export const updateNewPostTextActionCreator = (text) => {
-    return {type: UPDATE_NEW_POST_TEXT, newText: text};
+    return { type: UPDATE_NEW_POST_TEXT, newText: text };
 };
 export const setUserProfile = (profile) => {
-    return {type: SET_USER_PROFILE, profile};
+    return { type: SET_USER_PROFILE, profile };
 };
 export const setCurrentIdUser = (idUser) => {
-    return {type: SET_CURRENT_ID_USER, idUser};
+    return { type: SET_CURRENT_ID_USER, idUser };
 };
+
+export const getUserPageFunction = (param) => {
+    return (dispatch) => {
+        profileAPI.getUserPage(param)
+            .then(data => {
+                dispatch(setUserProfile(data));
+            })
+    }
+}
 
 export default profileReducer;

@@ -23,7 +23,6 @@ const ProfileInfo = (props) => {
     }
 
     if (lastIdParam !== userIdFromURL) {
-        debugger;
         props.getParamsWithUrl(userIdFromURL)
     }
 
@@ -50,7 +49,6 @@ const ProfileInfo = (props) => {
     }
 
     if (props.profile == null || Object.keys(props.profile).length < 2) {
-        debugger;
         return <Preloader />
     }
 
