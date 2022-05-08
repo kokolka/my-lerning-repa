@@ -29,7 +29,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map((u) => {
                     if (u.id === action.userID) {
-                        return { ...u, followed: true }; //заменяем в statusFriend на true
+                        return { ...u, followed: true };
                     }
                     return u;
                 }
@@ -64,6 +64,8 @@ const usersReducer = (state = initialState, action) => {
                 followingIsProgress: action.isFetching
                     ? [...state.followingIsProgress, action.userId]
                     : state.followingIsProgress.filter(id => id !== action.userId)
+                    // если isFetching true, то в ...state.followingIsProgress добавляется action.userId
+                    // иначе из массива state.followingIsProgress уберём элемент action.userId
             }
         default:
             return state;

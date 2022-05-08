@@ -6,8 +6,13 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 const Profile = (props) => {
     return (
         <div className={s.profile}>
-            <ProfileInfo profile={props.profile} getParamsWithUrl={props.getParamsWithUrl} param={props.param}/>
-            <MyPostComponent/>
+            {/* Блок с информацие о пользователе */}
+            <ProfileInfo
+                profile={props.profile}
+                getParamsWithUrl={props.getParamsWithUrl}
+                param={props.param} />
+            {/* Блок с постами пользователя */}
+            <MyPostComponent />
         </div>
     );
 }

@@ -9,7 +9,8 @@ const Header = (props) => {
         
             <div className={s.login_block}>
                 {props.isAuth === true ? props.login:
-                <NavLink to={'/login'}>Login</NavLink>}
+                <NavLink to={'/login'}>Login</NavLink>} 
+                {/*отображение имени авторизованного пользователя или сслыки на авторизацию*/} 
             </div>
         </header>
     );

@@ -16,7 +16,7 @@ const ProfileInfo = (props) => {
 
     let lastIdParam = props.param;
 
-    let paramPage = useParams();
+    let paramPage = useParams(); //hoc для получения параметров из url
     let userIdFromURL = paramPage.id;
     if (!userIdFromURL) {
         userIdFromURL = "2";
@@ -26,6 +26,7 @@ const ProfileInfo = (props) => {
         props.getParamsWithUrl(userIdFromURL)
     }
 
+    //иконки для ссылок на соц сети
     let socialNetwork = (network) => {
         if (props.profile.contacts.facebook != null && network === 'facebook') {
             return iconFacebook

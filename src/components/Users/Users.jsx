@@ -10,6 +10,7 @@ let Users = (props) => {
 
     let pagesCount = Math.ceil(props.pageTotalCount / props.pageSize);
 
+    //логика для отображения номеров страниц 
     let arrPages = [];
     for (let i = 1; i <= pagesCount; i++) {
         if (pagesCount > 10) {
@@ -45,7 +46,7 @@ let Users = (props) => {
         <div>
             <div className={s.numberPage}>
                 <div className={s.numberPage_box}>
-                    {arrPages.map(el => {
+                    {arrPages.map(el => { //отображение номеров страниц для переключения с изменением стиля 
                         return (
                             <span className={el === props.currentPage ? s.activePage : s.pasivPage}
                                 onClick={() => { props.onPageChanged(el) }}
@@ -55,9 +56,8 @@ let Users = (props) => {
                 </div>
             </div>
             {props.isFetching ?
-                <Preloader />
-                :
-                props.users.map(u => {
+                <Preloader />: //если данные с сервера не пришли, то запускаем анимацию загрузки
+                props.users.map(u => { //отображение пользователь по одному
                     return (
                         <div className={s.userBox} key={u.id}>
                             <div className={s.userBox_foto}>

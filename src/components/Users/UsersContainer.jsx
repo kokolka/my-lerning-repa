@@ -16,13 +16,13 @@ class UsersComponent extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.getUsers(this.props.currentPage, this.props.pageSize); //thunk
     }
 
     onPageChanged = (page) => {
         this.props.setCurrentPage(page);
 
-        this.props.getUsers(page, this.props.pageSize);
+        this.props.getUsers(page, this.props.pageSize); //thunk
     }
 
     render() {

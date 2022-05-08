@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { setUserProfile, setCurrentIdUser, getUserPageFunction } from '../../redux/profile-reducer';
-import axios from 'axios';
-import { profileAPI } from '../../api/api';
-
 
 class ProfileContainer extends React.Component {
     constructor(props, param, lastIdParam) {
@@ -15,29 +12,35 @@ class ProfileContainer extends React.Component {
         this.getParamsWithUrl = this.getParamsWithUrl.bind(this);
     }
 
-    getParamsWithUrl = (data) => {
+    getParamsWithUrl = (data) => { //callback функция для получения номера профиля из url 
         this.param = data;
         if (this.param != this.props.currentPageUser) {
             this.props.setUserProfile({ userID: this.param });
-            this.props.setCurrentIdUser(this.param)
+            this.props.setCurrentIdUser(this.param); //dispatch для нициализации перерисовки через componentDidUpdate
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) { //метод жизненного цикла, запускается при изменение props-ов
         if (prevProps.profile) {
             if (this.param != prevProps.profile.userId) {
-                this.props.getUserPageFunction(this.param);
+                this.props.getUserPageFunction(this.param); //thunk
             }
         }
     }
 
-    componentDidMount() {
-        this.props.getUserPageFunction(this.param);
+    componentDidMount() { //метод жизненного цикла, запускается после отрисовки компоненты
+        this.props.getUserPageFunction(this.param); //thunk
     }
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile} getParamsWithUrl={this.getParamsWithUrl} param={this.param} />
+            // ...this.props - передача всех props
+            <Profile
+                {...this.props}
+                profile={this.props.profile}
+                getParamsWithUrl={this.getParamsWithUrl}
+                param={this.param}
+            />
         )
     }
 }
