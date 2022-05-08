@@ -1,6 +1,5 @@
 import React from 'react';
-import prof from './News.module.css';
-//import './Profile.css';
+import s from './News.module.css';
 
 const News = () => {
     return (
