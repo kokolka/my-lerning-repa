@@ -8,6 +8,8 @@ import {
     follow,
     unfollow
 } from '../../redux/users-reducer';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 
 class UsersComponent extends React.Component {
 
@@ -73,12 +75,13 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
-let UsersContainer = connect(mapStateToProps, {
-    setCurrentPage,
-    setTotalCount,
-    getUsers,
-    follow,
-    unfollow
-})(UsersComponent);
-
-export default UsersContainer;
+export default compose(
+    connect(mapStateToProps, {
+        setCurrentPage,
+        setTotalCount,
+        getUsers,
+        follow,
+        unfollow
+    }),
+    withAuthRedirect
+)(UsersComponent)
