@@ -8,7 +8,12 @@ const Setting = () => {
             Setting
             <div>
                 <a href='https://social-network.samuraijs.com/docs' target='_blank'>
-                    Server
+                    Server doc
+                </a>
+            </div>
+            <div>
+                <a href='https://social-network.samuraijs.com/' target='_blank'>
+                    Server Login
                 </a>
             </div>
         </div>
