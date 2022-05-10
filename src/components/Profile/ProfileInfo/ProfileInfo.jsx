@@ -11,6 +11,7 @@ import iconYouTube from '../../../assets/imeges/iconsyoutube30.png';
 import iconGithub from '../../../assets/imeges/iconsgithub30.png';
 import iconMainLink from '../../../assets/imeges/iconsLinkedIn30.png';
 import Preloader from '../../common/Preloader/Preloader';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 const ProfileInfo = (props) => {
 
@@ -55,9 +56,9 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={prof.profile}>
-            <div className={prof.profile_background}>
+            {/* <div className={prof.profile_background}>
                 <img src='https://w-dog.ru/wallpapers/14/6/324153998540799/bezmyatezhnost-gorizont-sineva.jpg' />
-            </div>
+            </div> */}
             {/* {flag === false? <Preloader/>: */}
             <div className={prof.profile_info}>
                 <div className={prof.profile_ava}>
@@ -94,6 +95,7 @@ const ProfileInfo = (props) => {
                             <img src={socialNetwork('mainLink')} />
                         </a>
                     </div>
+                    <ProfileStatus status={props.status} />
                 </div>
             </div>
         </div>

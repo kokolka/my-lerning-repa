@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_CURRENT_ID_USER = 'SET_CURRENT_ID_USER';
+const SET_USER_STATUS = 'SET_USER_STATUS';
 
 let initialState = {
     postsData: [
@@ -14,6 +15,7 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
+    status: '',
     currentPageUser: 2
 };
 
@@ -52,6 +54,12 @@ const profileReducer = (state = initialState, action) => {
                 currentPageUser: action.currentPageUser
             };
         }
+        case SET_USER_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            };
+        }
         default: return state;
     }
 };
@@ -68,14 +76,31 @@ export const setUserProfile = (profile) => {
 export const setCurrentIdUser = (idUser) => {
     return { type: SET_CURRENT_ID_USER, idUser };
 };
+export const setUserStatus = (status) => {
+    return { type: SET_USER_STATUS, status };
+};
 
-export const getUserPageFunction = (param) => {
+export const getUserPageFunction = (id) => {
     return (dispatch) => {
-        profileAPI.getUserPage(param)
+        profileAPI.getUserPage(id)
             .then(data => {
                 dispatch(setUserProfile(data));
             })
     }
+}
+export const getUserStatus = (id) => {
+    return (dispatch) => {
+        profileAPI.getUserStatus(id)
+            .then(data => {
+                dispatch(setUserStatus(data));
+            })
+    };
+    // (dispatch) => {
+    //     profileAPI.getUserStatus(id)
+    //         .then(response => {
+    //             dispatch(setUserStatus(response));
+    //         })
+    // }
 }
 
 export default profileReducer;

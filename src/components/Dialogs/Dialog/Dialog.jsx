@@ -6,8 +6,6 @@ import noPhoto from '../../../assets/imeges/noPhoto.png'
 const Dialog = (props) => {
     let path = '/dialogs/' + props.id;
 
-    debugger;
-
     return (
         <div className={s.dialog}>
             <img src={props.foto != null ? props.foto: noPhoto} ></img>

@@ -10,7 +10,8 @@ const Profile = (props) => {
             <ProfileInfo
                 profile={props.profile}
                 getParamsWithUrl={props.getParamsWithUrl}
-                param={props.param} />
+                param={props.param} 
+                status={props.status}/>
             {/* Блок с постами пользователя */}
             <MyPostComponent />
         </div>

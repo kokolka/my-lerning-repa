@@ -1,6 +1,11 @@
 import React from 'react';
 import Profile from './Profile';
-import { setUserProfile, setCurrentIdUser, getUserPageFunction } from '../../redux/profile-reducer';
+import { 
+    setUserProfile, 
+    setCurrentIdUser, 
+    getUserPageFunction,
+    getUserStatus
+} from '../../redux/profile-reducer';
 import { connect } from 'react-redux';
 import {withAuthRedirect} from '../../HOC/withAuthRedirect';
 import { compose } from 'redux';
@@ -25,12 +30,14 @@ class ProfileContainer extends React.Component {
         if (prevProps.profile) {
             if (this.param != prevProps.profile.userId) {
                 this.props.getUserPageFunction(this.param); //thunk
+                this.props.getUserStatus(this.param); //thunk
             }
         }
     }
 
     componentDidMount() { //метод жизненного цикла, запускается после отрисовки компоненты
         this.props.getUserPageFunction(this.param); //thunk
+        this.props.getUserStatus(this.param); //thunk
     }
 
     render() {
@@ -38,7 +45,6 @@ class ProfileContainer extends React.Component {
             // ...this.props - передача всех props
             <Profile
                 {...this.props}
-                profile={this.props.profile}
                 getParamsWithUrl={this.getParamsWithUrl}
                 param={this.param}
             />
@@ -48,6 +54,7 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
+    status: state.profilePage.status,
     currentPageUser: state.profilePage.currentPageUser
 })
 
@@ -55,7 +62,8 @@ export default compose(
     connect(mapStateToProps, {
         setUserProfile,
         setCurrentIdUser,
-        getUserPageFunction
+        getUserPageFunction,
+        getUserStatus
     }),
     withAuthRedirect
 )(ProfileContainer);
