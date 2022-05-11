@@ -20,7 +20,7 @@ const ProfileInfo = (props) => {
     let paramPage = useParams(); //hoc для получения параметров из url
     let userIdFromURL = paramPage.id;
     if (!userIdFromURL) {
-        userIdFromURL = "2";
+        userIdFromURL = "23614";
     }
 
     if (lastIdParam !== userIdFromURL) {
@@ -95,7 +95,7 @@ const ProfileInfo = (props) => {
                             <img src={socialNetwork('mainLink')} />
                         </a>
                     </div>
-                    <ProfileStatus status={props.status} />
+                    <ProfileStatus status={props.status} putUserStatus={props.putUserStatus}/>
                 </div>
             </div>
         </div>

@@ -4,7 +4,8 @@ import {
     setUserProfile, 
     setCurrentIdUser, 
     getUserPageFunction,
-    getUserStatus
+    getUserStatus,
+    putUserStatus
 } from '../../redux/profile-reducer';
 import { connect } from 'react-redux';
 import {withAuthRedirect} from '../../HOC/withAuthRedirect';
@@ -63,7 +64,8 @@ export default compose(
         setUserProfile,
         setCurrentIdUser,
         getUserPageFunction,
-        getUserStatus
+        getUserStatus,
+        putUserStatus
     }),
     withAuthRedirect
 )(ProfileContainer);

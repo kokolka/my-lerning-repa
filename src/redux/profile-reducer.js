@@ -95,12 +95,15 @@ export const getUserStatus = (id) => {
                 dispatch(setUserStatus(data));
             })
     };
-    // (dispatch) => {
-    //     profileAPI.getUserStatus(id)
-    //         .then(response => {
-    //             dispatch(setUserStatus(response));
-    //         })
-    // }
 }
+export const putUserStatus = (status) => (dispatch) => {
+    profileAPI.putUserStatus(status)
+        .then(response => {
+            if(response.data.resultCode === 0){
+                dispatch(setUserStatus(status));
+            }
+        })
+}
+
 
 export default profileReducer;
