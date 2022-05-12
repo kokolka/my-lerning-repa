@@ -20,7 +20,8 @@ const ProfileInfo = (props) => {
     let paramPage = useParams(); //hoc для получения параметров из url
     let userIdFromURL = paramPage.id;
     if (!userIdFromURL) {
-        userIdFromURL = "23614";
+        userIdFromURL = `${props.meUserId}`;
+        //"23614";
     }
 
     if (lastIdParam !== userIdFromURL) {

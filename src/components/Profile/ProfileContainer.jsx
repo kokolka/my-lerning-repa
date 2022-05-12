@@ -56,7 +56,8 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    currentPageUser: state.profilePage.currentPageUser
+    currentPageUser: state.profilePage.currentPageUser,
+    meUserId: state.auth.userId
 })
 
 export default compose(

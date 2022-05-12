@@ -13,6 +13,7 @@ const Profile = (props) => {
                 param={props.param}
                 status={props.status}
                 putUserStatus={props.putUserStatus}
+                meUserId={props.meUserId}
             />
             {/* Блок с постами пользователя */}
             <MyPostComponent />
