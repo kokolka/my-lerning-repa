@@ -5,7 +5,7 @@ const SET_USER_DATA = 'SET_USER_DATA';
 let initialState = {
     id: null,
     email: null,
-    login: null, 
+    login: null,
     isAuth: false
 };
 
@@ -38,6 +38,20 @@ export const meUser = () => {
         })
     }
 }
-
-
-export default authReducer;
+export const postLogin = (loginData) => (dispatch) => {
+    authAPI.postLogin(loginData).then(response => {
+        if (response.data.resultCode === 0) {
+            meUser();
+        }
+    })
+}
+export const deleteLogOut = () => {
+    return (dispatch) => {
+        authAPI.deleteLogOut().then(response => {
+            if (response.data.resultCode === 0) {
+                meUser();
+            }
+        })
+    }
+}
+    export default authReducer;

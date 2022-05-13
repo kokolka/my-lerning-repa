@@ -1,10 +1,12 @@
 import React from "react";
-//import s from 'Login.module.css';
+import LoginForm from "./LoginForm/LoginForm";
+import s from './Login.module.css';
 
 const Login = () => {
     return(
-        <div>
-            Login
+        <div className={s.Login_box}>
+            <h1>Login</h1>
+            <LoginForm/>
         </div>
     );
 }
