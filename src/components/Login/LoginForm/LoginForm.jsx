@@ -1,11 +1,11 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import {postLogin} from '../../../redux/auth-reducer';
 
-let LoginForm = () => {
+
+let LoginForm = (props) => {
 
     let p = (a) =>{
-        postLogin({
+        props.postLogin({
             email: a.login,
             password: a.password,
             rememberMe: a.rememberMy,

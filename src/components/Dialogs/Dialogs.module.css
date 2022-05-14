@@ -29,9 +29,9 @@
     display: grid;
     grid-template-columns: auto 100px;
 }
-.send textarea{
+.send_textarea{
     font-size: 18px;
-    width: 670px;
+    width: 630px;
     height: 40px;
 
     padding: 5px;

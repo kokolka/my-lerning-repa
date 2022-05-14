@@ -28,7 +28,6 @@ export const setAuthUserData = (userId, email, login) => {
 };
 
 export const meUser = () => {
-
     return (dispatch) => {
         authAPI.meUser().then(data => {
             if (data.resultCode === 0) {
@@ -38,20 +37,22 @@ export const meUser = () => {
         })
     }
 }
-export const postLogin = (loginData) => (dispatch) => {
+
+export const postLogin = (loginData) => () => {
     authAPI.postLogin(loginData).then(response => {
         if (response.data.resultCode === 0) {
             meUser();
-        }
+        } 
     })
 }
 export const deleteLogOut = () => {
-    return (dispatch) => {
+    return () => {
         authAPI.deleteLogOut().then(response => {
             if (response.data.resultCode === 0) {
+                console.log(response);
                 meUser();
             }
         })
     }
 }
-    export default authReducer;
+export default authReducer;

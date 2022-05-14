@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './MyPost.module.css';
 import Post from './Post/Post';
+import { Field, Formik, Form } from 'formik';
 
 const MyPost = (props) => {
     let postsElements =
@@ -9,16 +10,40 @@ const MyPost = (props) => {
     let messageAlert = () => {
         props.AddPost();
     }
-    let onPostChange = (e) => {
-        let text = e.target.value;
+    let onPostChange = (text) => {
+        //let text = e.target.value;
         props.AppPostNewText(text);
+        messageAlert();
     }
+ 
+    let FormSendMessage = () => ( 
+        <div>
+            <Formik
+                initialValues={{ message: '' }}
+                onSubmit={(values, { setSubmitting }) => {
+                    onPostChange(values.message);
+                    setSubmitting(false);
+                }}
+                
+            >
+                {(p) => (
+                    <Form>
+                        <Field type="text" name="message"/>
+                        <button type="submit" disabled={p.isSubmitting}>
+                            Send
+                        </button>
+                    </Form>
+                )}
+            </Formik>
+        </div>
+    );
 
     return (
         <div className={s.postsBlok}>
             My post
             <div>
-                <div>
+                <FormSendMessage />
+                {/* <div>
                     <textarea
                         placeholder='Enter your post'
                         onChange={onPostChange}
@@ -27,7 +52,7 @@ const MyPost = (props) => {
                 </div>
                 <div>
                     <button onClick={messageAlert}>Add post</button>
-                </div>
+                </div> */}
             </div>
             <div className={s.posts}>
                 {postsElements}

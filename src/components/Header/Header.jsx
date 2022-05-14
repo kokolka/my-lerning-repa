@@ -11,8 +11,8 @@ const Header = (props) => {
                 {props.isAuth === true ?
                     <div>
                         {props.login}
-                        <div onClick={()=>{props.deleteLogOut()}}>
-                            Log Out
+                        <div>
+                            <button onClick={()=>{props.deleteLogOut()}}>Log Out</button> 
                         </div>
                     </div> :
                     <NavLink to={'/login'}>Login</NavLink>}

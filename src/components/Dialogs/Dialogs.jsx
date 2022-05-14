@@ -1,15 +1,16 @@
 import React from 'react';
-import {Navigate} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 import s from './Dialogs.module.css';
+import { Field, Formik, Form } from 'formik';
 
 const Dialogs = (props) => {
 
     //список диалогов
     let dialogsElements =
-        props.dialogsData.map(el => <Dialog id = {el.id} name={el.name} key={el.id} foto={el.foto} />);
+        props.dialogsData.map(el => <Dialog id={el.id} name={el.name} key={el.id} foto={el.foto} />);
 
     //список сообщений
     let messagesElements =
@@ -18,10 +19,33 @@ const Dialogs = (props) => {
     let sendMessage = () => {
         props.onSendMessage();
     }
-    let changeMessage = (e) => {
-        let text = e.target.value;
+    let changeMessage = (text) => {
+        //let text = e.target.value;
         props.onChangeMessage(text);
+        sendMessage();
     }
+
+    let FormSendMessage = () => ( 
+        <div className={s.send}>
+            <Formik
+                initialValues={{ message: '' }}
+                onSubmit={(values, { setSubmitting }) => {
+                    changeMessage(values.message);
+                    setSubmitting(false);
+                }}
+                
+            >
+                {(p) => (
+                    <Form>
+                        <Field className={s.send_textarea} type="text" name="message"/>
+                        <button type="submit" disabled={p.isSubmitting}>
+                            Send
+                        </button>
+                    </Form>
+                )}
+            </Formik>
+        </div>
+    );
 
     return (
         <div className={s.dialogs}>
@@ -35,7 +59,8 @@ const Dialogs = (props) => {
                 <div className={s.message_area}>
                     {messagesElements}
                 </div>
-                <div className={s.send}>
+                <FormSendMessage />
+                {/* <div className={s.send}>
                     <div>
                         <textarea
                             placeholder='Enter your message'
@@ -44,7 +69,7 @@ const Dialogs = (props) => {
                         />
                     </div>
                     <button onClick={sendMessage}>Send</button>
-                </div>
+                </div> */}
             </div>
         </div>
     )
