@@ -5,6 +5,8 @@ import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 import s from './Dialogs.module.css';
 import { Field, Formik, Form } from 'formik';
+import { Textarea } from '../common/FormControls/FormControl';
+import { maxLengthCreator } from '../../Utils/Validations/validators';
 
 const Dialogs = (props) => {
 
@@ -25,6 +27,8 @@ const Dialogs = (props) => {
         sendMessage();
     }
 
+    let maxLength20 = maxLengthCreator(20);
+
     let FormSendMessage = () => ( 
         <div className={s.send}>
             <Formik
@@ -37,7 +41,13 @@ const Dialogs = (props) => {
             >
                 {(p) => (
                     <Form>
-                        <Field className={s.send_textarea} type="text" name="message"/>
+                        <Field 
+                            className={s.send_textarea} 
+                            name="message"
+                            component={Textarea}
+                            placeholder='Enter your post'
+                            validate={maxLength20}
+                        />
                         <button type="submit" disabled={p.isSubmitting}>
                             Send
                         </button>

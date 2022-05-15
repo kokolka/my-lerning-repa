@@ -1,10 +1,11 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import s from './LoginForm.module.css';
 
 
 let LoginForm = (props) => {
 
-    let p = (a) =>{
+    let p = (a) => {
         props.postLogin({
             email: a.login,
             password: a.password,
@@ -25,6 +26,11 @@ let LoginForm = (props) => {
                 ) {
                     errors.login = 'Invalid email address';
                 }
+
+                if (!values.password) {
+                    errors.password = 'Required';
+                }
+
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
@@ -43,22 +49,40 @@ let LoginForm = (props) => {
                 // }, 400);
             }}
         >
-            {({ isSubmitting }) => (
+            {(p) => (
                 <Form>
                     <div>
-                        <Field placeholder="Login" type="email" name="login" />
-                        <ErrorMessage name="login" component="div" />
+                        <Field
+                            className={p.errors.login && p.touched.login ? s.entry_field__errors : ''}
+                            placeholder="Login"
+                            type="email"
+                            name="login"
+                        />
+                        <ErrorMessage
+                            className={p.errors.login && p.touched.login ? s.errors : ''}
+                            name="login"
+                            component="div"
+                        />
                     </div>
                     <div>
-                        <Field placeholder="Password" type="password" name="password" />
-                        <ErrorMessage name="password" component="div" />
+                        <Field
+                            className={p.errors.password && p.touched.password ? s.entry_field__errors : ''}
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                        />
+                        <ErrorMessage
+                            className={p.errors.password && p.touched.password ? s.errors : ''}
+                            name="password"
+                            component="div"
+                        />
                     </div>
                     <div>
-                        <Field type='checkbox' name='rememberMy'/>
+                        <Field type='checkbox' name='rememberMy' />
                         {'Remember my'}
                     </div>
                     <div>
-                        <button type="submit" disabled={isSubmitting}>
+                        <button type="submit" disabled={p.isSubmitting}>
                             Sing In
                         </button>
                     </div>
