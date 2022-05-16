@@ -9,13 +9,8 @@ const MyPost = (props) => {
     let postsElements =
         props.pd.map(p => <Post message={p.message} key={p.id} likeCounts={p.likeCounts} />);
 
-    let messageAlert = () => {
-        props.AddPost();
-    }
-    let onPostChange = (text) => {
-        //let text = e.target.value;
-        props.AppPostNewText(text);
-        messageAlert();
+    let messageAlert = (text) => {
+        props.AddPost(text);
     }
 
     let maxLength20 = maxLengthCreator(20);
@@ -25,7 +20,7 @@ const MyPost = (props) => {
             <Formik
                 initialValues={{ message: '' }}
                 onSubmit={(values, { setSubmitting }) => {
-                    onPostChange(values.message);
+                    messageAlert(values.message);
                     setSubmitting(false);
                 }}
 

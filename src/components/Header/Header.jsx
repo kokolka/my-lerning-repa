@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './Header.module.css';
+import { postLogin } from '../../redux/auth-reducer';
 
 const Header = (props) => {
     return (
@@ -12,10 +13,12 @@ const Header = (props) => {
                     <div>
                         {props.login}
                         <div>
-                            <button onClick={()=>{props.deleteLogOut()}}>Log Out</button> 
+                            <button onClick={() => { props.deleteLogOut() }}>Log Out</button>
                         </div>
                     </div> :
-                    <NavLink to={'/login'}>Login</NavLink>}
+                    <div>
+                        <NavLink to={'/login'}>Login</NavLink>
+                    </div>}
                 {/*отображение имени авторизованного пользователя или сслыки на авторизацию*/}
             </div>
         </header>

@@ -18,13 +18,8 @@ const Dialogs = (props) => {
     let messagesElements =
         props.messagesData.map(message => <Message message={message.message} key={message.id} who={message.who} />)
 
-    let sendMessage = () => {
-        props.onSendMessage();
-    }
-    let changeMessage = (text) => {
-        //let text = e.target.value;
-        props.onChangeMessage(text);
-        sendMessage();
+    let sendMessage = (text) => {
+        props.onSendMessage(text);
     }
 
     let maxLength20 = maxLengthCreator(20);
@@ -34,7 +29,7 @@ const Dialogs = (props) => {
             <Formik
                 initialValues={{ message: '' }}
                 onSubmit={(values, { setSubmitting }) => {
-                    changeMessage(values.message);
+                    sendMessage(values.message);
                     setSubmitting(false);
                 }}
                 

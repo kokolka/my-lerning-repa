@@ -2,7 +2,6 @@ import React from 'react';
 import s from './FormControl.module.css';
 
 export const Textarea = ({ field, form, ...props }) => {
-    debugger;
 
     const hasError = form.errors.message && form.touched.message;
 
