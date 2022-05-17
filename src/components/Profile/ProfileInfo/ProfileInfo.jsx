@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router';
+import { useParams, Navigate } from 'react-router-dom';
 import prof from './ProfileInfo.module.css';
 import noPhoto from '../../../assets/imeges/noPhoto.png';
 import iconFacebook from '../../../assets/imeges/iconsFacebook.png';
@@ -19,7 +19,9 @@ const ProfileInfo = (props) => {
 
     let paramPage = useParams(); //hoc для получения параметров из url
     let userIdFromURL = paramPage.id;
+
     if (!userIdFromURL) {
+        if (!props.meUserId) return <Navigate to='/login' />
         userIdFromURL = `${props.meUserId}`;
         //"23614";
     }

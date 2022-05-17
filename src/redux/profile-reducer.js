@@ -15,7 +15,7 @@ let initialState = {
     newPostText: '',
     profile: null,
     status: '',
-    currentPageUser: 2
+    currentPageUser: ''
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -45,7 +45,7 @@ const profileReducer = (state = initialState, action) => {
         case SET_CURRENT_ID_USER: {
             return {
                 ...state,
-                currentPageUser: action.currentPageUser
+                currentPageUser: action.idUser
             };
         }
         case SET_USER_STATUS: {
@@ -70,7 +70,7 @@ export const setCurrentIdUser = (idUser) => {
 export const setUserStatus = (status) => {
     return { type: SET_USER_STATUS, status };
 };
-
+ 
 export const getUserPageFunction = (id) => {
     return (dispatch) => {
         profileAPI.getUserPage(id)
