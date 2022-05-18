@@ -5,10 +5,6 @@ import {meUser, deleteLogOut} from '../../redux/auth-reducer';
 
 class HeaderContainer extends React.Component{
     
-    componentDidMount(){
-        this.props.meUser();//thunk
-    }
-
     render(){
         return <Header {...this.props}/>
     }
@@ -21,7 +17,4 @@ let matStateToProps = (state) => {
     }
 }
 
-export default connect(matStateToProps, {
-    meUser,
-    deleteLogOut
-})(HeaderContainer);
+export default connect(matStateToProps, {deleteLogOut})(HeaderContainer);

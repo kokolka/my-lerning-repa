@@ -24,12 +24,19 @@ export const usersAPI = {
 
 export const authAPI = {
     meGetUser(){
-        return instance.get(`auth/me`).then(response => response.data)
+        return instance.get(`auth/me`)
     },
-    postLogin(email, password, rememberMe = false){
+    postLogin(email, password, rememberMe = false){ //Изменить на бругой endpoint
         return instance.post('auth/login', { email, password, rememberMe });
     },
-    deleteLogOut(){
+    // postLogin(Login, Password, rememberMe = false){ //Изменить на бругой endpoint
+    //     return axios.post('https://social-network.samuraijs.com/Auth/Auth/TryLogin', 
+    //     { Login, Password, rememberMe },
+    //     {withCredentials: true, headers: {
+    //         "API-KEY": "7b2bf063-5f39-45d3-b53c-542238da0668"
+    //     }});
+    // },
+    deleteLogOut(){ 
         return instance.delete('auth/login')
     }
 }

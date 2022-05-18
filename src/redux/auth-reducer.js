@@ -7,7 +7,7 @@ let initialState = {
     id: null,
     email: null,
     login: null,
-    isAuth: false 
+    isAuth: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -41,17 +41,18 @@ export const setOutput = () => {
 
 export const meUser = () => {
     return (dispatch) => {
-        authAPI.meGetUser().then(data => {
-            if (data.resultCode === 0) {
-                let { email, id, login } = data.data;
-                dispatch(setAuthUserData(id, email, login, true));
-            }
-        })
-    }
-}
+    authAPI.meGetUser().then(response => {
+        if (response.data.resultCode === 0) {
+            let { email, id, login } = response.data.data;
+            dispatch(setAuthUserData(id, email, login, true));
+        }
+    })
+}}
+
+
 
 export let postLogin = (email, password, rememberMe) => (dispatch) => {
-    authAPI.postLogin(email, password, rememberMe)
+    return authAPI.postLogin(email, password, rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(meUser());

@@ -82,6 +82,5 @@ export default compose(
         getUsers,
         follow,
         unfollow
-    }),
-    withAuthRedirect
+    })
 )(UsersComponent)

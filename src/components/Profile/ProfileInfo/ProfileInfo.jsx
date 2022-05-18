@@ -30,27 +30,31 @@ const ProfileInfo = (props) => {
         props.getParamsWithUrl(userIdFromURL)
     }
 
-    //иконки для ссылок на соц сети
-    let socialNetwork = (network) => {
-        if (props.profile.contacts.facebook != null && network === 'facebook') {
-            return iconFacebook
-        } else if (props.profile.contacts.website != null && network === 'website') {
-            return iconWebsite
-        } else if (props.profile.contacts.vk != null && network === 'vk') {
-            return iconVK
-        } else if (props.profile.contacts.twitter != null && network === 'twitter') {
-            return iconTwitter
-        } else if (props.profile.contacts.instagram != null && network === 'instagram') {
-            return iconInstagram
-        } else if (props.profile.contacts.youtube != null && network === 'youtube') {
-            return iconYouTube
-        } else if (props.profile.contacts.github != null && network === 'github') {
-            return iconGithub
-        } else if (props.profile.contacts.mainLink != null && network === 'mainLink') {
-            return iconMainLink
-        } else {
-            return '';
+    let socialNetworkObject = {
+        facebook: iconFacebook,
+        website: iconWebsite,
+        vk: iconVK,
+        twitter: iconTwitter,
+        instagram: iconInstagram,
+        youtube: iconYouTube,
+        github: iconGithub,
+        mainLink: iconMainLink
+    }
+
+    let socialNetworkArrow = [iconFacebook, iconWebsite, iconVK, iconTwitter, iconInstagram, iconYouTube, iconGithub, iconMainLink];
+    let mySocialNetwork = () => {
+        let numberInArrow = 0; // счётчик для массива
+        let arrComponents = [];
+        for (let key in props.profile.contacts) { //перебор компонентов объекта по их key
+            if (props.profile.contacts[key] != null) {
+                arrComponents.push(<a href={props.profile.contacts[key]} target='_blank' className={prof.elA}>
+                    {/* <img src={socialNetworkArrow[numberInArrow]} /> */}
+                    <img src={socialNetworkObject[key]} /> {/* способ вывода иконок через объект, без дополнительного счётчика */}
+                </a>)
+            }
+            numberInArrow = numberInArrow + 1; // переход на следующую итерацию 
         }
+        return arrComponents;
     }
 
     if (props.profile == null || Object.keys(props.profile).length < 2) {
@@ -73,32 +77,9 @@ const ProfileInfo = (props) => {
                     <div>{`About me: ${props.profile.aboutMe != null ? props.profile.aboutMe : ''}`}</div>
                     <div>{`Looking for job: ${props.profile.lookingForAJob == true ? 'YES' : 'NO'}`}</div>
                     <div>{`Me social network:`}
-                        <a href={props.profile.contacts.facebook} target='_blank'>
-                            <img src={socialNetwork('facebook')} />
-                        </a>
-                        <a href={props.profile.contacts.website} target='_blank'>
-                            <img src={socialNetwork('website')} />
-                        </a>
-                        <a href={props.profile.contacts.vk} target='_blank'>
-                            <img src={socialNetwork('vk')} />
-                        </a>
-                        <a href={props.profile.contacts.twitter} target='_blank'>
-                            <img src={socialNetwork('twitter')} />
-                        </a>
-                        <a href={props.profile.contacts.instagram} target='_blank'>
-                            <img src={socialNetwork('instagram')} />
-                        </a>
-                        <a href={props.profile.contacts.youtube} target='_blank'>
-                            <img src={socialNetwork('youtube')} />
-                        </a>
-                        <a href={props.profile.contacts.github} target='_blank'>
-                            <img src={socialNetwork('github')} />
-                        </a>
-                        <a href={props.profile.contacts.mainLink} target='_blank'>
-                            <img src={socialNetwork('mainLink')} />
-                        </a>
+                        {mySocialNetwork()}
                     </div>
-                    <ProfileStatus status={props.status} putUserStatus={props.putUserStatus}/>
+                    <ProfileStatus status={props.status} putUserStatus={props.putUserStatus} />
                 </div>
             </div>
         </div>
