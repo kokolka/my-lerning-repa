@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
-import News from './components/News/News';
+import NewsContainer from './components/News/NewsContainer';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -25,7 +25,8 @@ class App extends React.Component {
 
 
   render() {
-    if(!this.props.isAuth){
+    // if(!this.props.isAuth){
+    if(this.props.isAuth){
       return <Preloader />
     }
     return (
@@ -42,7 +43,7 @@ class App extends React.Component {
               <Route path='/profile/:id' element={<ProfileContainer />} />
             </Route>
             <Route path='/dialogs/*' element={<DialogsContainer />} />
-            <Route path='/news' element={<News />} />
+            <Route path='/news' element={<NewsContainer />} />
             <Route path='/music' element={<Music />} />
             <Route path='/setting' element={<Setting />} />
             <Route path='/users' element={<UsersContainer />} />
