@@ -25,8 +25,8 @@ class App extends React.Component {
 
 
   render() {
-    // if(!this.props.isAuth){
-    if(this.props.isAuth){
+    if(!this.props.isAuth){
+    //if(this.props.isAuth){ // for offlain mod
       return <Preloader />
     }
     return (
