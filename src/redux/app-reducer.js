@@ -4,7 +4,8 @@ import { meUser, setAuthUserData } from './auth-reducer';
 const SET_INITIALIZED = 'SET_INITIALIZED';
 
 let initialState = {
-    initialized: false
+    initialized: false, 
+    loginErrors: false
 };
 
 const appReducer = (state = initialState, action) => {
@@ -14,7 +15,6 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 initialized: true
             };
-
         default:
             return state;
     }

@@ -2,7 +2,6 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import s from './LoginForm.module.css';
 
-
 let LoginForm = (props) => {
 
     return (

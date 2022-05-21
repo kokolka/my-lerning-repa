@@ -1,12 +1,15 @@
 import { authAPI } from "../api/api";
 
+
+import axios from "axios";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_OUTPUT = 'SET_OUTPUT';
 
 let initialState = {
     id: null,
     email: null,
-    login: null,
+    login: null, 
     isAuth: false
 };
 
@@ -58,12 +61,15 @@ export const meUser = () => (dispatch) => {
 
 
 export let postLogin = (email, password, rememberMe) => (dispatch) => {
-    return authAPI.postLogin(email, password, rememberMe)
+    authAPI.postLogin(email, password, rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(meUser());
             } else {
                 console.log('resultCode: ' + response.data.resultCode);
+                console.log('email: ' + email);
+                console.log('password: ' + password);
+                console.log('rememberMe: ' + rememberMe);
             }
         })
 }

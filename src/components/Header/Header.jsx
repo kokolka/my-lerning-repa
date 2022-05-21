@@ -11,7 +11,7 @@ const Header = (props) => {
             <div className={s.login_block}>
                 {props.isAuth === true ?
                     <div>
-                        {props.login}
+                        {props.login} 
                         <div>
                             <button onClick={() => { props.deleteLogOut() }}>Log Out</button>
                         </div>
