@@ -1,5 +1,5 @@
 import { authAPI } from "../api/api";
-import { meUser } from './auth-reducer';
+import { meUser, setAuthUserData } from './auth-reducer';
 
 const SET_INITIALIZED = 'SET_INITIALIZED';
 
@@ -27,11 +27,9 @@ export const setInitialized = () => {
 export const initializeApp = () => (dispatch) => {
     let init = dispatch(meUser());
 
-    // init.then(() => {
-    //     dispatch(setInitialized());
-
-    //     console.log('a')
-    // })
+    init.then(() => {
+        dispatch(setInitialized());
+    })
 }
 
 export default appReducer;

@@ -39,15 +39,21 @@ export const setOutput = () => {
     return { type: SET_OUTPUT };
 };
 
-export const meUser = () => {
-    return (dispatch) => {
-    authAPI.meGetUser().then(response => {
-        if (response.data.resultCode === 0) {
-            let { email, id, login } = response.data.data;
-            dispatch(setAuthUserData(id, email, login, true));
-        }
-    })
-}}
+export const meUser = () => (dispatch) => {
+    return (
+        authAPI.meGetUser()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let { email, id, login } = response.data.data;
+                    dispatch(setAuthUserData(id, email, login, true));
+                }
+                return (response);
+            })
+            .catch(() => {
+                return ('error');
+            })
+    )
+}
 
 
 

@@ -20,15 +20,17 @@ import Preloader from './components/common/Preloader/Preloader';
 class App extends React.Component {
 
   componentDidMount() {
-    this.props.meUser();//thunk
+    //this.props.meUser();//thunk
+    this.props.initializeApp();
   }
 
 
   render() {
-    if(!this.props.isAuth){
+    //if(!this.props.isAuth){
+    if(!this.props.initialized){
     //if(this.props.isAuth){ // for offlain mod
       return <Preloader />
-    }
+    } 
     return (
       <div className='app-wrapper'>
         <div className='app-wrapper__header'>

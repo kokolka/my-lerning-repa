@@ -24,7 +24,7 @@ export const usersAPI = {
 
 export const authAPI = {
     meGetUser(){
-        return instance.get(`auth/me`)
+        return instance.get(`auth/me`);
     },
     postLogin(email, password, rememberMe = false){ //Изменить на бругой endpoint
         return instance.post('auth/login', { email, password, rememberMe });
