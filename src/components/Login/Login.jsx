@@ -13,7 +13,12 @@ const Login = (props) => {
     return (
         <div className={s.Login_box}>
             <h1>Login</h1>
-            <LoginForm postLogin={props.postLogin} /> {/* 'kirill-i_98@mail.ru', 'Mrdidok141592Z1998rehb', true */}
+            <LoginForm
+                postLogin={props.postLogin}
+                numberError={props.numberError}
+                messageError={props.messageError}
+            />
+            {/* 'kirill-i_98@mail.ru', 'Mrdidok141592Z1998rehb', true */}
         </div>
     );
 }

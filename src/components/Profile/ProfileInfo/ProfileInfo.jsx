@@ -11,7 +11,7 @@ import iconYouTube from '../../../assets/imeges/iconsyoutube30.png';
 import iconGithub from '../../../assets/imeges/iconsgithub30.png';
 import iconMainLink from '../../../assets/imeges/iconsLinkedIn30.png';
 import Preloader from '../../common/Preloader/Preloader';
-import ProfileStatus from './ProfileStatus/ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
 
@@ -30,7 +30,7 @@ const ProfileInfo = (props) => {
         props.getParamsWithUrl(userIdFromURL)
     }
 
-    let socialNetworkObject = {
+    let socialNetworkObject = { 
         facebook: iconFacebook,
         website: iconWebsite,
         vk: iconVK,
@@ -79,7 +79,7 @@ const ProfileInfo = (props) => {
                     <div>{`Me social network:`}
                         {mySocialNetwork()}
                     </div>
-                    <ProfileStatus status={props.status} putUserStatus={props.putUserStatus} />
+                    <ProfileStatusWithHooks status={props.status} putUserStatus={props.putUserStatus} />
                 </div>
             </div>
         </div>

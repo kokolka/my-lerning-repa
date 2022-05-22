@@ -7,7 +7,7 @@ let LoginForm = (props) => {
     return (
         <div>
             <Formik
-                initialValues={{ email: '', password: '', rememberMy: false, captcha: true }}
+                initialValues={{ email: '', password: '', rememberMy: false, captcha: true, errorLoginMessage: props.numberError}}
                 validate={values => {
                     const errors = {};
                     if (!values.email) {
@@ -20,6 +20,11 @@ let LoginForm = (props) => {
 
                     if (!values.password) {
                         errors.password = 'Required';
+                    }
+
+                    if (values.errorLoginMessage > 0) {
+                        errors.errorLoginMessage = props.messageError;
+                        console.log('gg');
                     }
 
                     return errors;
@@ -56,6 +61,11 @@ let LoginForm = (props) => {
                             <ErrorMessage
                                 className={p.errors.password && p.touched.password ? s.errors : ''}
                                 name="password"
+                                component="div"
+                            />
+                            <ErrorMessage
+                                className={p.errors.errorLoginMessage ? s.errors : ''}
+                                name="errorLoginMessage"
                                 component="div"
                             />
                         </div>

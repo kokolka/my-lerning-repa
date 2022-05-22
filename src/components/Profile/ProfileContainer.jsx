@@ -6,7 +6,7 @@ import {
     getUserPageFunction,
     getUserStatus,
     putUserStatus
-} from '../../redux/profile-reducer';
+} from '../../redux/profile-reducer'; 
 import { connect } from 'react-redux';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { compose } from 'redux';
