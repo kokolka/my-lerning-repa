@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './ProfileStatus.module.css';
 
-class ProfileStatus extends React.Component {
+class ProfileStatusWithClass extends React.Component {
 
     state = {
         editMode: false,
@@ -61,4 +61,4 @@ class ProfileStatus extends React.Component {
     }
 }
 
-export default ProfileStatus;
+export default ProfileStatusWithClass;

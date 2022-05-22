@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './ProfileStatus.module.css';
 
 const ProfileStatusWithHooks = (props) => {
+
+    useEffect(() => {
+        setStatus(props.status)
+    }, [props.status]);
 
     let stateWithUseState = useState(false);
 
