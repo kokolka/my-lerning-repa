@@ -33,7 +33,7 @@ const MyPost = (props) => {
                             validate={maxLength20}
                             component={Textarea}
                             placeholder='Enter your post'
-                            
+
                         />
                         {/* <ErrorMessage name="message" component="div" /> */}
                         {/* {p.errors.message && p.touched.message && <div>{p.errors.message}</div>} */}
@@ -69,4 +69,4 @@ const MyPost = (props) => {
     );
 }
 
-export default MyPost;
+export default React.memo(MyPost);
