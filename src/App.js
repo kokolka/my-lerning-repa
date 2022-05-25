@@ -1,6 +1,6 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { connect, Provider } from 'react-redux';
 
 import './App.css';
 import NewsContainer from './components/News/NewsContainer';
@@ -13,8 +13,8 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginContainer from './components/Login/LoginContainer';
 
-import {initializeApp} from './redux/app-reducer';
-import {meUser} from './redux/auth-reducer';
+import { initializeApp } from './redux/app-reducer';
+import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 
 class App extends React.Component {
@@ -27,10 +27,10 @@ class App extends React.Component {
 
   render() {
     //if(!this.props.isAuth){
-    if(!this.props.initialized){
-    //if(this.props.isAuth){ // for offlain mod
+    if (!this.props.initialized) {
+      //if(this.props.isAuth){ // for offlain mod
       return <Preloader />
-    } 
+    }
     return (
       <div className='app-wrapper'>
         <div className='app-wrapper__header'>
@@ -58,10 +58,10 @@ class App extends React.Component {
 }
 
 const mapStareToProps = (state) => {
-  return{
+  return {
     initialized: state.initialize.initialized,
     isAuth: state.auth.isAuth
   }
 }
 
-export default connect(mapStareToProps, {initializeApp, meUser})(App);
+export default connect(mapStareToProps, { initializeApp, meUser })(App);
