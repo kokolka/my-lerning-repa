@@ -17,12 +17,12 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 initialized: true
             };
-        case GET_ERROR_LOGIN:
+        case GET_ERROR_LOGIN: //test
             return {
                 ...state,
                 numberError: action.number,
                 messageError: action.message
-            };
+            }; 
         default:
             return state;
     }

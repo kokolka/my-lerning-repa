@@ -1,4 +1,4 @@
-import profileReducer, { addPostActionCreator, deletePost, setUserProfile, setUserStatus } from "../profile-reducer";
+import profileReducer, { addPostActionCreator, deletePost, setUserProfile, setUserStatus, setCurrentIdUser } from "../profile-reducer";
 
 let initialState = {
     postsData: [
@@ -37,13 +37,24 @@ test('test on correct message', () => {
 
 test('test of delete post', () => {
     // 1) подготовка исходных данных - test date
-    let action = deletePost(1);
+    let action = setUserProfile('Test')
 
     // 2) Action 
     let newState = profileReducer(initialState, action);
 
     // 3) Ожиданый результат - Expectation
-    expect(newState.postsData.length).toBe(3);
+    expect(newState.profile).toBe('Test'); 
+});
+
+test('set id user', () => {
+    // 1) подготовка исходных данных - test date
+    let action = setCurrentIdUser(42)
+
+    // 2) Action 
+    let newState = profileReducer(initialState, action);
+
+    // 3) Ожиданый результат - Expectation
+    expect(newState.currentPageUser).toBe(42); 
 });
 
 test('set status for profile', () => {
@@ -59,11 +70,11 @@ test('set status for profile', () => {
 
 test('test of delete post', () => {
     // 1) подготовка исходных данных - test date
-    let action = setUserProfile('Test')
+    let action = deletePost(1);
 
     // 2) Action 
     let newState = profileReducer(initialState, action);
 
     // 3) Ожиданый результат - Expectation
-    expect(newState.profile).toBe('Test');
+    expect(newState.postsData.length).toBe(3);
 });

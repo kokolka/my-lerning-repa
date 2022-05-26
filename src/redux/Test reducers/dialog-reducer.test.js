@@ -1,4 +1,5 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
+import dialogReducer, { addMessageActionCreator } from "../dialog-reducer";
+
 
 let initialState = {
     dialogsData: [
@@ -16,31 +17,24 @@ let initialState = {
     newMessage: ''
 };
 
-const dialogReducer = (state = initialState, action) => {
+test('increse array message', () => {
+    // 1) подготовка исходных данных - test date
+    let action = addMessageActionCreator('test text');
 
-    switch(action.type){
-        case ADD_MESSAGE:{
-            //if (state.newMessage != '') {
-            if (action.text != '') {
-                let newMessage = {
-                    id: state.messagesData.length + 1,
-                    //message: state.newMessage,
-                    message: action.text,
-                    who: 2
-                };
-                return {
-                    ...state,
-                    newMessage: '',
-                    messagesData: [...state.messagesData, newMessage] 
-                };
-            }
-        }
-        default: return state;
-    }
-};
+    // 2) Action 
+    let newState = dialogReducer(initialState, action);
 
-export const addMessageActionCreator = (text) => {
-    return { type: ADD_MESSAGE, text };
-};
- 
-export default dialogReducer;
+    // 3) Ожиданый результат - Expectation
+    expect(newState.messagesData.length).toBe(4); 
+});
+
+test('add test message', () => {
+    // 1) подготовка исходных данных - test date
+    let action = addMessageActionCreator('test text');
+
+    // 2) Action 
+    let newState = dialogReducer(initialState, action);
+
+    // 3) Ожиданый результат - Expectation
+    expect(newState.messagesData[3].message).toBe('test text'); 
+});

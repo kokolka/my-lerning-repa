@@ -9,7 +9,6 @@ import {
     unfollow
 } from '../../redux/users-reducer';
 import { compose } from 'redux';
-import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { getStateCurrentPage, getStateFollowingIsProgress, getStateIsFetching, getStatePageSize, getStatePageTotalCount, getStateUsers } from '../../redux/users-selectors';
 
 class UsersComponent extends React.Component {
@@ -47,7 +46,7 @@ let mapStateToProps = (state) => {
         users: getStateUsers(state),
         pageSize: getStatePageSize(state),
         pageTotalCount: getStatePageTotalCount(state),
-        currentPage: getStateCurrentPage(state),
+        currentPage: getStateCurrentPage(state), 
         isFetching: getStateIsFetching(state),
         followingIsProgress: getStateFollowingIsProgress(state)
     }

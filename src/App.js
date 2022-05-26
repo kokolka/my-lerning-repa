@@ -1,6 +1,6 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { connect, Provider } from 'react-redux';
+import { Routes, Route} from 'react-router-dom';
+import { connect} from 'react-redux';
 
 import './App.css';
 import NewsContainer from './components/News/NewsContainer';
