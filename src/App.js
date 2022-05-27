@@ -21,7 +21,6 @@ import TestContainer from './components/Tets/TestContainer';
 class App extends React.Component {
 
   componentDidMount() {
-    //this.props.meUser();//thunk
     this.props.initializeApp();
   }
 

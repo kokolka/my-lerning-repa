@@ -42,7 +42,7 @@ let Paginetion = (props) => {
                 <div className={s.numberPage_box}>
                     {arrPages.map(el => { //отображение номеров страниц для переключения с изменением стиля 
                         return (
-                            <span className={el === props.currentPage ? s.activePage : s.pasivPage}
+                            <span key={el} className={el === props.currentPage ? s.activePage : s.pasivPage}
                                 onClick={() => { props.onPageChanged(el) }}
                             >{el}</span>
                         );
