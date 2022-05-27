@@ -10,7 +10,7 @@ import appReducer from "./app-reducer";
 
 let reducers = combineReducers({ 
     profilePage: profileReducer, 
-    navlink: navlinkReducer,
+    navlink: navlinkReducer, 
     dialogs: dialogReducer,
     usersPage: usersReducer,
     auth: authReducer,

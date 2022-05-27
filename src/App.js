@@ -16,6 +16,7 @@ import LoginContainer from './components/Login/LoginContainer';
 import { initializeApp } from './redux/app-reducer';
 import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
+import TestContainer from './components/Tets/TestContainer';
 
 class App extends React.Component {
 
@@ -50,6 +51,7 @@ class App extends React.Component {
             <Route path='/setting' element={<Setting />} />
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/login' element={<LoginContainer />} />
+            <Route path='/test' element={<TestContainer />} />
           </Routes>
         </div>
       </div>

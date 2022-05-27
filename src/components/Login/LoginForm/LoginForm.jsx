@@ -4,10 +4,17 @@ import s from './LoginForm.module.css';
 
 let LoginForm = (props) => {
 
+    let ErrorBlock = () =>{
+        if(props.numberError >= 1){
+            return props.messageError;
+        } 
+        return null;
+    }
+
     return (
         <div>
             <Formik
-                initialValues={{ email: '', password: '', rememberMy: false, captcha: true, errorLoginMessage: props.numberError}}
+                initialValues={{ email: '', password: '', rememberMy: false, captcha: true}}
                 validate={values => {
                     const errors = {};
                     if (!values.email) {
@@ -15,16 +22,11 @@ let LoginForm = (props) => {
                     } else if (
                         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                     ) {
-                        errors.email = 'Invalid email address';
+                        errors.email = 'Invalid email address'; 
                     }
 
                     if (!values.password) {
                         errors.password = 'Required';
-                    }
-
-                    if (values.errorLoginMessage > 0) {
-                        errors.errorLoginMessage = props.messageError;
-                        console.log('gg');
                     }
 
                     return errors;
@@ -40,7 +42,9 @@ let LoginForm = (props) => {
                     <Form>
                         <div>
                             <Field
-                                className={p.errors.email && p.touched.email ? s.entry_field__errors : ''}
+                                className={p.errors.email && p.touched.email || props.numberError >= 1 
+                                    ? s.entry_field__errors 
+                                    : ''}
                                 placeholder="Email"
                                 type="email"
                                 name="email"
@@ -53,7 +57,9 @@ let LoginForm = (props) => {
                         </div>
                         <div>
                             <Field
-                                className={p.errors.password && p.touched.password ? s.entry_field__errors : ''}
+                                className={p.errors.password && p.touched.password || props.numberError >= 1 
+                                    ? s.entry_field__errors 
+                                    : ''}
                                 placeholder="Password"
                                 type="password"
                                 name="password"
@@ -63,11 +69,7 @@ let LoginForm = (props) => {
                                 name="password"
                                 component="div"
                             />
-                            <ErrorMessage
-                                className={p.errors.errorLoginMessage ? s.errors : ''}
-                                name="errorLoginMessage"
-                                component="div"
-                            />
+                            
                         </div>
                         <div>
                             <Field type='checkbox' name='rememberMy' />
@@ -78,7 +80,10 @@ let LoginForm = (props) => {
                                 Sing In
                             </button>
                         </div>
-
+                        <div className={s.entry_field__errors}>
+                            {/* {props.numberError > 0 ? props.ErrorMessage : null} */}
+                            {ErrorBlock()}
+                        </div>
                     </Form>
                 )}
             </Formik>

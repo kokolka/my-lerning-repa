@@ -1,5 +1,5 @@
 import { authAPI } from "../api/api";
-import { getErrorLogin } from "./app-reducer";
+import { getErrorLogin, resetErrorLogin } from "./app-reducer";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_OUTPUT = 'SET_OUTPUT';
@@ -29,7 +29,7 @@ const authReducer = (state = initialState, action) => {
             };
 
         default:
-            return state;
+            return state; 
     }
 };
 
@@ -53,19 +53,14 @@ export const meUser = () => async (dispatch) => {
     // })
 }
 
-
-
 export let postLogin = (email, password, rememberMe) => async (dispatch) => {
     let response = await authAPI.postLogin(email, password, rememberMe);
     // .then(response => {
     if (response.data.resultCode === 0) {
         dispatch(meUser());
+        dispatch(resetErrorLogin());
     } else {
         dispatch(getErrorLogin(response.data.resultCode, response.data.messages));
-        console.log('resultCode: ' + response.data.resultCode);
-        console.log('email: ' + email);
-        console.log('password: ' + password);
-        console.log('rememberMe: ' + rememberMe);
     }
     // })
 }
