@@ -17,6 +17,7 @@ import { initializeApp } from './redux/app-reducer';
 import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import TestContainer from './components/Tets/TestContainer';
+import OnlyCatPage from './components/Infinity cat/OnlyCatPage';
 
 class App extends React.Component {
 
@@ -51,6 +52,7 @@ class App extends React.Component {
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/login' element={<LoginContainer />} />
             <Route path='/test' element={<TestContainer />} />
+            <Route path='/infinityCat' element={<OnlyCatPage />} />
           </Routes>
         </div>
       </div>
