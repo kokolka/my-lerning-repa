@@ -77,7 +77,7 @@ const ProfileInfo = (props) => {
                     <div>{`About me: ${props.profile.aboutMe != null ? props.profile.aboutMe : ''}`}</div>
                     <div>{`Looking for job: ${props.profile.lookingForAJob == true ? 'YES' : 'NO'}`}</div>
                     <div>{`Me social network:`}
-                        {mySocialNetwork()}
+                        {mySocialNetwork()} 
                     </div>
                     <ProfileStatusWithHooks status={props.status} putUserStatus={props.putUserStatus} />
                 </div>

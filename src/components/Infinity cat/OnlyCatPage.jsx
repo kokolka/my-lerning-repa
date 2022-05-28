@@ -42,8 +42,6 @@ const ElementBox = (props) => {
 
 const OnlyCatPage = () => {
 
-    
-
     let [elementForArrow, addElements] = useState(20);
     let [oldElement, setOldElement] = useState(0);
     CreateArrow(b, elementForArrow);

@@ -7,16 +7,18 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
+import AppContainer from './AppConteiner';
 
 // export let rerenderEntireTree = (store) => {
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App /> 
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+ReactDOM.render( 
+  <AppContainer />,
+  // <React.StrictMode>
+  //   <BrowserRouter>
+  //     <Provider store={store}>
+  //       <App /> 
+  //     </Provider>
+  //   </BrowserRouter>
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 // }
