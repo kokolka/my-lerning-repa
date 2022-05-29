@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Users.module.css';
 import noPhoto from '../../assets/imeges/noPhoto.png';
 import { NavLink } from "react-router-dom";
-
+ 
 const User = (props) => {
     return (
         <div className={s.userBox}>
