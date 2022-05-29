@@ -1,12 +1,11 @@
-import React from 'react';
-import { Routes, Route} from 'react-router-dom';
-import { connect} from 'react-redux';
+import React, { Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './App.css';
 import NewsContainer from './components/News/NewsContainer';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -17,7 +16,15 @@ import { initializeApp } from './redux/app-reducer';
 import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import TestContainer from './components/Tets/TestContainer';
-import OnlyCatPage from './components/Infinity cat/OnlyCatPage';
+import { withSuspense } from './HOC/withSuspense';
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const OnlyCatPage = React.lazy(() => import('./components/Infinity cat/OnlyCatPage'));
+
+
+const DialogsSuspense = withSuspense(DialogsContainer);
+
+const OnlyCatSuspense = withSuspense(OnlyCatPage);
 
 class App extends React.Component {
 
@@ -26,9 +33,7 @@ class App extends React.Component {
   }
 
   render() {
-    //if(!this.props.isAuth){
     if (!this.props.initialized) {
-      //if(this.props.isAuth){ // for offlain mod
       return <Preloader />
     }
     return (
@@ -44,14 +49,14 @@ class App extends React.Component {
             <Route path='/profile' element={<ProfileContainer />}>
               <Route path='/profile/:id' element={<ProfileContainer />} />
             </Route>
-            <Route path='/dialogs/*' element={<DialogsContainer />} />
+            <Route path='/dialogs/*' element={<DialogsSuspense />} />
             <Route path='/news' element={<NewsContainer />} />
             <Route path='/music' element={<Music />} />
             <Route path='/setting' element={<Setting />} />
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/login' element={<LoginContainer />} />
             <Route path='/test' element={<TestContainer />} />
-            <Route path='/infinityCat' element={<OnlyCatPage />} />
+            <Route path='/infinityCat' element={<OnlyCatSuspense />} />
           </Routes>
         </div>
       </div>

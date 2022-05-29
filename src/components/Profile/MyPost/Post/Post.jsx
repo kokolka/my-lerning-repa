@@ -4,7 +4,6 @@ import noPhoto from '../../../../assets/imeges/noPhoto.png';
 import Preloader from '../../../common/Preloader/Preloader';
 
 const Post = (props) => {
-    debugger;
 
     if (props.profile == null || Object.keys(props.profile).length < 2) {
         return <Preloader />
