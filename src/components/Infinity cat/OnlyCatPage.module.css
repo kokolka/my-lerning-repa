@@ -1,10 +1,11 @@
 .foto_main_block{
     display: grid;
 
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    
+    grid-template-columns: 120px 120px 120px 120px 120px 120px;
+
     padding: 5px;
-}
+    border: 1px solid black;
+} 
 
 .foto_block__1{
     display: flex;
@@ -82,4 +83,9 @@
 
     background-color: rgb(158, 157, 157);
     border-radius: 5px;
+}
+
+
+.ggg{
+    border: 1px solid black;
 }
