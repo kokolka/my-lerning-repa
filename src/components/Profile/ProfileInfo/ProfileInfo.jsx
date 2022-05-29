@@ -23,7 +23,6 @@ const ProfileInfo = (props) => {
     if (!userIdFromURL) {
         if (!props.meUserId) return <Navigate to='/login' />
         userIdFromURL = `${props.meUserId}`;
-        //"23614";
     }
 
     if (lastIdParam !== userIdFromURL) {
@@ -41,14 +40,12 @@ const ProfileInfo = (props) => {
         mainLink: iconMainLink
     }
 
-    let socialNetworkArrow = [iconFacebook, iconWebsite, iconVK, iconTwitter, iconInstagram, iconYouTube, iconGithub, iconMainLink];
     let mySocialNetwork = () => {
         let numberInArrow = 0; // счётчик для массива
         let arrComponents = [];
         for (let key in props.profile.contacts) { //перебор компонентов объекта по их key
             if (props.profile.contacts[key] != null) {
                 arrComponents.push(<a href={props.profile.contacts[key]} target='_blank' className={prof.elA}>
-                    {/* <img src={socialNetworkArrow[numberInArrow]} /> */}
                     <img src={socialNetworkObject[key]} /> {/* способ вывода иконок через объект, без дополнительного счётчика */}
                 </a>)
             }
@@ -63,13 +60,8 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={prof.profile}>
-            {/* <div className={prof.profile_background}>
-                <img src='https://w-dog.ru/wallpapers/14/6/324153998540799/bezmyatezhnost-gorizont-sineva.jpg' />
-            </div> */}
-            {/* {flag === false? <Preloader/>: */}
             <div className={prof.profile_info}>
                 <div className={prof.profile_ava}>
-                    {/* <img src='https://data.whicdn.com/images/238932713/original.jpg' /> */}
                     <img src={props.profile.photos.large != null ? props.profile.photos.large : noPhoto} />
                 </div>
                 <div className={prof.profile_description}>
@@ -79,7 +71,7 @@ const ProfileInfo = (props) => {
                     <div>{`Me social network:`}
                         {mySocialNetwork()} 
                     </div>
-                    <ProfileStatusWithHooks status={props.status} putUserStatus={props.putUserStatus} />
+                    <ProfileStatusWithHooks status={props.status} putUserStatus={props.putUserStatus} meUserId={props.meUserId} userIdFromURL={userIdFromURL}/>
                 </div>
             </div>
         </div>

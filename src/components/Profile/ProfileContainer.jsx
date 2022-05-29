@@ -5,10 +5,10 @@ import {
     setCurrentIdUser,
     getUserPageFunction,
     getUserStatus,
-    putUserStatus
+    putUserStatus,
+    addPostActionCreator
 } from '../../redux/profile-reducer'; 
 import { connect } from 'react-redux';
-import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
@@ -19,23 +19,10 @@ class ProfileContainer extends React.Component {
         this.getParamsWithUrl = this.getParamsWithUrl.bind(this);
     }
 
-    // state = {
-    //     nowUserId: `${this.props.meUserId}`
-    // }
-
     getParamsWithUrl = (data) => { //callback функция для получения номера профиля из url 
         if (data !== this.props.currentPageUser) {
-            //this.props.setUserProfile({ userID: data });
             this.props.setCurrentIdUser(data); //dispatch для нициализации перерисовки через componentDidUpdate
-            // this.setState({
-            //     nowUserId: data.toString()
-            // });
         }
-        // this.param = data;
-        // if (this.param != this.props.currentPageUser) {
-        //     this.props.setUserProfile({ userID: this.param });
-        //     this.props.setCurrentIdUser(this.param); //dispatch для нициализации перерисовки через componentDidUpdate
-        // }
     }
 
     componentDidUpdate(prevProps) {
@@ -45,16 +32,6 @@ class ProfileContainer extends React.Component {
         }
     }
 
-    // componentDidUpdate(prevProps) { //метод жизненного цикла, запускается при изменение props-ов
-    //     if (prevProps.profile) {
-    //         if (this.param != prevProps.profile.userId) {
-    //             this.props.getUserPageFunction(this.param); //thunk
-    //             this.props.getUserStatus(this.param); //thunk
-
-    //         }
-    //     }
-    // }
-
     componentDidMount() { //метод жизненного цикла, запускается после отрисовки компоненты
         this.props.getUserPageFunction(this.props.currentPageUser); //thunk
         this.props.getUserStatus(this.props.currentPageUser); //thunk
@@ -62,10 +39,9 @@ class ProfileContainer extends React.Component {
 
     render() {
         return (
-            // ...this.props - передача всех props
             <Profile
                 {...this.props}
-                getParamsWithUrl={this.getParamsWithUrl}
+                getParamsWithUrl={this.getParamsWithUrl} 
                 param={this.props.currentPageUser}
             />
         )
@@ -76,7 +52,9 @@ let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     currentPageUser: state.profilePage.currentPageUser,
-    meUserId: state.auth.userId
+    meUserId: state.auth.userId,
+    pd: state.profilePage.postsData,
+    newPostText: state.profilePage.newPostText
 })
 
 export default compose(
@@ -85,7 +63,7 @@ export default compose(
         setCurrentIdUser,
         getUserPageFunction,
         getUserStatus,
-        putUserStatus
+        putUserStatus,
+        addPostActionCreator
     })
-    //withAuthRedirect
 )(ProfileContainer);

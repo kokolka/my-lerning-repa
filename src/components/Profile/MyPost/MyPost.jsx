@@ -6,8 +6,9 @@ import { maxLengthCreator, validation, } from '../../../Utils/Validations/valida
 import { Textarea } from '../../common/FormControls/FormControl';
 
 const MyPost = (props) => {
+    
     let postsElements =
-        props.pd.map(p => <Post message={p.message} key={p.id} likeCounts={p.likeCounts} />);
+        props.pd.map(p => <Post message={p.message} key={p.id} likeCounts={p.likeCounts} profile={props.profile} />);
 
     let messageAlert = (text) => {
         props.AddPost(text);

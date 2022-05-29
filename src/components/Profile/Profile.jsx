@@ -1,4 +1,5 @@
 import React from 'react';
+import MyPost from './MyPost/MyPost';
 import MyPostComponent from './MyPost/MyPostContainer';
 import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
@@ -8,7 +9,7 @@ const Profile = (props) => {
         <div className={s.profile}>
             {/* Блок с информацие о пользователе */}
             <ProfileInfo
-                profile={props.profile} 
+                profile={props.profile}
                 getParamsWithUrl={props.getParamsWithUrl}
                 param={props.param}
                 status={props.status}
@@ -16,7 +17,12 @@ const Profile = (props) => {
                 meUserId={props.meUserId}
             />
             {/* Блок с постами пользователя */}
-            <MyPostComponent />
+            <MyPost
+                addPostActionCreator={props.addPostActionCreator}
+                profile={props.profile}
+                pd={props.pd}
+                newPostText={props.newPostText}
+            />
         </div>
     );
 }

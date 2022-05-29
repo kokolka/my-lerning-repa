@@ -19,7 +19,9 @@ const ProfileStatusWithHooks = (props) => {
     let [status, setStatus] = useState(props.status)
 
     const activeEditMode = () => {
-        changeEditMode(true);
+        if(props.userIdFromURL == props.meUserId){
+            changeEditMode(true);
+        }
     }
     const deactiveEditMode = () => {
         changeEditMode(false)
