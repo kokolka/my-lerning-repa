@@ -1,44 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import s from './OnlyCatPage.module.css';
 
-let b = [1, 2, 3, 1, 2, 3, 3, 3, 2, 2, 2];
-let colum = 6;
-let fotoOnColum = Math.ceil(b.length / colum);
-console.log(`fotoOnColum: ${fotoOnColum}`);
-let lastElement = 0;
-let a = 1;
+// let arrowImg = [1, 2, 3, 1, 1, 1, 3, 3, 2, 2, 3, 1, 1, 2, 3, 3, 1, 1, 1, 2, 3, 2, 1, 3, 1, 1, 1, 2, 3, 3]; //arrow for size img
 
-// const CreateArrow = (arr, elements) => {
-//     for (let i = 0; i < elements; i++) {
-//         arr.push(Math.ceil(Math.random() * (3 - 1) + 1));
-//     }
-// }
+let arrowImg = [];
 
-const ArrFotoOnColum = () => {
-    let componentFt = [];
-    for(let j = lastElement; j < b.length; j++){
-        if(a <= fotoOnColum){
-            a = a + 1;
-            componentFt.push(<ElementFotoBox size={b[j]}/>);
-        }else{
-            a = 0;
-            lastElement = j;
-            break;
-        }
+let columns = 7; //number of columns
+let initArrow = []; //main arrow
+
+let SetArrowColumns = () => {
+    initArrow = [];
+    for (let i = 0; i < columns; i++) {
+        initArrow.push([]);
     }
-
-    return componentFt;
 }
 
-const ColumnsElement = () => {
-    let componentEl = []
-    for(let i = 1; i <= colum; i++){
-        componentEl.push(<div className={s.ggg}>
-            <ArrFotoOnColum />
-        </div>)
-    }
+let CreateArrowContent = () => {
+    SetArrowColumns();
+    let countBox = 0;
+    for (let j = 0; j < arrowImg.length; j++) {
+        initArrow[countBox].push(arrowImg[j]);
 
-    return componentEl;
+        countBox = countBox + 1;
+        if (countBox >= columns) {
+            countBox = 0;
+        }
+    }
+    let arrowBoxElem = initArrow.map(el => {
+        return <div className={s.columns_element}>
+            {el.map(yt => {
+                return <ElementFotoBox size={yt} />
+            })}
+        </div>
+    })
+
+    return arrowBoxElem;
 }
 
 const ElementFotoBox = (props) => {
@@ -72,39 +68,37 @@ const ElementFotoBox = (props) => {
     </div>
 }
 
+const GetRandomSizeImg = (number) => {
+    for (let i = 0; i < number; i++) {
+        arrowImg.push(Math.ceil(Math.random() * (3 - 1) + 1));
+    }
+}
+
 const OnlyCatPage = () => {
 
-    const n = [1, 2, 3, 4, 5, 6];
-    // let [elementForArrow, addElements] = useState(5);
-    // let [oldElement, setOldElement] = useState(0);
-    // CreateArrow(b, elementForArrow);
+    let [lengthArrow, setLengthArrow] = useState(arrowImg.length);
 
-    // useEffect(() => {
-    //     CreateArrow(b, elementForArrow);
-    // }, [elementForArrow])
+    useEffect(() => {
+        
+    }, [lengthArrow]);
+
+
+    if(arrowImg.length === 0){
+        GetRandomSizeImg(10);
+    }
 
     return (
         <div>
             <div className={s.foto_main_block}>
-                <ColumnsElement />
-                {/* {
-                    n.map(p => {
-                        return (
-                            <ColumnsElement />
-                        );
-                    })} */}
-                {/* {b.map(el => {
-                    return <ElementBox size={el} />
-                })} */}
+                {CreateArrowContent()}
             </div>
             <div className={s.button_block}>
                 <button
                     className={s.button_block__element}
-                // onClick={() => {
-                //     setOldElement(elementForArrow);
-                //     addElements(elementForArrow + 10);
-                //     alert(elementForArrow)
-                // }}
+                    onClick={() => {
+                        GetRandomSizeImg(10);
+                        setLengthArrow(arrowImg.length)
+                    }}
                 >
                     Add cat
                 </button>
