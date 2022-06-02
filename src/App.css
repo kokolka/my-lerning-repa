@@ -41,16 +41,33 @@ h1,h2,h3,h4,h5,h6{font-size: inherit; font-weight: 400;}
   margin: 0 auto;
   display: grid;
 
-  width: 1200px;
+  max-width: 1200px;
 
   grid-template-areas: 
   'h h'
   'n c';
 
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 200px 1000px;
+  grid-template-columns: 1fr 5fr;
   grid-gap: 15px;
   
+  border: 1px solid black;
+}
+
+@media (max-width: 1200px){
+  .app-wrapper{
+    max-width: 970px;
+  }
+}
+@media (max-width: 992px){
+  .app-wrapper{
+    max-width: 750px;
+  }
+}
+@media (max-width: 767px){
+  .app-wrapper{
+    max-width: none;
+  }
 }
 
 .app-wrapper__nav{
