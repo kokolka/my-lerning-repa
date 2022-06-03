@@ -104,34 +104,18 @@ const followUnfollowLogic = async (dispatch, userID, methodAPI, following) =>{
 export const follow = (userID) => {
 
     return async (dispatch) => {
-        let methodAPI = usersAPI.followUser.bind(usersAPI);
+        let methodAPI = await usersAPI.followUser.bind(usersAPI);
 
         followUnfollowLogic(dispatch, userID, methodAPI, true);
-        // dispatch(toggleIsFollowingProgress(true, userID));
-        // let data = await methodAPI(userID);
-        // // .then(data => {
-        // if (data.resultCode == 0) {
-        //     dispatch(acceptFollow(userID));
-        // };
-        // dispatch(toggleIsFollowingProgress(false, userID));
-        // })
     }
 }
 
 export const unfollow = (userID) => {
 
     return async (dispatch) => {
-        let methodAPI = usersAPI.deleteUser.bind(usersAPI);
+        let methodAPI = await usersAPI.deleteUser.bind(usersAPI);
 
         followUnfollowLogic(dispatch, userID, methodAPI, false);
-        // dispatch(toggleIsFollowingProgress(true, userID));
-        // let data = await usersAPI.deleteUser(userID);
-        // // .then(data => {
-        // if (data.resultCode == 0) {
-        //     dispatch(acceptUnfollow(userID));
-        // };
-        // dispatch(toggleIsFollowingProgress(false, userID));
-        // // })
     }
 }
 

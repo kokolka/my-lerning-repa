@@ -11,7 +11,7 @@ const Post = (props) => {
 
     return (
         <div className={s.item}>
-            <img src={props.profile.photos.small != null ? props.profile.photos.small : noPhoto } ></img>
+             <img src={props.profile.photos.small != null ? props.profile.photos.small : noPhoto } ></img>
             <p>{props.message}</p>
             <div>
                 <span>Like:</span>

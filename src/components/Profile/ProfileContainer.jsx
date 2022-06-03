@@ -6,7 +6,8 @@ import {
     getUserPageFunction,
     getUserStatus,
     putUserStatus,
-    addPostActionCreator
+    addPostActionCreator,
+    savePhoto
 } from '../../redux/profile-reducer'; 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -64,6 +65,7 @@ export default compose(
         getUserPageFunction,
         getUserStatus,
         putUserStatus,
-        addPostActionCreator
+        addPostActionCreator,
+        savePhoto
     })
 )(ProfileContainer);

@@ -1,6 +1,5 @@
 import React from 'react';
 import MyPost from './MyPost/MyPost';
-import MyPostComponent from './MyPost/MyPostContainer';
 import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
@@ -15,6 +14,7 @@ const Profile = (props) => {
                 status={props.status}
                 putUserStatus={props.putUserStatus}
                 meUserId={props.meUserId}
+                savePhoto={props.savePhoto}
             />
             {/* Блок с постами пользователя */}
             <MyPost
