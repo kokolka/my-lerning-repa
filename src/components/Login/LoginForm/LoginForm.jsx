@@ -32,10 +32,8 @@ let LoginForm = (props) => {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
                         props.postLogin(values.email, values.password, values.rememberMy);
                         setSubmitting(false);
-                    }, 400);
                 }}
             >
                 {(p) => (

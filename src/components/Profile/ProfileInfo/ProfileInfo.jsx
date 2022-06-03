@@ -12,7 +12,8 @@ import iconGithub from '../../../assets/imeges/iconsgithub30.png';
 import iconMainLink from '../../../assets/imeges/iconsLinkedIn30.png';
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
-import { Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
+import FormProfileInfo from './FormProfileInfo';
 
 const ProfileInfo = (props) => {
 
@@ -80,6 +81,7 @@ const ProfileInfo = (props) => {
                         <div>{`${props.profile.fullName}`}</div>
                         <div>{`About me: ${props.profile.aboutMe != null ? props.profile.aboutMe : ''}`}</div>
                         <div>{`Looking for job: ${props.profile.lookingForAJob == true ? 'YES' : 'NO'}`}</div>
+                        <div>{`Job Description: ${props.profile.lookingForAJobDescription != null ? props.profile.lookingForAJobDescription : ''}`}</div>
                         <div>{`Me social network:`}
                             {mySocialNetwork()}
                         </div>
@@ -92,17 +94,14 @@ const ProfileInfo = (props) => {
                                 userIdFromURL={userIdFromURL}
                             />
                         </div>
-                        <div onClick={onEditModeProfile}>
+                        {userIdFromURL == props.meUserId ? <div onClick={onEditModeProfile}>
                             Change profile
                         </div>
+                        :null
+                        }
                     </div>}
                     {isEditModeProfile && <div>
-                        <Formik
-                            initialValues={{lookingForAJob: false, lookingForAJobDescription: '', fullName: '', 
-                            contacts: {github: '', vk: '', facebook: '', instagram: '', twitter: '', website: '', youtube: '', mainLink: ''}}}
-                        >
-
-                        </Formik>
+                        <FormProfileInfo putProfileInfoParam={props.putProfileInfoParam} meUserId={props.meUserId}/>
                         <div onClick={offEditModeProfile}>Change</div>
                     </div>}
                 </div>

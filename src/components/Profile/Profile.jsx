@@ -15,6 +15,7 @@ const Profile = (props) => {
                 putUserStatus={props.putUserStatus}
                 meUserId={props.meUserId}
                 savePhoto={props.savePhoto}
+                putProfileInfoParam={props.putProfileInfoParam}
             />
             {/* Блок с постами пользователя */}
             <MyPost

@@ -42,15 +42,10 @@ export const setOutput = () => {
 
 export const meUser = () => async (dispatch) => {
     let response = await authAPI.meGetUser();
-    //.then(response => {
     if (response.data.resultCode === 0) {
         let { email, id, login } = response.data.data;
         dispatch(setAuthUserData(id, email, login, true));
     }
-    // })
-    // .catch(() => {
-    //     return ('error');
-    // })
 }
 
 export let postLogin = (email, password, rememberMe) => async (dispatch) => {

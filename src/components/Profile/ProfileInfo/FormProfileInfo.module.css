@@ -1,0 +1,10 @@
+.element_box{
+    padding: 5px 0;
+}
+
+.element_box__checkbox{
+    display: inline-block;
+    padding-right: 5px;
+}
+.element_box__nameProporty{
+}

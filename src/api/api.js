@@ -26,7 +26,7 @@ export const authAPI = {
     meGetUser(){
         return instance.get(`auth/me`);
     },
-    postLogin(email, password, rememberMe = false){ //Изменить на бругой endpoint
+    postLogin(email, password, rememberMe = false){
         return instance.post('auth/login', {email, password, rememberMe}); //email, password, rememberMe
     },
     deleteLogOut(){ 
@@ -35,7 +35,7 @@ export const authAPI = {
 }
 
 export const profileAPI = {
-    getUserPage(id){
+    getUserPage(id){ 
         return instance.get(`profile/${id}`).then(response => response.data)
     },
     getUserStatus(id){
@@ -53,5 +53,9 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         })
+    },
+    putProfileInfoParam(userId, lookingForAJob, lookingForAJobDescription, fullName, contacts){
+        debugger;
+        return instance.put('profile', {userId, lookingForAJob, lookingForAJobDescription, fullName, contacts});
     }
 }
