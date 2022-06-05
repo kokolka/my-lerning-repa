@@ -4,17 +4,18 @@ import s from './LoginForm.module.css';
 
 let LoginForm = (props) => {
 
-    let ErrorBlock = () =>{
-        if(props.numberError >= 1){
+    let ErrorBlock = () => {
+
+        if (props.numberError >= 1) {
             return props.messageError;
-        } 
+        }
         return null;
     }
 
     return (
         <div>
             <Formik
-                initialValues={{ email: '', password: '', rememberMy: false, captcha: true}}
+                initialValues={{ email: '', password: '', rememberMy: false, captcha: null }}
                 validate={values => {
                     const errors = {};
                     if (!values.email) {
@@ -22,7 +23,7 @@ let LoginForm = (props) => {
                     } else if (
                         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                     ) {
-                        errors.email = 'Invalid email address'; 
+                        errors.email = 'Invalid email address';
                     }
 
                     if (!values.password) {
@@ -32,16 +33,16 @@ let LoginForm = (props) => {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                        props.postLogin(values.email, values.password, values.rememberMy);
-                        setSubmitting(false);
+                    props.postLogin(values.email, values.password, values.rememberMy, values.captcha);
+                    setSubmitting(false);
                 }}
             >
                 {(p) => (
                     <Form>
                         <div>
                             <Field
-                                className={p.errors.email && p.touched.email || props.numberError >= 1 
-                                    ? s.entry_field__errors 
+                                className={p.errors.email && p.touched.email || props.numberError >= 1
+                                    ? s.entry_field__errors
                                     : ''}
                                 placeholder="Email"
                                 type="email"
@@ -55,8 +56,8 @@ let LoginForm = (props) => {
                         </div>
                         <div>
                             <Field
-                                className={p.errors.password && p.touched.password || props.numberError >= 1 
-                                    ? s.entry_field__errors 
+                                className={p.errors.password && p.touched.password || props.numberError >= 1
+                                    ? s.entry_field__errors
                                     : ''}
                                 placeholder="Password"
                                 type="password"
@@ -67,7 +68,6 @@ let LoginForm = (props) => {
                                 name="password"
                                 component="div"
                             />
-                            
                         </div>
                         <div>
                             <Field type='checkbox' name='rememberMy' />
@@ -79,8 +79,24 @@ let LoginForm = (props) => {
                             </button>
                         </div>
                         <div className={s.entry_field__errors}>
-                            {/* {props.numberError > 0 ? props.ErrorMessage : null} */}
-                            {ErrorBlock()}
+                            <div>
+                                {ErrorBlock()}
+                            </div>
+                            <div>
+                                {props.urlCaptcha != null
+                                    ? <div>
+                                        <img src={props.urlCaptcha} />
+                                        <div>
+                                            <Field
+                                                className={''}
+                                                placeholder="Captcha"
+                                                type="text"
+                                                name="captcha"
+                                            />
+                                        </div>
+                                    </div>
+                                    : null}
+                            </div>
                         </div>
                     </Form>
                 )}

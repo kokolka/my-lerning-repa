@@ -6,7 +6,8 @@ const SET_CURRENT_ID_USER = 'SET_CURRENT_ID_USER';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const DELETE_POST = 'DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
-const SET_PROFILE_INFO_PARAM = 'SET_PROFILE_INFO_PARAM';
+const SET_ERROR_MESSAGE_PROFILE = 'SET_ERROR_MESSAGE_PROFILE';
+const RESET_ERROR_MESSAGE_PROFILE = 'RESET_ERROR_MESSAGE_PROFILE';
 
 let initialState = {
     postsData: [
@@ -18,7 +19,8 @@ let initialState = {
     newPostText: '',
     profile: null,
     status: '',
-    currentPageUser: ''
+    currentPageUser: '',
+    errorMessageProfile: ''
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -65,18 +67,15 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state, profile: { ...state.profile, photos: action.photos }
             }
-        case SET_PROFILE_INFO_PARAM:
-            debugger;
+        case SET_ERROR_MESSAGE_PROFILE:
             return {
-                ...state, profile:
-                {
-                    ...state.profile,
-                    fullName: action.fullName,
-                    lookingForAJob: action.lookingForAJob,
-                    lookingForAJobDescription: action.lookingForAJobDescription,
-                    contacts: action.contacts,
-                    id: action.id
-                }
+                ...state,
+                errorMessageProfile: action.errorMessage
+            }
+        case RESET_ERROR_MESSAGE_PROFILE:
+            return {
+                ...state,
+                errorMessageProfile: ''
             }
         default: return state;
     }
@@ -100,9 +99,13 @@ export const deletePost = (postId) => {
 export const savePhotoSuccess = (photos) => {
     return { type: SAVE_PHOTO_SUCCESS, photos };
 };
-export const setProfileInfoParam = (lookingForAJob, lookingForAJobDescription, fullName, contacts) => {
-    return { type: SET_PROFILE_INFO_PARAM, lookingForAJob, lookingForAJobDescription, fullName, contacts };
+export const setErrorMassageProfile = (errorMessage) => {
+    return { type: SET_ERROR_MESSAGE_PROFILE, errorMessage };
 };
+export const resetErrorMassageProfile = () => {
+    return { type: RESET_ERROR_MESSAGE_PROFILE };
+};
+
 
 export const getUserPageFunction = (id) => {
     return async (dispatch) => {
@@ -137,11 +140,17 @@ export const savePhoto = (file) => async (dispatch) => {
     }
     // })
 }
-export const putProfileInfoParam = (userId, lookingForAJob, lookingForAJobDescription, fullName, contacts) => async (dispatch) => {
-    let response = await profileAPI.putProfileInfoParam(userId, lookingForAJob, lookingForAJobDescription, fullName, contacts);
+export const putProfileInfoParam = (profile) => async (dispatch) => {
+    let response = await profileAPI.putProfileInfoParam(profile);
 
     if (response.data.resultCode === 0) {
-        dispatch(setProfileInfoParam(response.data.data));
+        dispatch(getUserPageFunction(profile.userId));
+        dispatch(resetErrorMassageProfile());
+        return 0;
+    } 
+    else {
+        dispatch(setErrorMassageProfile(response.data.messages));
+        return 1;
     }
 }
 

@@ -56,7 +56,8 @@ let mapStateToProps = (state) => ({
     currentPageUser: state.profilePage.currentPageUser,
     meUserId: state.auth.userId,
     pd: state.profilePage.postsData,
-    newPostText: state.profilePage.newPostText
+    newPostText: state.profilePage.newPostText,
+    messageError: state.profilePage.errorMessageProfile
 })
 
 export default compose(

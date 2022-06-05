@@ -2,69 +2,73 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import s from './FormProfileInfo.module.css';
 import { Textarea } from '../../common/FormControls/FormControl';
-import { putProfileInfoParam } from '../../../redux/profile-reducer';
 
-
-import axios from "axios"
-const instance = axios.create({
-    withCredentials: true,
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    headers: {
-        "API-KEY": "7b2bf063-5f39-45d3-b53c-542238da0668"
-    }
-});
 
 const FormProfileInfo = (props) => {
+
+    let ErrorBlock = () => {
+        if (props.messageError != '') {
+            return props.messageError.map((el) => {
+                return <p key={el}>{el}</p>
+            })
+        }
+        return null;
+    }
+
     return (
         <Formik
             initialValues={
                 {
-                    AboutMe: '',
-                    lookingForAJob: false,
-                    lookingForAJobDescription: '',
-                    fullName: '',
-                    contacts: { github: '', vk: '', facebook: '', instagram: '', twitter: '', website: '', youtube: '', mainLink: '' }
+                    AboutMe: props.profile.aboutMe,
+                    lookingForAJob: props.profile.lookingForAJob,
+                    lookingForAJobDescription: props.profile.lookingForAJobDescription,
+                    fullName: props.profile.fullName,
+                    contacts: {
+                        github: props.profile.contacts.github,
+                        vk: props.profile.contacts.vk,
+                        facebook: props.profile.contacts.facebook,
+                        instagram: props.profile.contacts.instagram,
+                        twitter: props.profile.contacts.twitter,
+                        website: props.profile.contacts.website,
+                        youtube: props.profile.contacts.youtube,
+                        mainLink: props.profile.contacts.mainLink
+                    }
                 }
             }
             onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    //props.putProfileInfoParam(props.meUserId, values.lookingForAJob, values.lookingForAJobDescription, values.fullName, values.contacts);
-                    //putProfileInfoParam(props.meUserId, values.lookingForAJob, values.lookingForAJobDescription, values.fullName, values.contacts);
-                    //putProfileInfoParam(23614, true, 'yes', 'values.fullName', { github: 's', vk: 's', facebook: 's', instagram: 's', twitter: 's', website: 's', youtube: 's', mainLink: 's' });
-                    debugger;
-                    let Contacts = {github: 's', Vk: 's', Facebook: 's', instagram: 's', twitter: 's', website: 's', youtube: 's', mainLink: 's'}
-                    instance.put('profile', {AboutMe:'aaaaaa', userId: 23614, lookingForAJob: true, lookingForAJobDescription: 'yes', fullName: 'values.fullName', Contacts: Contacts})
-                    .then(response => {
-                        debugger;
-                        if(response.data.resultCode === 0){
-                            alert(response.data);
+                let profile = {
+                    userId: props.meUserId,
+                    ...values
+                }
+                props.putProfileInfoParam(profile)
+                    .then((response) => {
+                        if (response == 0) {
+                            props.offEditModeProfile();
                         }
                     })
-                    
-                    
-                    //alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
+                setSubmitting(false);
             }}
         >
-            {({ isSubmitting }) => (
+            {(p) => (
                 <Form>
                     <div className={s.element_box}>
+                        <div className={s.element_box__nameProporty}>Your full name</div>
+                        <Field type="text" name="fullName" />
+                    </div>
+                    <div className={s.element_box}>
                         <div className={s.element_box__nameProporty}>About me</div>
-                        <Field type="text" name="AboutMe" />
+                        <Field component={Textarea} placeholder='About me' name="AboutMe" />
                     </div>
                     <div className={s.element_box}>
                         <div className={s.element_box__checkbox}>Are you find a job?</div>
                         <Field type="checkbox" name="lookingForAJob" />
                     </div>
-                    <div className={s.element_box}>
-                        <div className={s.element_box__nameProporty}>Description your job:</div>
-                        <Field component={Textarea} placeholder=' ' name="lookingForAJobDescription" />
-                    </div>
-                    <div className={s.element_box}>
-                        <div className={s.element_box__nameProporty}>Your full name</div>
-                        <Field type="text" name="fullName" />
-                    </div>
+                    {p.values.lookingForAJob ?
+                        <div className={s.element_box}>
+                            <div className={s.element_box__nameProporty}>Description for job:</div>
+                            <Field component={Textarea} placeholder=' ' name="lookingForAJobDescription" />
+                        </div>
+                        : null}
                     <div className={s.element_box}>
                         <div className={s.element_box__nameProporty}>Your github:</div>
                         <Field type="text" name="contacts.github" placeholder="https://github.com/" />
@@ -97,9 +101,14 @@ const FormProfileInfo = (props) => {
                         <div className={s.element_box__nameProporty}>Your mainLink:</div>
                         <Field type="text" name="contacts.mainLink" placeholder="https://www.mainLink.ru" />
                     </div>
-                    <button type="submit" disabled={isSubmitting}>
+                    <button type="submit" disabled={p.isSubmitting}>
                         Submit
                     </button>
+                    <div >
+                        <div className={props.messageError == '' ? null : s.entry_field__errors}>
+                            {ErrorBlock()}
+                        </div>
+                    </div>
                 </Form>
             )}
         </Formik>

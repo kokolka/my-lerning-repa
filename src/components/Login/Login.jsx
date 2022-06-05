@@ -4,7 +4,7 @@ import s from './Login.module.css';
 import { Navigate } from "react-router-dom";
 
 
-const Login = ({postLogin, isAuth, numberError, messageError}) => {
+const Login = ({postLogin, isAuth, numberError, messageError, getUrlCaptcha, urlCaptcha}) => {
 
     if (isAuth === true) {
         return <Navigate to={'/profile'} />
@@ -17,8 +17,9 @@ const Login = ({postLogin, isAuth, numberError, messageError}) => {
                 postLogin={postLogin}
                 numberError={numberError}
                 messageError={messageError} 
+                getUrlCaptcha={getUrlCaptcha}
+                urlCaptcha={urlCaptcha}
             />
-            {/* 'kirill-i_98@mail.ru', 'Mrdidok141592Z1998rehb', true */}
         </div>
     );
 }

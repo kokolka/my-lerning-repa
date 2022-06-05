@@ -24,7 +24,7 @@ const ProfileInfo = (props) => {
 
     if (!userIdFromURL) {
         if (!props.meUserId) return <Navigate to='/login' />
-        userIdFromURL = `${props.meUserId}`;
+        userIdFromURL = `${props.meUserId}`; //what?
     }
 
     if (lastIdParam !== userIdFromURL) {
@@ -45,7 +45,7 @@ const ProfileInfo = (props) => {
         let numberInArrow = 0; // счётчик для массива
         let arrComponents = [];
         for (let key in props.profile.contacts) { //перебор компонентов объекта по их key
-            if (props.profile.contacts[key] != null) {
+            if (props.profile.contacts[key] != null && props.profile.contacts[key] != '') {
                 arrComponents.push(<a href={props.profile.contacts[key]} target='_blank' className={prof.elA}>
                     <img src={socialNetworkObject[key]} /> {/* способ вывода иконок через объект, без дополнительного счётчика */}
                 </a>)
@@ -74,35 +74,50 @@ const ProfileInfo = (props) => {
             <div className={prof.profile_info}>
                 <div className={prof.profile_ava}>
                     <img src={props.profile.photos.large != null ? props.profile.photos.large : noPhoto} />
-                    {userIdFromURL == props.meUserId ? <input type='file' onChange={selectMainAva} /> : null}
+                    {userIdFromURL == props.meUserId ? <div>
+                        <input type='file' id='download_file' onChange={selectMainAva} className={prof.button_download} />
+                        <label for='download_file'>
+                            <span className={prof.img_download}><img
+                                src='https://avatars.mds.yandex.net/i?id=ffcffc28c3200781aeff82ea047a9711-5294137-images-thumbs&n=13'
+                            /></span>
+                            {/* <span>Download photo</span> */}
+                        </label>
+                    </div>
+                        : null}
                 </div>
                 <div className={prof.profile_description}>
                     {!isEditModeProfile && <div>
                         <div>{`${props.profile.fullName}`}</div>
                         <div>{`About me: ${props.profile.aboutMe != null ? props.profile.aboutMe : ''}`}</div>
-                        <div>{`Looking for job: ${props.profile.lookingForAJob == true ? 'YES' : 'NO'}`}</div>
-                        <div>{`Job Description: ${props.profile.lookingForAJobDescription != null ? props.profile.lookingForAJobDescription : ''}`}</div>
+                        <div>{`Looking for job: ${props.profile.lookingForAJob == true ? 'yes' : 'no'}`}</div>
+                        {props.profile.lookingForAJob ? <div>{`Job Description: ${props.profile.lookingForAJobDescription != null ? props.profile.lookingForAJobDescription : ''}`}</div> : null}
                         <div>{`Me social network:`}
                             {mySocialNetwork()}
                         </div>
                         <div className={prof.status_box}>
-                            <div className={prof.status_box__pole}>My status:</div>
-                            <ProfileStatusWithHooks
-                                status={props.status}
-                                putUserStatus={props.putUserStatus}
-                                meUserId={props.meUserId}
-                                userIdFromURL={userIdFromURL}
-                            />
+                            <div className={prof.status_box__pole}>
+                                <div className={prof.status_box__pole__name}>My status: </div> <ProfileStatusWithHooks
+                                    status={props.status}
+                                    putUserStatus={props.putUserStatus}
+                                    meUserId={props.meUserId}
+                                    userIdFromURL={userIdFromURL}
+                                />
+                            </div>
                         </div>
-                        {userIdFromURL == props.meUserId ? <div onClick={onEditModeProfile}>
+                        {userIdFromURL == props.meUserId ? <button onClick={onEditModeProfile}>
                             Change profile
-                        </div>
-                        :null
+                        </button>
+                            : null
                         }
                     </div>}
                     {isEditModeProfile && <div>
-                        <FormProfileInfo putProfileInfoParam={props.putProfileInfoParam} meUserId={props.meUserId}/>
-                        <div onClick={offEditModeProfile}>Change</div>
+                        <FormProfileInfo
+                            profile={props.profile}
+                            offEditModeProfile={offEditModeProfile}
+                            putProfileInfoParam={props.putProfileInfoParam}
+                            meUserId={props.meUserId}
+                            messageError={props.messageError}
+                        />
                     </div>}
                 </div>
             </div>

@@ -5,7 +5,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
     return (
-        <div className={s.profile}>
+        <div className={s.profile}> 
             {/* Блок с информацие о пользователе */}
             <ProfileInfo
                 profile={props.profile}
@@ -16,6 +16,7 @@ const Profile = (props) => {
                 meUserId={props.meUserId}
                 savePhoto={props.savePhoto}
                 putProfileInfoParam={props.putProfileInfoParam}
+                messageError={props.messageError}
             />
             {/* Блок с постами пользователя */}
             <MyPost

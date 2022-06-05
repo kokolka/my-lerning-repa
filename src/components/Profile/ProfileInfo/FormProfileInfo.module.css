@@ -8,3 +8,9 @@
 }
 .element_box__nameProporty{
 }
+
+.entry_field__errors{
+    display: inline-block;
+    color: red;
+    border: 1px solid red;
+}
