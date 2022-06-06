@@ -110,27 +110,24 @@ export const resetErrorMassageProfile = () => {
 export const getUserPageFunction = (id) => {
     return async (dispatch) => {
         let data = await profileAPI.getUserPage(id);
-        // .then(data => {
         dispatch(setUserProfile(data));
-        // })
     }
 }
 export const getUserStatus = (id) => {
     return async (dispatch) => {
         let data = await profileAPI.getUserStatus(id);
-        // .then(data => {
         dispatch(setUserStatus(data));
-
-        // })
     };
 }
 export const putUserStatus = (status) => async (dispatch) => {
-    let response = await profileAPI.putUserStatus(status);
-    // .then(response => {
-    if (response.data.resultCode === 0) {
-        dispatch(setUserStatus(status));
+    try {
+        let response = await profileAPI.putUserStatus(status);
+        if (response.data.resultCode === 0) {
+            dispatch(setUserStatus(status));
+        }
+    } catch (error) {
+        console.log('ERROR with update state');
     }
-    // })
 }
 export const savePhoto = (file) => async (dispatch) => {
     let response = await profileAPI.putMainPhoto(file);
@@ -147,7 +144,7 @@ export const putProfileInfoParam = (profile) => async (dispatch) => {
         dispatch(getUserPageFunction(profile.userId));
         dispatch(resetErrorMassageProfile());
         return 0;
-    } 
+    }
     else {
         dispatch(setErrorMassageProfile(response.data.messages));
         return 1;

@@ -29,7 +29,7 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 numberError: 0,
                 messageError: ''
-            }; 
+            };  
         default:
             return state;
     }
