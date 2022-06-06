@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
@@ -9,6 +9,15 @@ import { Textarea } from '../common/FormControls/FormControl';
 import { maxLengthCreator } from '../../Utils/Validations/validators';
 
 const Dialogs = (props) => {
+
+    let [actionName, setActionName] = useState('');
+    let paramPage = useParams(); //hoc для получения параметров из url
+
+    useEffect(() => {
+        if (paramPage.id != null) {
+            setActionName(props.dialogsData[+paramPage.id - 1].name);
+        }
+    }, [paramPage.id])
 
     //список диалогов
     let dialogsElements =
@@ -24,26 +33,25 @@ const Dialogs = (props) => {
 
     let maxLength20 = maxLengthCreator(20);
 
-    let FormSendMessage = () => ( 
-        <div className={s.send}>
+    let FormSendMessage = () => (
+        <div>
             <Formik
                 initialValues={{ message: '' }}
                 onSubmit={(values, { setSubmitting }) => {
                     sendMessage(values.message);
                     setSubmitting(false);
                 }}
-                
             >
                 {(p) => (
-                    <Form>
-                        <Field 
-                            className={s.send_textarea} 
+                    <Form className={s.send}>
+                        <Field
+                            className={s.send_textarea}
                             name="message"
                             component={Textarea}
                             placeholder='Enter your post'
                             validate={maxLength20}
                         />
-                        <button type="submit" disabled={p.isSubmitting}>
+                        <button type="submit" disabled={p.isSubmitting} className={s.send_button}> 
                             Send
                         </button>
                     </Form>
@@ -58,23 +66,13 @@ const Dialogs = (props) => {
                 {dialogsElements}
             </div>
             <div className={s.messages}>
-                <div>
-                    {props.dialogsData[1].name}
+                <div className={s.actionDialog}>
+                    {actionName}
                 </div>
                 <div className={s.message_area}>
                     {messagesElements}
                 </div>
                 <FormSendMessage />
-                {/* <div className={s.send}>
-                    <div>
-                        <textarea
-                            placeholder='Enter your message'
-                            onChange={changeMessage}
-                            value={props.newMessage}
-                        />
-                    </div>
-                    <button onClick={sendMessage}>Send</button>
-                </div> */}
             </div>
         </div>
     )

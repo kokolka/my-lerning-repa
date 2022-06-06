@@ -32,6 +32,7 @@ let Paginetion = ({ pageTotalCount, pageSize, currentPage, portionSize = 10, ...
             {arrPages.filter(p => p >= lastLeftPage && p <= firstRightPage)
                 .map((p) => {
                     return (<span
+                        key={p}
                         className={p === currentPage ? s.activePage : s.pasivPage}
                         onClick={() => { props.onPageChanged(p) }}
                     >

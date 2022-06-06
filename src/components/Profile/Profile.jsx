@@ -4,7 +4,7 @@ import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
-    return (
+    return ( 
         <div className={s.profile}> 
             {/* Блок с информацие о пользователе */}
             <ProfileInfo
@@ -22,7 +22,7 @@ const Profile = (props) => {
             <MyPost
                 addPostActionCreator={props.addPostActionCreator}
                 profile={props.profile}
-                pd={props.pd}
+                pd={props.pd} 
                 newPostText={props.newPostText}
             />
         </div>

@@ -20,11 +20,9 @@ const dialogReducer = (state = initialState, action) => {
 
     switch(action.type){
         case ADD_MESSAGE:{
-            //if (state.newMessage != '') {
             if (action.text != '') {
                 let newMessage = {
                     id: state.messagesData.length + 1,
-                    //message: state.newMessage,
                     message: action.text,
                     who: 2
                 };

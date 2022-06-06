@@ -5,7 +5,6 @@ import s from './LoginForm.module.css';
 let LoginForm = (props) => {
 
     let ErrorBlock = () => {
-
         if (props.numberError >= 1) {
             return props.messageError;
         }

@@ -9,34 +9,54 @@
 .messages{
     display: grid;
 
-    grid-template-rows: 2fr 1fr;
+    grid-template-areas: 
+    'name'
+    'massage'
+    'input';
 
-    height: 520px;
+    grid-template-rows: 5% 82% 13%;
+    grid-template-columns: 100%;
+
+    min-height: 520px;
     padding: 10px;
 }
 
-.message_area{
-    height: 400px;
+.actionDialog{
+    grid-area: name;
+}
 
-    display: grid;
-    align-items: end;
+.message_area{
+    grid-area: massage;
+
+    display: block;
     
     overflow-y: auto;
-    margin: 0 0 20px 0;
 }
 
 .send{
+    grid-area: input;
     display: grid;
-    grid-template-columns: auto 100px;
+    grid-template-areas: 
+    't b';
+    grid-gap: 10px;
+
+    grid-template-columns: 80% 20%;
+
+    max-height: 40px;
+    border: 1px solid blue;
 }
 .send_textarea{
+    grid-area: t;
     font-size: 18px;
-    width: 630px;
-    height: 40px;
+
+    width: 100%;
+    height: 100%;
 
     padding: 5px;
     border-radius: 5px;
 }
-.send button{
-    height: 50px;
+.send_button{
+    grid-area: b;
+    width: 100%;
+    height: 100%;
 }

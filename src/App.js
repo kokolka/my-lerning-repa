@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,7 @@ import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
+import ProfileContainerHook from './components/Profile/ProfileContainerHook';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginContainer from './components/Login/LoginContainer';
 
@@ -17,6 +17,7 @@ import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import TestContainer from './components/Tets/TestContainer';
 import { withSuspense } from './HOC/withSuspense';
+
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const OnlyCatPage = React.lazy(() => import('./components/Infinity cat/OnlyCatPage'));
@@ -46,10 +47,12 @@ class App extends React.Component {
         </div>
         <div className='app-wrapper__content'>
           <Routes>
-            <Route path='/profile' element={<ProfileContainer />}>
-              <Route path='/profile/:id' element={<ProfileContainer />} />
+            <Route path='/profile' element={<ProfileContainerHook />}>
+              <Route path='/profile/:id' element={<ProfileContainerHook />} />
             </Route>
-            <Route path='/dialogs/*' element={<DialogsSuspense />} />
+            <Route path='/dialogs/' element={<DialogsSuspense />} >
+              <Route path='/dialogs/:id' element={<DialogsSuspense />} />
+            </Route>
             <Route path='/news' element={<NewsContainer />} />
             <Route path='/music' element={<Music />} />
             <Route path='/setting' element={<Setting />} />

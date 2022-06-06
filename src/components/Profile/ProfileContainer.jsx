@@ -13,7 +13,7 @@ import {
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-class ProfileContainer extends React.Component {
+class ProfileContainer extends React.Component { 
     constructor(props, costil, lastIdParam) {
         super(props);
         this.costil = costil;
@@ -27,7 +27,7 @@ class ProfileContainer extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) { 
         if (prevProps.currentPageUser !== this.props.currentPageUser) {
             this.props.getUserPageFunction(this.props.currentPageUser); //thunk
             this.props.getUserStatus(this.props.currentPageUser);

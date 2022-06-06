@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './MyPost.module.css';
 import Post from './Post/Post';
-import { Field, Formik, Form, ErrorMessage } from 'formik';
-import { maxLengthCreator, validation, } from '../../../Utils/Validations/validators';
+import { Field, Formik, Form} from 'formik';
+import { maxLengthCreator} from '../../../Utils/Validations/validators';
 import { Textarea } from '../../common/FormControls/FormControl';
 
 const MyPost = (props) => {
@@ -11,9 +11,9 @@ const MyPost = (props) => {
         props.pd.map(p => <Post message={p.message} key={p.id} likeCounts={p.likeCounts} profile={props.profile} />);
 
     let messageAlert = (text) => {
-        props.AddPost(text);
+        props.addPostActionCreator(text);
     }
-
+ 
     let maxLength20 = maxLengthCreator(20);
 
     let FormSendMessage = () => (
@@ -36,8 +36,6 @@ const MyPost = (props) => {
                             placeholder='Enter your post'
 
                         />
-                        {/* <ErrorMessage name="message" component="div" /> */}
-                        {/* {p.errors.message && p.touched.message && <div>{p.errors.message}</div>} */}
                         <button type="submit" disabled={p.isSubmitting}>
                             Send
                         </button>
@@ -52,16 +50,6 @@ const MyPost = (props) => {
             My post
             <div>
                 <FormSendMessage />
-                {/* <div>
-                    <textarea
-                        placeholder='Enter your post'
-                        onChange={onPostChange}
-                        value={props.newPostText}
-                    />
-                </div>
-                <div>
-                    <button onClick={messageAlert}>Add post</button>
-                </div> */}
             </div>
             <div className={s.posts}>
                 {postsElements}
