@@ -12,7 +12,7 @@ import ProfileContainerHook from './components/Profile/ProfileContainerHook';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginContainer from './components/Login/LoginContainer';
 
-import { initializeApp} from './redux/app-reducer';
+import { initializeApp, setSizeApp } from './redux/app-reducer';
 import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import TestContainer from './components/Tets/TestContainer';
@@ -73,4 +73,8 @@ const mapStareToProps = (state) => {
   }
 }
 
-export default connect(mapStareToProps, { initializeApp, meUser})(App);
+export default connect(mapStareToProps, {
+  initializeApp,
+  meUser,
+  setSizeApp
+})(App);

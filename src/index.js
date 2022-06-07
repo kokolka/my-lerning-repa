@@ -5,6 +5,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import AppContainer from './AppConteiner';
 
+
+let s = document.getElementById('root').offsetWidth;
+
+
 ReactDOM.render( 
   <AppContainer />,
   document.getElementById('root')
