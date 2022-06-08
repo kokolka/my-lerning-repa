@@ -13,9 +13,9 @@ const AppContainer = (props) => {
             {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */} 
                 <Provider store={store}>
                     <App />
-                    <a className='test_container'>
+                    <p className='test_container'>
                         Learn React
-                    </a>
+                    </p>
                 </Provider>
             {/*  </BrowserRouter> */}
             </HashRouter>
