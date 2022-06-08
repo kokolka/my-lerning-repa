@@ -10,3 +10,6 @@ export const getMessageError = (state) =>{
 export const getSizeApp = (state) =>{
     return state.initialize.sizeApp;
 } 
+export const getIsButtonMenu = (state) =>{
+    return state.initialize.isButtonMenu;
+}

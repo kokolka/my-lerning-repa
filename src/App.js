@@ -17,8 +17,9 @@ import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import TestContainer from './components/Tets/TestContainer';
 import { withSuspense } from './HOC/withSuspense';
-import { getInitialized, getSizeApp } from './redux/app-selectors';
+import { getInitialized, getIsButtonMenu, getSizeApp } from './redux/app-selectors';
 import { getIsAuth } from './redux/auth-selectors';
+import cn from 'classnames';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const OnlyCatPageContainer = React.lazy(() => import('./components/Infinity cat/OnlyCatPageContainer'));
@@ -49,8 +50,8 @@ class App extends React.Component {
     
     new ResizeObserver(reSize).observe(document.getElementById('root')); //подписывание на изменение размера экрана
 
-    //if (!this.props.initialized) { //online mode
-    if (this.props.initialized) { //offline mode
+    if (!this.props.initialized) { //online mode
+    //if (this.props.initialized) { //offline mode
       return <Preloader />
     }
     return (
@@ -58,10 +59,10 @@ class App extends React.Component {
         <div className='app-wrapper__header'>
           <HeaderContainer />
         </div>
-        <div className='app-wrapper__nav'>
+        <div className={cn('app-wrapper__nav', {'app-wrapper__visibility__mobile': this.props.isButtonMenu})}>
           <NavbarContainer />
         </div>
-        <div className='app-wrapper__content'>
+        <div className={cn('app-wrapper__content')}>
           <Routes>
             <Route path='/' element={<ProfileContainerHook />} />
             <Route path='/profile' element={<ProfileContainerHook />}>
@@ -89,7 +90,8 @@ const mapStareToProps = (state) => {
   return {
     initialized: getInitialized(state),
     sizeApp: getSizeApp(state),
-    isAuth: getIsAuth(state)
+    isAuth: getIsAuth(state),
+    isButtonMenu: getIsButtonMenu(state)
   }
 } 
 

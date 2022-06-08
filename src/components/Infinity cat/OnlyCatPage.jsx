@@ -47,10 +47,12 @@ const getColumnNumber = (size, func, lastColumn) =>{ //нужно изменит
 
     if(size <= 279){a = 1}
     else if(size <= 374){a = 2}
-    else if(size <= 625){a = 3}
-    else if(size <= 765){a = 4}
-    else if(size <= 1020){a = 6}
-    else if(size <= 1360){a = 7}
+    else if(size <= 420){a = 3}
+    else if(size <= 660){a = 4}
+    else if(size <= 765){a = 5} //уберается боковая менюшка
+    else if(size <= 1020){a = 4}
+    else if(size <= 1200){a = 5}
+    else if(size <= 1400){a = 7}
     else if(size <= 1900){a = 8}
     else {a = 9}
 
@@ -61,7 +63,10 @@ const getColumnNumber = (size, func, lastColumn) =>{ //нужно изменит
 
 const OnlyCatPage = (props) => {
 
-    let [columns, setColumns] = useState(7); //локальный state колличества колонок
+    let [columns, setColumns] = useState(() => {
+        // props.setSizeApp(document.getElementById('root').offsetWidth);
+        return 7;
+    }); //локальный state колличества колонок
     let [lengthArrow, setLengthArrow] = useState(arrowImg.length); //локальный state колличества изображений в массиве
 
     useEffect(() => {
