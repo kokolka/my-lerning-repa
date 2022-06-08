@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react';
 import s from './OnlyCatPage.module.css';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 
-let arrowImg = [];
+let arrowImg = []; //массив с изображениями
 
+let initArrow = []; //массив с колонками, он будет отображаться 
 
-let initArrow = []; //main arrow
-
-
-
-const ElementFotoBox = (props) => {
+const ElementFotoBox = (props) => { //элемент фото с рамкой 
     return <div className={props.size <= 1
         ? s.foto_block__1
         : props.size <= 2 && props.size > 1
@@ -40,21 +37,37 @@ const ElementFotoBox = (props) => {
     </div>
 }
 
-const GetRandomSizeImg = (number) => {
+const GetRandomSizeImg = (number) => { //заполнение массива изображений рандомными размерами изображений
     for (let i = 0; i < number; i++) {
         arrowImg.push(Math.ceil(Math.random() * (3 - 1) + 1));
     }
 }
 
-const OnlyCatPage = () => {
-    //let columns = 7; //number of columns
+const getColumnNumber = (size, func, lastColumn) =>{ //нужно изменить в соответствии с будстрап сеткой
+    let a;
 
-    let [columns, setColumns] = useState(1);
-    let [lengthArrow, setLengthArrow] = useState(arrowImg.length);
+    if(size <= 279){a = 1}
+    else if(size <= 374){a = 2}
+    else if(size <= 625){a = 3}
+    else if(size <= 765){a = 4}
+    else if(size <= 1020){a = 5}
+    else if(size <= 1360){a = 7}
+    else if(size <= 1900){a = 8}
+    else {a = 9}
+
+    if(a !== lastColumn){
+        func(a);
+    }
+}
+
+const OnlyCatPage = (props) => {
+
+    let [columns, setColumns] = useState(7); //локальный state колличества колонок
+    let [lengthArrow, setLengthArrow] = useState(arrowImg.length); //локальный state колличества изображений в массиве
 
     useEffect(() => {
-        // alert(columns)
-    }, [lengthArrow, columns]);
+        getColumnNumber(props.sizeApp, setColumns, columns)//изменение колличества колонок
+    }, [lengthArrow, columns, props.sizeApp]);
 
     let SetArrowColumns = () => {
         initArrow = [];
@@ -75,7 +88,7 @@ const OnlyCatPage = () => {
             }
         }
         let arrowBoxElem = initArrow.map(el => {
-            return <div className={s.columns_element}>
+            return <div  className={s.columns_element}>
                 {el.map(yt => {
                     return <ElementFotoBox size={yt} />
                 })}
@@ -89,77 +102,8 @@ const OnlyCatPage = () => {
         GetRandomSizeImg(10);
     }
 
-    let sizeBox = {
-        parentSize280: useMediaQuery({ minWidth: 279 }, undefined, (() => { setColumns(1) })),
-        parentSize375: useMediaQuery({ minWidth: 374 }, undefined, (() => { setColumns(2) })),
-        parentSize600: useMediaQuery({ minWidth: 625 }, undefined, (() => { setColumns(3) })),
-        parentSize768: useMediaQuery({ minWidth: 765 }, undefined, (() => { setColumns(4) })),
-        //parentSize912 : useMediaQuery({minWidth: 907}, undefined, (() => {setColumns(4)})),
-        parentSize1024: useMediaQuery({ minWidth: 1020 }, undefined, (() => { setColumns(5) })),
-        // parentSize1280 : useMediaQuery({minWidth: 1270}, undefined, (() => {setColumns(5)})),
-        parentSize1366: useMediaQuery({ minWidth: 1360 }, undefined, (() => { setColumns(7) })),
-        parentSize1440: useMediaQuery({ minWidth: 1430 }, undefined, (() => { setColumns(8) })),
-        parentSize1600: useMediaQuery({ minWidth: 1590 }, undefined, (() => { setColumns(8) })),
-        parentSize1680: useMediaQuery({ minWidth: 1670 }, undefined, (() => { setColumns(8) })),
-        parentSize1920: useMediaQuery({ minWidth: 1900 }, undefined, (() => { setColumns(8) })),
-        parentSize2560: useMediaQuery({ minWidth: 2550 }, undefined, (() => { setColumns(10) })),
-        parentSize3440: useMediaQuery({ minWidth: 3430 }, undefined, (() => { setColumns(12) }))
-    }
-
     return (
         <div>
-            <div>
-                {/* {sizeBox.parentSize3440
-                ? <p>3440</p>
-                : sizeBox.parentSize2560
-                ? <p>2560</p>
-                : sizeBox.parentSize1920 
-                ? <p>1920</p>
-                : sizeBox.parentSize1680
-                ? <p>1680</p>
-                : sizeBox.parentSize1600
-                ? <p>1600</p>
-                : sizeBox.parentSize1440
-                ? <p>1440</p>
-                : sizeBox.parentSize1366
-                ? <p>1366</p>
-                // : sizeBox.parentSize1280
-                // ? <p>1280</p>
-                : sizeBox.parentSize1024
-                ? <p>1024</p>
-                // : sizeBox.parentSize912
-                // ? <p>912</p>
-                : sizeBox.parentSize768
-                ? <p>768</p>
-                : sizeBox.parentSize375
-                ? <p>375</p>
-                : sizeBox.parentSize280
-                ? <p>280</p>
-                : <p>more low size</p>
-                } */}
-                <MediaQuery minWidth={280} onChange={() => { setColumns(1) }}>
-                <MediaQuery minWidth={375} onChange={() => { setColumns(2) }}>
-                <MediaQuery minWidth={767} onChange={() => { setColumns(3) }}>
-                <MediaQuery minWidth={992} onChange={() => { setColumns(4) }}>
-                <MediaQuery minWidth={1200} onChange={() => { setColumns(7) }}>
-                        <MediaQuery minWidth={1440} onChange={() => { setColumns(7) }}>
-                        <MediaQuery minWidth={1600} onChange={() => { setColumns(7) }}>
-                        <MediaQuery minWidth={1920} onChange={() => { setColumns(7) }}>
-                        <MediaQuery minWidth={3440} onChange={() => { setColumns(7) }}>
-                        <MediaQuery minWidth={8000} onChange={() => { setColumns(7) }}>
-                        </MediaQuery>
-                        </MediaQuery>
-                        </MediaQuery>
-                        </MediaQuery>
-                        </MediaQuery>
-                </MediaQuery>
-                </MediaQuery>
-                </MediaQuery>
-                </MediaQuery>
-                </MediaQuery>
-                
-
-            </div>
             <div className={s.foto_main_block}>
                 {CreateArrowContent()}
             </div>

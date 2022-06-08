@@ -19,10 +19,10 @@ import TestContainer from './components/Tets/TestContainer';
 import { withSuspense } from './HOC/withSuspense';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
-const OnlyCatPage = React.lazy(() => import('./components/Infinity cat/OnlyCatPage'));
+const OnlyCatPageContainer = React.lazy(() => import('./components/Infinity cat/OnlyCatPageContainer'));
 
 const DialogsSuspense = withSuspense(DialogsContainer);
-const OnlyCatSuspense = withSuspense(OnlyCatPage);
+const OnlyCatSuspense = withSuspense(OnlyCatPageContainer);
 
 class App extends React.Component {
 
@@ -36,8 +36,8 @@ class App extends React.Component {
 
   render() {
 
-    let text = () => {
-      if(this.state.size != document.getElementById('root').offsetWidth){
+    const reSize = () => { //функция для изменения размера root элемента в state
+      if(this.state.size != document.getElementById('root').offsetWidth){ //проверка, изменился ли азмер экрана
         this.props.setSizeApp(document.getElementById('root').offsetWidth);
         this.setState({
           size: document.getElementById('root').offsetWidth
@@ -45,7 +45,7 @@ class App extends React.Component {
       }
     }
     
-    new ResizeObserver(text).observe(document.getElementById('root'));
+    new ResizeObserver(reSize).observe(document.getElementById('root')); //подписывание на изменение размера экрана
 
     //if (!this.props.initialized) { //online mode
     if (this.props.initialized) { //offline mode
