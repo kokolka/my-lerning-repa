@@ -20,12 +20,12 @@ const Dialogs = (props) => {
     }, [paramPage.id])
 
     //список диалогов
-    let dialogsElements =
-        props.dialogsData.map(el => <Dialog id={el.id} name={el.name} key={el.id} foto={el.foto} />);
+    let dialogsElements = props.dialogsData
+        .map(el => <Dialog id={el.id} name={el.name} key={el.id} foto={el.foto} />);
 
     //список сообщений
-    let messagesElements =
-        props.messagesData.map(message => <Message message={message.message} key={message.id} who={message.who} />)
+    let messagesElements = props.messagesData
+        .map(message => <Message message={message.message} key={message.id} who={message.who} />)
 
     let sendMessage = (text) => {
         props.onSendMessage(text);
@@ -51,7 +51,7 @@ const Dialogs = (props) => {
                             placeholder='Enter your post'
                             validate={maxLength20}
                         />
-                        <button type="submit" disabled={p.isSubmitting} className={s.send_button}> 
+                        <button type="submit" disabled={p.isSubmitting} className={s.send_button}>
                             Send
                         </button>
                     </Form>

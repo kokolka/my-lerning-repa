@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
 import {meUser, deleteLogOut} from '../../redux/auth-reducer';
+import { getIsAuth, getLogin } from '../../redux/auth-selectors';
 
 class HeaderContainer extends React.Component{
     
@@ -12,8 +13,8 @@ class HeaderContainer extends React.Component{
 
 let matStateToProps = (state) => {
     return{
-        isAuth: state.auth.isAuth,
-        login: state.auth.login
+        isAuth: getIsAuth(state),
+        login: getLogin(state)
     }
 }
 

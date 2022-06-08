@@ -1,9 +1,9 @@
 import { authAPI, securityAPI } from "../api/api";
 import { getErrorLogin, resetErrorLogin } from "./app-reducer";
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_OUTPUT = 'SET_OUTPUT';
-const SET_URL_CAPTCHA = 'SET_URL_CAPTCHA';
+const SET_USER_DATA = 'SET_USER_DATA/AUTH';
+const SET_OUTPUT = 'SET_OUTPUT/AUTH';
+const SET_URL_CAPTCHA = 'SET_URL_CAPTCHA/AUTH';
 
 let initialState = {
     userId: null,
@@ -18,7 +18,7 @@ const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.payload //set userId, email, login, isAuth
+                ...action.payload //устанавливаем userId, email, login, isAuth
             };
         case SET_OUTPUT:
             return {

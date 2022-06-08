@@ -1,15 +1,11 @@
 import React from 'react';
 import Users from './Users';
 import { connect } from 'react-redux';
-import {
-    setCurrentPage,
-    setTotalCount,
-    getUsers,
-    follow,
-    unfollow
-} from '../../redux/users-reducer';
+import { setCurrentPage, setTotalCount, getUsers,
+    follow, unfollow } from '../../redux/users-reducer';
 import { compose } from 'redux';
-import { getStateCurrentPage, getStateFollowingIsProgress, getStateIsFetching, getStatePageSize, getStatePageTotalCount, getStateUsers } from '../../redux/users-selectors';
+import {  getStateCurrentPage, getStateFollowingIsProgress, getStateIsFetching, 
+    getStatePageSize, getStatePageTotalCount, getStateUsers } from '../../redux/users-selectors';
 
 class UsersComponent extends React.Component {
 
@@ -29,51 +25,23 @@ class UsersComponent extends React.Component {
 
     render() {
         return (
-            <>
-                {/* {this.props.isFetching ?
-                    <Preloader/>
-                    : null} */}
-                <Users {...this.props}
-                    onPageChanged={this.onPageChanged}
-                />
-            </>
+            <Users {...this.props}
+                onPageChanged={this.onPageChanged}
+            />
         );
     }
 }
 
-let mapStateToProps = (state) => { 
+let mapStateToProps = (state) => {
     return {
         users: getStateUsers(state),
         pageSize: getStatePageSize(state),
         pageTotalCount: getStatePageTotalCount(state),
-        currentPage: getStateCurrentPage(state), 
+        currentPage: getStateCurrentPage(state),
         isFetching: getStateIsFetching(state),
         followingIsProgress: getStateFollowingIsProgress(state)
     }
 }
-
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         follow: (userID) => {
-//             dispatch(followAC(userID))
-//         },
-//         unfollow: (userID) => {
-//             dispatch(unfollowAC(userID))
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (page) => {
-//             dispatch(setCurrentPageAC(page))
-//         },
-//         setTotalCount: (totalCount) => {
-//             dispatch(setTotalCountAC(totalCount))
-//         },
-//         toggleIsFetching: (fetching) => {
-//             dispatch(toggleIsFetchingAC(fetching))
-//         }
-//     }
-// }
 
 export default compose(
     connect(mapStateToProps, {

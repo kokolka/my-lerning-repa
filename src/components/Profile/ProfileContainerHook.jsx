@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import Profile from './Profile';
-import {
-    setUserProfile,
-    setCurrentIdUser,
-    getUserPageFunction,
-    getUserStatus,
-    putUserStatus,
-    addPostActionCreator,
-    savePhoto,
-    putProfileInfoParam
-} from '../../redux/profile-reducer';
+import { setUserProfile, setCurrentIdUser, getUserPageFunction,
+    getUserStatus, putUserStatus, addPostActionCreator,
+    savePhoto, putProfileInfoParam} from '../../redux/profile-reducer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { getCurrentPageUser, getErrorMessageProfile, getNewPostText, 
+    getPostData, getProfile, getStatus } from '../../redux/profile-selectors';
+import { getUserId } from '../../redux/auth-selectors';
 
 const ProfileContainerHook = (props) => {
 
@@ -36,13 +32,13 @@ const ProfileContainerHook = (props) => {
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    currentPageUser: state.profilePage.currentPageUser,
-    meUserId: state.auth.userId,
-    pd: state.profilePage.postsData,
-    newPostText: state.profilePage.newPostText,
-    messageError: state.profilePage.errorMessageProfile
+    profile: getProfile(state),
+    status: getStatus(state),
+    currentPageUser: getCurrentPageUser(state),
+    meUserId: getUserId(state),
+    pd: getPostData(state),
+    newPostText: getNewPostText(state),
+    messageError: getErrorMessageProfile(state)
 })
 
 export default compose(

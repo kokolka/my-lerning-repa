@@ -17,6 +17,8 @@ import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import TestContainer from './components/Tets/TestContainer';
 import { withSuspense } from './HOC/withSuspense';
+import { getInitialized, getSizeApp } from './redux/app-selectors';
+import { getIsAuth } from './redux/auth-selectors';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const OnlyCatPageContainer = React.lazy(() => import('./components/Infinity cat/OnlyCatPageContainer'));
@@ -85,11 +87,11 @@ class App extends React.Component {
 
 const mapStareToProps = (state) => {
   return {
-    initialized: state.initialize.initialized,
-    isAuth: state.auth.isAuth,
-    sizeApp: state.initialize.sizeApp
+    initialized: getInitialized(state),
+    sizeApp: getSizeApp(state),
+    isAuth: getIsAuth(state)
   }
-}
+} 
 
 export default connect(mapStareToProps, {
   initializeApp,

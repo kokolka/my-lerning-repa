@@ -3,7 +3,6 @@ import LoginForm from "./LoginForm/LoginForm";
 import s from './Login.module.css';
 import { Navigate } from "react-router-dom";
 
-
 const Login = ({postLogin, isAuth, numberError, messageError, getUrlCaptcha, urlCaptcha}) => {
 
     if (isAuth === true) {

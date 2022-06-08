@@ -1,19 +1,19 @@
 import React from 'react';
 import s from './MyPost.module.css';
 import Post from './Post/Post';
-import { Field, Formik, Form} from 'formik';
-import { maxLengthCreator} from '../../../Utils/Validations/validators';
+import { Field, Formik, Form } from 'formik';
+import { maxLengthCreator } from '../../../Utils/Validations/validators';
 import { Textarea } from '../../common/FormControls/FormControl';
 
 const MyPost = (props) => {
-    
-    let postsElements =
-        props.pd.map(p => <Post message={p.message} key={p.id} likeCounts={p.likeCounts} profile={props.profile} />);
+
+    let postsElements = props.pd
+        .map(p => <Post message={p.message} key={p.id} likeCounts={p.likeCounts} profile={props.profile} />);
 
     let messageAlert = (text) => {
         props.addPostActionCreator(text);
     }
- 
+
     let maxLength20 = maxLengthCreator(20);
 
     let FormSendMessage = () => (
@@ -24,7 +24,6 @@ const MyPost = (props) => {
                     messageAlert(values.message);
                     setSubmitting(false);
                 }}
-
             >
                 {(p) => (
                     <Form>
@@ -34,7 +33,6 @@ const MyPost = (props) => {
                             validate={maxLength20}
                             component={Textarea}
                             placeholder='Enter your post'
-
                         />
                         <button type="submit" disabled={p.isSubmitting}>
                             Send

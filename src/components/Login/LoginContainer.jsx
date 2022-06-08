@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
 import Login from './Login';
 import {postLogin, getUrlCaptcha} from '../../redux/auth-reducer';
+import { getIsAuth, getUrlCaptchaSelector } from '../../redux/auth-selectors';
+import { getMessageError, getNumberError } from '../../redux/app-selectors';
 
 let mapStateToProps = (state) =>{
     return{
-        isAuth: state.auth.isAuth, 
-        numberError: state.initialize.numberError,
-        messageError: state.initialize.messageError,
-        urlCaptcha: state.auth.urlCaptcha
+        isAuth: getIsAuth(state), 
+        numberError: getNumberError(state),
+        messageError: getMessageError(state),
+        urlCaptcha: getUrlCaptchaSelector(state)
     }
 }
 

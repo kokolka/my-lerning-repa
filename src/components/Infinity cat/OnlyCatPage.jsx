@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import s from './OnlyCatPage.module.css';
-import MediaQuery, { useMediaQuery } from 'react-responsive';
 
 let arrowImg = []; //массив с изображениями
 
@@ -50,7 +49,7 @@ const getColumnNumber = (size, func, lastColumn) =>{ //нужно изменит
     else if(size <= 374){a = 2}
     else if(size <= 625){a = 3}
     else if(size <= 765){a = 4}
-    else if(size <= 1020){a = 5}
+    else if(size <= 1020){a = 6}
     else if(size <= 1360){a = 7}
     else if(size <= 1900){a = 8}
     else {a = 9}
