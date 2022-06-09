@@ -6,6 +6,7 @@ import { setCurrentPage, setTotalCount, getUsers,
 import { compose } from 'redux';
 import {  getStateCurrentPage, getStateFollowingIsProgress, getStateIsFetching, 
     getStatePageSize, getStatePageTotalCount, getStateUsers } from '../../redux/users-selectors';
+import { getSizeApp } from '../../redux/app-selectors';
 
 class UsersComponent extends React.Component {
 
@@ -39,7 +40,8 @@ let mapStateToProps = (state) => {
         pageTotalCount: getStatePageTotalCount(state),
         currentPage: getStateCurrentPage(state),
         isFetching: getStateIsFetching(state),
-        followingIsProgress: getStateFollowingIsProgress(state)
+        followingIsProgress: getStateFollowingIsProgress(state),
+        sizeApp: getSizeApp(state)
     }
 }
 

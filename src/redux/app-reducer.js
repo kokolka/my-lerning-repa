@@ -12,7 +12,7 @@ let initialState = {
     numberError: 0,
     messageError: '',
     sizeApp: null,
-    isButtonMenu: false
+    isButtonMenu: true
 };
 
 const appReducer = (state = initialState, action) => {

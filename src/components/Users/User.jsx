@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Users.module.css';
 import noPhoto from '../../assets/imeges/noPhoto.png';
 import { NavLink } from "react-router-dom";
- 
+
 const User = (props) => {
     return (
         <div className={s.userBox}>
@@ -27,24 +27,25 @@ const User = (props) => {
                     }
                 </div>
             </div>
-            <div className={s.userBox_userData}>
-                <div className={s.userData_profile}>
-                    <div className={s.userName}>
-                        {`${props.user.name}`}
-                    </div>
-                    <div className={s.userStatus}>
-                        {`Status: ${props.user.status != null ? props.user.status : ''}`}
-                    </div>
+            <div className={s.userData_profile}>
+                <div className={s.userName}>
+                    {`${props.user.name}`}
                 </div>
-                <div className={s.userLocation}>
-                    <div className={s.userLocation_city}>
-                        {'u.location.city'}
-                    </div>
-                    <div className={s.userLocation_country}>
-                        {'u.location.country'}
-                    </div>
+                <div className={s.userStatus}>
+                    {`Status: ${props.user.status != null ? props.user.status : ''}`}
                 </div>
             </div>
+            <div className={s.userLocation}>
+                <p className={s.userLocation_city}>
+                    {'u.location.city'}
+                </p>
+                <p className={s.userLocation_country}>
+                    {'u.location.country'}
+                </p>
+            </div>
+            {/* <div className={s.userBox_userData}>
+                
+            </div> */}
         </div>
     );
 }
