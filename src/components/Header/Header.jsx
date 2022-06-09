@@ -6,7 +6,6 @@ const Header = (props) => {
     return (
         <header>
             {props.sizeApp <= 767
-                // ? <button onClick={props.resetIsButtonMenu}>Nuvdar</button>
                 ? <img onClick={props.changeIsButtonMenu} className={s.menu_ikon} src='https://yoya.vtrende.com.ua/wp-content/uploads/2019/06/8738.png.pagespeed.ce.4x6V1QNbBf.png'/>
                 : <img className={s.logoPage} src='https://www.clipartmax.com/png/full/131-1317081_sayence-0-0-reproduction-of-google-chrome-logo-by-sayence-drawing.png' />
             }

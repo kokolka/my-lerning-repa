@@ -17,6 +17,7 @@ const Dialog = (props) => {
                     }
                 }
             }
+            onClick={props.setIsButtonDialog}
             >{props.name}</NavLink>
         </div>
     )

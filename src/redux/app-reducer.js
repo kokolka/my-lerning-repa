@@ -6,13 +6,16 @@ const RESET_ERROR_LOGIN = 'RESET_ERROR_LOGIN/APP';
 const SET_SIZE_APP = 'SET_SIZE_APP/APP';
 const SET_IS_BUTTON_MENU = 'SET_IS_BUTTON_MENU/APP';
 const CHANGE_IS_BUTTON_MENU = 'CHANGE_IS_BUTTON_MENU/APP';
+const SET_IS_BUTTON_DIALOG = 'SET_IS_BUTTON_DIALOG/APP';
+const CHANGE_IS_BUTTON_DIALOG = 'CHANGE_IS_BUTTON_DIALOG/APP';
 
 let initialState = {
     initialized: false, 
     numberError: 0,
     messageError: '',
     sizeApp: null,
-    isButtonMenu: true
+    isButtonMenu: true,
+    isButtonDialog: true
 };
 
 const appReducer = (state = initialState, action) => {
@@ -49,6 +52,16 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 isButtonMenu: !state.isButtonMenu
             };  
+        case SET_IS_BUTTON_DIALOG: 
+            return {
+                ...state,
+                isButtonDialog: action.isButton
+            };  
+        case CHANGE_IS_BUTTON_DIALOG: 
+            return {
+                ...state,
+                isButtonDialog: !state.isButtonDialog
+            };  
         default:
             return state;
     }
@@ -71,6 +84,12 @@ export const setIsButtonMenu = () => {
 };
 export const changeIsButtonMenu = () => {
     return { type: CHANGE_IS_BUTTON_MENU}; 
+};
+export const setIsButtonDialog = () => {
+    return { type: SET_IS_BUTTON_DIALOG, isButton: true}; 
+};
+export const changeIsButtonDialog = () => {
+    return { type: CHANGE_IS_BUTTON_DIALOG}; 
 };
 
 export const initializeApp = () => (dispatch) => {

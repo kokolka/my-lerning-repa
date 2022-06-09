@@ -13,3 +13,6 @@ export const getSizeApp = (state) =>{
 export const getIsButtonMenu = (state) =>{
     return state.initialize.isButtonMenu;
 }
+export const getIsButtonDialog = (state) =>{
+    return state.initialize.isButtonDialog;
+}

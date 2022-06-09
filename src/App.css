@@ -10,7 +10,7 @@
 
   grid-template-rows: 60px 1fr;
   grid-template-columns: 1fr 5fr;
-  grid-gap: 15px;
+  grid-gap: 10px;
 }
 
 @media (max-width: 1200px) {
@@ -69,6 +69,8 @@
   background-color: rgb(119, 119, 245);
   
   width: 200px;
+
+  z-index: 2;
 }
 
 .app-wrapper__header {
@@ -83,4 +85,5 @@
 
 .test_container {
   visibility: hidden;
+  position: absolute;
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import cn from 'classnames';
 
 import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
@@ -7,6 +8,8 @@ import s from './Dialogs.module.css';
 import { Field, Formik, Form } from 'formik';
 import { Textarea } from '../common/FormControls/FormControl';
 import { maxLengthCreator } from '../../Utils/Validations/validators';
+
+import dialogIcon from '../../assets/imeges/dialogIcon.png';
 
 const Dialogs = (props) => {
 
@@ -21,7 +24,7 @@ const Dialogs = (props) => {
 
     //список диалогов
     let dialogsElements = props.dialogsData
-        .map(el => <Dialog id={el.id} name={el.name} key={el.id} foto={el.foto} />);
+        .map(el => <Dialog id={el.id} name={el.name} key={el.id} foto={el.foto} setIsButtonDialog={props.setIsButtonDialog} />);
 
     //список сообщений
     let messagesElements = props.messagesData
@@ -40,8 +43,7 @@ const Dialogs = (props) => {
                 onSubmit={(values, { setSubmitting }) => {
                     sendMessage(values.message);
                     setSubmitting(false);
-                }}
-            >
+                }}>
                 {(p) => (
                     <Form className={s.send}>
                         <Field
@@ -62,12 +64,21 @@ const Dialogs = (props) => {
 
     return (
         <div className={s.dialogs}>
-            <div className={s.dialogsItem}>
+            {/* <div className={s.dialogsItem}> */}
+            <div className={cn(s.dialogs_item, { [s.dialogs_item__module]: props.isButtonDialog && props.sizeApp <= 767 })}>
                 {dialogsElements}
             </div>
-            <div className={s.messages}>
-                <div className={s.actionDialog}>
-                    {actionName}
+            <div className={cn(s.messages, { [s.dialogs_item__module]: !props.isButtonDialog && props.sizeApp <= 767, [s.messages__module]: props.sizeApp <= 767 })}>
+                <div className={s.action_dialog_icon}>
+                    {props.sizeApp <= 767
+                        ? <img
+                            onClick={props.changeIsButtonDialog}
+                            className={s.dialogs_icon}
+                            src={dialogIcon} />
+                        : null}
+                    <div className={s.action_dialog}>
+                        {actionName}
+                    </div>
                 </div>
                 <div className={s.message_area}>
                     {messagesElements}
