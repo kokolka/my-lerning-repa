@@ -15,7 +15,6 @@ import LoginContainer from './components/Login/LoginContainer';
 import { initializeApp,setSizeApp } from './redux/app-reducer';
 import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
-import TestContainer from './components/Tets/TestContainer';
 import { withSuspense } from './HOC/withSuspense';
 import { getInitialized, getIsButtonMenu, getSizeApp } from './redux/app-selectors';
 import { getIsAuth } from './redux/auth-selectors';
@@ -30,7 +29,7 @@ const OnlyCatSuspense = withSuspense(OnlyCatPageContainer);
 class App extends React.Component {
 
   state = {
-    size: document.getElementById('root').offsetWidth
+    size: document.getElementById('root').offsetWidth //так быстрее получить размер экрана при инициализации, но плохо для теста
   }
 
   componentDidMount() {
@@ -76,7 +75,6 @@ class App extends React.Component {
             <Route path='/setting' element={<Setting />} />
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/login' element={<LoginContainer />} />
-            <Route path='/test' element={<TestContainer />} />
             <Route path='/infinityCat' element={<OnlyCatSuspense />} />
             <Route path='*' element={<div>404 not found</div>} />
           </Routes>

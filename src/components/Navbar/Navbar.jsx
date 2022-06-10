@@ -34,9 +34,6 @@ const Navbar = (props) => {
                 <NavLink to='/setting' className={navData => navData.isActive ? s.active : s.item} onClick={props.setIsButtonMenu}>Setting</NavLink>
             </div>
             <div className={s.item}>
-                <NavLink to='/test' className={navData => navData.isActive ? s.active : s.item} onClick={props.setIsButtonMenu}>Test</NavLink>
-            </div>
-            <div className={s.item}>
                 <NavLink to='/infinityCat' className={navData => navData.isActive ? s.active : s.item} onClick={props.setIsButtonMenu}>Infinity cat</NavLink>
             </div>
             <div className={s.friends}>

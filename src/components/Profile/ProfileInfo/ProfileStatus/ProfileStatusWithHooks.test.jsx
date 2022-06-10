@@ -29,14 +29,14 @@ test('test status on profile', () => {
     expect(testInstance.findByProps({className: s.status_editModeOff}).children).toEqual(['test']); 
 }); 
 
-test('edit mod on. check input', () => {
-    const testRenderer = TestRenderer.create(<ProfileStatusWithHooks status={'test'}/>);
-    const testInstance = testRenderer.root;
+// test('edit mod on. check input', () => {
+//     const testRenderer = TestRenderer.create(<ProfileStatusWithHooks status={'test'}/>);
+//     const testInstance = testRenderer.root;
 
-    let span = testInstance.findByType("span");
-    span.props.onDoubleClick();
+//     let span = testInstance.findByType("span");
+//     span.props.onDoubleClick();
 
-    let input = testInstance.findByType("input");  
+//     let input = testInstance.findByType("input");  
 
-    expect(input.props.value).toBe('test');
-});  
+//     expect(input.props.value).toBe('test');
+// });  

@@ -19,8 +19,8 @@ const ProfileStatusWithHooks = (props) => {
     let [status, setStatus] = useState(props.status)
 
     const activeEditMode = () => {
-        if(props.userIdFromURL == props.meUserId){
-            changeEditMode(true);
+        if(props.userIdFromURL == props.meUserId){ // проверяем id пользователя если id страницы совпадает с id зарегистрированного пользователя
+            changeEditMode(true);                  // то разрешаем редактирование статуса
         }
     }
     const deactiveEditMode = () => {

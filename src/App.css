@@ -12,6 +12,17 @@
   grid-template-columns: 1fr 5fr;
   grid-gap: 10px;
 }
+@media (min-width: 1400px) {
+  .app-wrapper {
+    min-width: 1320px;
+  }
+  .app-wrapper__header{
+    min-width: 1320px;
+  }
+  .app-wrapper__content{
+    min-width: 1105px;
+  }
+}
 
 @media (max-width: 1200px) {
   .app-wrapper {

@@ -48,13 +48,14 @@ const getColumnNumber = (size, func, lastColumn) =>{ //нужно изменит
     if(size <= 279){a = 1}
     else if(size <= 374){a = 2}
     else if(size <= 420){a = 3}
+    else if(size <= 520){a = 3}
     else if(size <= 660){a = 4}
     else if(size <= 765){a = 5} //уберается боковая менюшка
     else if(size <= 1020){a = 4}
     else if(size <= 1200){a = 5}
     else if(size <= 1400){a = 7}
     else if(size <= 1900){a = 8}
-    else {a = 9}
+    else {a = 8}
 
     if(a !== lastColumn){
         func(a);
@@ -107,7 +108,7 @@ const OnlyCatPage = (props) => {
     }
 
     return (
-        <div>
+        <div className={s.main_box}>
             <div className={s.foto_main_block}>
                 {CreateArrowContent()}
             </div>
