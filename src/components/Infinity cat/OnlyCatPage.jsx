@@ -65,7 +65,6 @@ const getColumnNumber = (size, func, lastColumn) =>{ //нужно изменит
 const OnlyCatPage = (props) => {
 
     let [columns, setColumns] = useState(() => {
-        // props.setSizeApp(document.getElementById('root').offsetWidth);
         return 7;
     }); //локальный state колличества колонок
     let [lengthArrow, setLengthArrow] = useState(arrowImg.length); //локальный state колличества изображений в массиве
@@ -103,7 +102,7 @@ const OnlyCatPage = (props) => {
         return arrowBoxElem;
     }
 
-    if (arrowImg.length === 0) { //initial set size colum img
+    if (arrowImg.length === 0) { //инициализация массива с изображениями 
         GetRandomSizeImg(10);
     }
 

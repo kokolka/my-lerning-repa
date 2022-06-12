@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import NewsContainer from './components/News/NewsContainer';
-import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
@@ -19,6 +18,7 @@ import { withSuspense } from './HOC/withSuspense';
 import { getInitialized, getIsButtonMenu, getSizeApp } from './redux/app-selectors';
 import { getIsAuth } from './redux/auth-selectors';
 import cn from 'classnames';
+import MusicConteiner from './components/Music/MusicConteiner';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const OnlyCatPageContainer = React.lazy(() => import('./components/Infinity cat/OnlyCatPageContainer'));
@@ -34,6 +34,15 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.initializeApp();
+    this.setState({
+      size: document.getElementById('root').offsetWidth
+    })
+  }
+
+  componentDidUpdate(prevState){
+    if(prevState.sizeApp != this.state.size){
+      this.props.setSizeApp(document.getElementById('root').offsetWidth);
+    }
   }
 
   render() {
@@ -71,7 +80,7 @@ class App extends React.Component {
               <Route path='/dialogs/:id' element={<DialogsSuspense />} />
             </Route>
             <Route path='/news' element={<NewsContainer />} />
-            <Route path='/music' element={<Music />} />
+            <Route path='/music' element={<MusicConteiner />} />
             <Route path='/setting' element={<Setting />} />
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/login' element={<LoginContainer />} />
