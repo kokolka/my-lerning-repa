@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getSongsList } from '../../redux/music-selector';
 import Music from './Music';
 
 const MusicContainer = (props) => {
@@ -9,7 +10,8 @@ const MusicContainer = (props) => {
     );
 }
 
-const mstp = () => ({
+const mstp = (state) => ({
+    songs: getSongsList(state)
 })
 
 

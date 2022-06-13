@@ -27,32 +27,16 @@ const DialogsSuspense = withSuspense(DialogsContainer);
 const OnlyCatSuspense = withSuspense(OnlyCatPageContainer);
 
 class App extends React.Component {
-
-  state = {
-    size: document.getElementById('root').offsetWidth //так быстрее получить размер экрана при инициализации, но плохо для теста
-  }
-
   componentDidMount() {
     this.props.initializeApp();
-    this.setState({
-      size: document.getElementById('root').offsetWidth
-    })
-  }
-
-  componentDidUpdate(prevState){
-    if(prevState.sizeApp != this.state.size){
-      this.props.setSizeApp(document.getElementById('root').offsetWidth);
-    }
+    this.props.setSizeApp(document.getElementById('root').offsetWidth);
   }
 
   render() {
 
     const reSize = () => { //функция для изменения размера root элемента в state
-      if(this.state.size != document.getElementById('root').offsetWidth){ //проверка, изменился ли азмер экрана
+      if(this.props.sizeApp != document.getElementById('root').offsetWidth){ //проверка, изменился ли азмер экрана
         this.props.setSizeApp(document.getElementById('root').offsetWidth);
-        this.setState({
-          size: document.getElementById('root').offsetWidth
-        })
       }
     }
     

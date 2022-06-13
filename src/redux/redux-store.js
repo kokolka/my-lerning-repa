@@ -6,6 +6,7 @@ import profileReducer from "./profile-reducer";
 import usersReducer from "./users-reducer";
 import thunkMiddleware from "redux-thunk";
 import appReducer from "./app-reducer";
+import musicPage from "./music-reducer";
 
 
 let reducers = combineReducers({
@@ -14,7 +15,8 @@ let reducers = combineReducers({
     dialogs: dialogReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    initialize: appReducer
+    initialize: appReducer,
+    music: musicPage
 });
 
 

@@ -5,7 +5,6 @@ import { Textarea } from '../../common/FormControls/FormControl';
 
 
 const FormProfileInfo = (props) => {
-
     let ErrorBlock = () => {
         if (props.messageError != '') {
             return props.messageError.map((el) => {

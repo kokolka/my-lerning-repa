@@ -1,58 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import AudioControl from './AudioControl';
 import s from './Music.module.css';
 
-const useAudio = url => {
-    const [audio] = useState(new Audio(url));
-    const [playing, setPlaying] = useState(false);
 
-    const toggle = () => setPlaying(!playing);
+const Music = (props) => {
+    //Плеер на основе статьи: https://letsbuildui.dev/articles/building-an-audio-player-with-react-hooks
+    //state
+    const [nowSong, SetNowSong] = useState(0); //текущий номер песни из массива
+    const [trackProgress, setTrackProgress] = useState(0); //прогресс песни
+    const [isPlaying, setIsPlaying] = useState(false); //Играет ли песня
 
-    useEffect(() => {
-        playing ? audio.play() : audio.pause();
-    }, [playing]);
+    //деструкторизация данных с store.state.music.songs
+    let { title, artist, audioSrc, image, color } = props.songs[nowSong];
 
-    useEffect(() => { //переключает playing в false когда закончилась музыка
-        audio.addEventListener('ended', () => setPlaying(false));
-        return () => {
-            audio.removeEventListener('ended', () => setPlaying(false));
-        };
-    }, []);
+    //Refs
+    const audioRef = useRef(new Audio(audioSrc));
+    const intervalRef = useRef(); //ссылка для setInterval
+    const isReady = useRef(false); //готовность выполнения кого-то действия
 
-    return [playing, toggle];
-};
+    // Destructure for conciseness
+    const { duration } = audioRef.current;
 
-const Music = () => {
-    const [playing, setPlaying] = useState(false);
-    let [src, setSrc] = useState('https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-61905/zapsplat_multimedia_alert_chime_short_musical_notification_cute_child_like_001_64918.mp3?_=1')
-    
-    debugger
-    let [audio] = useState(new Audio(src));
+    const toPrevTrack = () => { //для переключения на прошлый трек
+        console.log('TODO go to prev');
+    }
+    const toNextTrack = () => { //для переключения на следующий трек
+        console.log('TODO go to next');
+    }
 
-    //audio.src = 'https://www.zapsplat.com/wp-content/uploads/2015/sound-effect-packs/zapsplat_pack_tropical_beach_preview.mp3';
-    debugger
-
-    useEffect(() => {
-        playing ? audio.play() : audio.pause();
-    }, [playing, src]);
-
-    useEffect(() => { //переключает playing в false когда закончилась музыка
-        audio.addEventListener('ended', () => setPlaying(false));
-        return () => {
-            audio.removeEventListener('ended', () => setPlaying(false));
-        };
-    }, []);
 
     return (
-        <div>
-            <button onClick={() => {
-                setPlaying(!playing);
-            }}>{playing ?'Pause' :'Play'}</button>
-            <button onClick={() => {
-                audio.src = 'https://www.zapsplat.com/wp-content/uploads/2015/sound-effect-packs/zapsplat_pack_tropical_beach_preview.mp3';
-            }}>Change</button>
-            <button onClick={() => {
-                audio.src = 'https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-61905/zapsplat_multimedia_alert_chime_short_musical_notification_cute_child_like_001_64918.mp3?_=1';
-            }}>Go back</button>
+        <div className={s.audioPlayer_box}>
+            <div className={s.audioPlayer_box__track_info}>
+                <img
+                    className={s.track_info__avatar}
+                    src={image}
+                    alt={`track artwork for ${title} by ${artist}`}
+                />
+                <h2 className={s.track_info__title}>{title}</h2>
+                <h3 className={s.track_info__artist}>{artist}</h3>
+                <AudioControl
+                    isPlaying={isPlaying}
+                    toPrevTrack={toPrevTrack}
+                    toNextTrack={toNextTrack}
+                    toPause={setIsPlaying}
+                />
+            </div>
         </div>
     );
 }

@@ -99,12 +99,12 @@ const ProfileInfo = (props) => {
     );
 }
 
-const ProfileAva = (props, userIdFromURL, selectMainAva) => {
+const ProfileAva = (props) => {
     return (
         <div key='avaBox' className={prof.profile_ava}>
             <img key='ava' src={props.profile.photos.large != null ? props.profile.photos.large : noPhoto} />
-            {userIdFromURL == props.meUserId ? <div>
-                <input key='inputChangeAva' type='file' id='download_file' onChange={selectMainAva} className={prof.button_download} />
+            {props.userIdFromURL == props.meUserId ? <div>
+                <input key='inputChangeAva' type='file' id='download_file' onChange={props.selectMainAva} className={prof.button_download} />
                 <label key='labelChangeAva' htmlFor='download_file'>
                     <span className={prof.img_download}><img
                         src='https://avatars.mds.yandex.net/i?id=ffcffc28c3200781aeff82ea047a9711-5294137-images-thumbs&n=13'
@@ -115,7 +115,7 @@ const ProfileAva = (props, userIdFromURL, selectMainAva) => {
         </div>
     );
 }
-const ProfileInfoUser = (props, userIdFromURL, onEditModeProfile) => {
+const ProfileInfoUser = (props) => {
     return (
         <div key='offEditMode'>
             <div key='fullName'>{`${props.profile.fullName}`}</div>
@@ -137,16 +137,15 @@ const ProfileInfoUser = (props, userIdFromURL, onEditModeProfile) => {
                         status={props.status}
                         putUserStatus={props.putUserStatus}
                         meUserId={props.meUserId}
-                        userIdFromURL={userIdFromURL}
+                        userIdFromURL={props.userIdFromURL}
                     />
                 </div>
             </div>
-            {userIdFromURL == props.meUserId
-                ? <button onClick={onEditModeProfile} key='onEditModeProfile'>
+            {props.userIdFromURL == props.meUserId
+                ? <button onClick={props.onEditModeProfile} key='onEditModeProfile'>
                     Change profile
                 </button>
-                : null
-            }
+                : null}
         </div>
     );
 }
