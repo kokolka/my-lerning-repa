@@ -13,21 +13,21 @@ let initialState = {
             artist: "ZapSplat",
             audioSrc: db1,
             image: imgSrc,
-            color: "#00aeb0"
+            id: 1
         },
         {
             title: "Otherworld Flat Ghostly",
             artist: "ZapSplat",
             audioSrc: db2,
             image: imgSrc2,
-            color: "#ffb77a"
+            id: 2
         },
         {
             title: "Otherworld Flat Nether",
             artist: "ZapSplat",
             audioSrc: db3,
             image: imgSrc3,
-            color: "#5f9fff"
+            id: 3
         }
     ]
 }
