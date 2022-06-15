@@ -1,0 +1,50 @@
+.control_box{
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+.button_audio__play{
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 0px;
+}
+.button_audio__play:hover{
+    background-color: rgb(215, 231, 243);
+}
+.button_audio__play:active{
+    background-color: rgb(193, 203, 211);
+}
+.button_audio__play img{
+    width: 20px;
+    height: 20px;
+}
+
+.button_audio_next{
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 0px;
+    background-color: rgb(177, 213, 243);
+}
+.button_audio_next:hover{
+    background-color: rgb(215, 231, 243);
+}
+.button_audio_next:active{
+    background-color: rgb(193, 203, 211);
+}
+.button_audio_next img{
+    width: 20px;
+    height: 20px;
+}
