@@ -7,9 +7,9 @@ let getSizePaginetion = (size, lastSize) => {
     let a;
     
     if(size <= 300){
-        a = 4;
+        a = 2;
     }else if(size <= 767){
-        a = 6;
+        a = 3;
     }
 
     if(size !== lastSize){

@@ -7,11 +7,38 @@
 
 .profile_info {
     display: grid;
-    grid-template-columns: 150px 800px;
+    grid-template-columns: 150px 1fr;
     padding: 10px;
+
+    border: 1px solid gray;
+}
+.profile_ava{
+    border: 1px solid red;
+}
+@media (max-width: 306px) {
+    .profile_info{
+        display: grid;
+        grid-template-areas: 
+        'a'
+        'i';
+
+        grid-template-rows: 140px 1fr;
+
+        grid-gap: 15px;
+
+        border: 1px solid black;
+    }
+    .profile_ava{
+        grid-area: a;
+
+        border: 1px solid black;
+    }
+    .profile_info .profile_description{
+        grid-area: i;
+    }
 }
 
-.profile_ava * {
+.profile_ava img{
     display: block;
     width: 120px;
 }
@@ -28,26 +55,25 @@
     width: 30px;
 }
 
-.status_box {
-    height: 25px;
-}
 
-.status_box__pole {
-    height: 100%;
+.button_download__box{
+    width: 10px;
+    height: 1px;
 }
-
-.status_box__pole__name {
-    display: inline-block;
-    height: 100%;
-}
-
 .button_download {
+    width: 10px;
+    height: 1px;
     opacity: 0;
     visibility: hidden;
     position: absolute;
 }
+.button_download__label{
+    width: 20px;
+    height: 1px;
+}
 .img_download{
-
+    width: 20px;
+    height: 20px;
 }
 .img_download img{
     height: 20px;

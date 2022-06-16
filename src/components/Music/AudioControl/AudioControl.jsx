@@ -8,7 +8,7 @@ import Prev from '../../../assets/imeges/back.png';
 const AudioControl = (props) => {
     return (
         <div className={s.control_box}>
-            <div>
+            <div className={s.control_box__play}>
                 {props.isPlaying
                     ? <button
                         className={s.button_audio__play}
@@ -21,14 +21,14 @@ const AudioControl = (props) => {
                             props.toPause(true)
                         }}><img src={Play} /></button>}
             </div>
-            <div>
+            <div className={s.control_box__prev}>
                 <button
                     className={s.button_audio_next}
                     onClick={props.toPrevTrack}>
                     <img src={Prev} />
                 </button>
             </div>
-            <div>
+            <div className={s.control_box__next}>
                 <button
                     className={s.button_audio_next}
                     onClick={props.toNextTrack}>

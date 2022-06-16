@@ -75,6 +75,12 @@
   }
 }
 
+@media (max-width: 306px) {
+  .app-wrapper {
+    grid-gap: 2px;
+  }
+}
+
 .app-wrapper__nav {
   grid-area: n;
   background-color: rgb(119, 119, 245);

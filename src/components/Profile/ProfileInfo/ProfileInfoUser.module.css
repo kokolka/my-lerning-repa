@@ -1,0 +1,66 @@
+.status_box {
+    z-index: 7;
+
+    border: 1px solid black;
+}
+
+.status_box__pole {
+    border: 1px solid red;
+}
+
+.status_box__pole__name {
+    border: 1px solid green;
+}
+
+
+.info_user_p{
+    display: block;
+    width: 150px;
+    text-align: left;
+
+    word-wrap:normal;
+
+    border: 1px solid gray;
+}
+
+.info_user_box{
+    display: grid;
+
+    grid-template-rows: 1fr 6fr;
+
+    border: 1px solid green;
+}
+
+.info_user_box_bs{
+    display: grid;
+
+    grid-template-areas: 
+    'u1'
+    'u2'
+    'u3'
+    'u4'
+    'u5'
+    'u6';
+
+    grid-template-rows: 26px 48px 48px 48px 60px 1fr;
+
+    border: 1px solid red;
+}
+.info_user_fullName{
+    grid-area: u1;
+}
+.info_user_AboutMe{
+    grid-area: u2;
+}
+.info_user_Looking{
+    grid-area: u3;
+}
+.info_user_jobDescription{
+    grid-area: u4;
+}
+.info_user_MeSocialNetwork{
+    grid-area: u5;
+}
+.info_user_button{
+    grid-area: u6;
+}

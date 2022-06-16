@@ -5,6 +5,7 @@
     align-items: center;
 
     padding: 5px;
+    margin: 0 0 10px 0;
     background-color: rgb(177, 213, 243);
     border-radius: 5px;
 }
@@ -22,7 +23,7 @@
     width: 50px;
     height: 50px;
     padding: 2px 5px 5px 2px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 .track_info__song_title{
     grid-area: t;
@@ -66,6 +67,33 @@ input[type='range'] {
     appearance: none;
     background-color: #d6dada;
     border-radius: 5px;
+}
+@media (max-width: 992px) {
+    input[type='range'] {
+        min-width: 250px;
+    }
+}
+@media (max-width: 767px) {
+    input[type='range'] {
+        min-width: 200px;
+    }
+}
+@media (max-width: 576px) {
+    input[type='range'] {
+        min-width: 100px;
+    }
+}
+@media (max-width: 306px) {
+    .audioPlayer_box__track_info{
+        display: grid;
+        grid-template-areas: 
+        'c c c'
+        'a t ti'
+        'a l l';
+    
+        grid-template-columns: 60px 1fr 50px;
+        grid-template-rows: 55px 35px 20px ;
+    }
 }
 input[type='range']:hover{
     height: 10px;
@@ -126,15 +154,27 @@ input[type='range']:hover::-moz-range-thumb {
     box-shadow: -80px 0 0 80px #6da3e9;
 }
 
+.audioPlayer__another_songs{
+    overflow-y: auto;
+
+    /* костыль */
+    max-height: 425px;
+}
 
 .song_element{
-    height: 50px;
+    margin: 5px 0;
+    height: 35px;
 }
+
 .song_element:hover{
     background-color: rgb(220, 233, 245);
 }
 .song_element:hover .song_element__control{
     visibility: visible;
+    background-color: rgba(238, 198, 198, 0.493);
+}
+.song_element__play{
+    
     background-color: rgba(238, 198, 198, 0.493);
 }
 .song_element__audio{
@@ -143,9 +183,14 @@ input[type='range']:hover::-moz-range-thumb {
     grid-template-areas: 
     'a t ti';
 
+    grid-template-columns: 15% 70% 15%;
 }
 .audio_ava{
     grid-area: a;
+
+    display: flex;
+
+    align-items: center;
 }
 .audio_ava img{
     width: 35px;
@@ -156,20 +201,19 @@ input[type='range']:hover::-moz-range-thumb {
     grid-area: t;
 }
 .audio_title p{
+    font-size: 10px;
     margin: 0;
 }
 .audio_time{
     grid-area: ti;
 }
+.audio_time span{
+    float: right;
+}
 .song_element__control__eny{
     position: relative;
-    top: -42px;
-    left: 0;
-}
-.song_element__control__play{
-
-    background-color: rgba(238, 198, 198, 0.493);
-
+    top: -35px;
+    left: 0px;
 }
 
 .song_element__control{

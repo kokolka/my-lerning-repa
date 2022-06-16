@@ -102,18 +102,18 @@ const Music = (props) => {
         time = time - time % 1; //избавляемся от долей секунд
         maxTime = maxTime - maxTime % 1; //избавляемся от долей секунд
 
-        let hours = 0;
+        let hours = 0; //считаем колличество часов
         for (let j = 0; maxTime > 3600; j++) {
             hours++;
             maxTime = maxTime - 3600;
         }
-        let minutes = 0;
+        let minutes = 0;//считаем количество минут
         for (let i = 0; maxTime > 60; i++) {
             minutes++;
             maxTime = maxTime - 60;
         }
 
-        let result = '';
+        let result = '';//Выводимый таймер 
         if (hours > 0) {
             result = `${hours}:${minutes}:${(maxTime - time) < 10 ? '0' : ''}${maxTime - time}`;
         } else {
@@ -124,20 +124,20 @@ const Music = (props) => {
     }
 
     let songElement = props.songs.map((el) => {
-        return <div key={el.id} className={cn(s.song_element, { [s.song_element__control__play]: (nowSong == el.id) })}
+        return <div key={el.id} className={cn(s.song_element)}
             onClick={() => {
                 setIsPlaying(!isPlaying);
                 if (nowSong != el.id) {
                     SetNowSong(el.id);
                 }
             }}>
-            <div className={s.song_element__audio}>
+            <div className={cn(s.song_element__audio, { [s.song_element__play]: (nowSong == el.id) })}>
                 <div className={s.audio_ava}>
                     <img src={el.image} />
                 </div>
                 <div className={s.audio_title}>
-                    <p>{title ? title : 'Undefined'}</p>
-                    <p>{artist ? artist : 'Undefined'}</p>
+                    <p>{el.title ? el.title : 'Undefined'}</p>
+                    <p>{el.artist ? el.artist : 'Undefined'}</p>
                 </div>
                 <div className={s.audio_time}>
                     <span>
