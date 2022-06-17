@@ -8,8 +8,21 @@ const instance = axios.create({
         "API-KEY": "7b2bf063-5f39-45d3-b53c-542238da0668"
     }
 });
+const instanceNews = axios.create({
+    baseURL: 'https://newsapi.org/v2/',
+});
+
+const apiKeyForNews = "4e954c55f81e4146afe824bcfd5c7c2c";
+
+//news
+export const newsAPI = {
+    getNewsEverything(theme, date){
+        return instanceNews.get(`everything?q=${theme}&from=${date}&sortBy=publishedAt&apiKey=${apiKeyForNews}`);
+    }
+}
 
 
+//app
 export const usersAPI = {
     getUsers(page = 1, pageSize = 10){
         return instance.get(`users?page=${page}&count=${pageSize}`).then(response => response.data)

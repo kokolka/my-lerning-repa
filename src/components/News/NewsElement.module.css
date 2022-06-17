@@ -1,0 +1,58 @@
+
+/* form style */
+.element_box{
+    display: grid;
+    
+    grid-template-areas: 
+    'a d'
+    'a au'
+    't t'
+    'c c'
+    's s'
+    'so so';
+
+    grid-template-columns: 200px 3fr;
+    grid-template-rows: 50px 100px 25px 75px 25px 75px;
+
+    grid-gap: 10px;
+
+    margin: 5px;
+    background-color: rgb(188, 235, 235);
+
+}
+.element_box__ava{
+    grid-area: a;
+
+    width: 200px;
+}
+.element_box__ava img{
+    width: 100%;
+}
+.element_box__source{
+    grid-area: s;
+}
+.element_box__date{
+    grid-area: d;
+}
+.element_box__author{
+    grid-area: au;
+}
+.element_box__title{
+    grid-area: t;
+}
+.element_box__content{
+    grid-area: c;
+}
+.element_box__source_info{
+    grid-area: so;
+
+}
+.source_info__label{
+
+}
+.source_info__source{
+
+}
+.source_info__name{
+
+}

@@ -1,15 +1,10 @@
 .status_box {
-    z-index: 7;
-
-    border: 1px solid black;
 }
 
 .status_box__pole {
-    border: 1px solid red;
 }
 
 .status_box__pole__name {
-    border: 1px solid green;
 }
 
 
@@ -18,17 +13,13 @@
     width: 150px;
     text-align: left;
 
-    word-wrap:normal;
-
-    border: 1px solid gray;
+    word-wrap: normal;
 }
 
 .info_user_box{
     display: grid;
 
     grid-template-rows: 1fr 6fr;
-
-    border: 1px solid green;
 }
 
 .info_user_box_bs{
@@ -41,10 +32,6 @@
     'u4'
     'u5'
     'u6';
-
-    grid-template-rows: 26px 48px 48px 48px 60px 1fr;
-
-    border: 1px solid red;
 }
 .info_user_fullName{
     grid-area: u1;

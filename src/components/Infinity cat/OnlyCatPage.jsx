@@ -73,15 +73,15 @@ const OnlyCatPage = (props) => {
         getColumnNumber(props.sizeApp, setColumns, columns)//изменение колличества колонок
     }, [lengthArrow, columns, props.sizeApp]);
 
-    let SetArrowColumns = () => {
+    let SetArrowColumns = () => { //добавление необходимого колличества колонок в массив
         initArrow = [];
         for (let i = 0; i < columns; i++) {
-            initArrow.push([]);
+            initArrow.push([]); //добавление пустого массива
         }
     }
 
     let CreateArrowContent = () => {
-        SetArrowColumns();
+        SetArrowColumns();//обновление колличества коллонок
         let countBox = 0;
         for (let j = 0; j < arrowImg.length; j++) {
             initArrow[countBox].push(arrowImg[j]);
@@ -91,8 +91,11 @@ const OnlyCatPage = (props) => {
                 countBox = 0;
             }
         }
+
+        let counterKey = 0;
         let arrowBoxElem = initArrow.map(el => {
-            return <div  className={s.columns_element}>
+            counterKey = counterKey + 1;
+            return <div key={counterKey}  className={s.columns_element}>
                 {el.map(yt => {
                     return <ElementFotoBox size={yt} />
                 })}

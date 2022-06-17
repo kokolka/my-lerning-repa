@@ -9,38 +9,14 @@
     display: grid;
     grid-template-columns: 150px 1fr;
     padding: 10px;
-
-    border: 1px solid gray;
 }
+
 .profile_ava{
-    border: 1px solid red;
+    width: 120px;
 }
-@media (max-width: 306px) {
-    .profile_info{
-        display: grid;
-        grid-template-areas: 
-        'a'
-        'i';
-
-        grid-template-rows: 140px 1fr;
-
-        grid-gap: 15px;
-
-        border: 1px solid black;
-    }
-    .profile_ava{
-        grid-area: a;
-
-        border: 1px solid black;
-    }
-    .profile_info .profile_description{
-        grid-area: i;
-    }
-}
-
 .profile_ava img{
     display: block;
-    width: 120px;
+    width: 100%;
 }
 
 .profile_description {
@@ -78,4 +54,33 @@
 .img_download img{
     height: 20px;
     width: 20px;
+}
+
+@media (max-width: 306px) {
+    .profile{
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+    }
+
+    .profile_info{
+        display: grid;
+        grid-template-areas: 
+        'a'
+        'i';
+
+        grid-template-columns: 100%;
+        grid-template-rows: 220px 1fr;
+
+        grid-gap: 15px;
+    }
+    .profile_ava{
+        grid-area: a;
+        
+        width: 200px;        
+    }
+    .profile_info .profile_description{
+        grid-area: i;
+    }
 }
