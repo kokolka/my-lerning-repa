@@ -60,10 +60,14 @@ const News = (props) => {
                     initialValues={{ theme: '', date: '' }}
                     validate={values => {
                         const errors = {};
-                        if (
-                            /[' ']/i.test(values.theme)
-                        ) {
-                            errors.theme = 'Invalid email address';
+                        if (!values.theme) {
+                            errors.theme = 'Required';
+                        } else if (/[' ']/i.test(values.theme)) {
+                            errors.theme = 'Dad request';
+                        }
+
+                        if (!values.date) {
+                            errors.date = 'Required';
                         }
                         return errors;
                     }}
@@ -76,15 +80,20 @@ const News = (props) => {
                 >
                     {(p) => (
                         <Form className={s.page_form}>
-                            <Field className={s.page_form__date} type="date" name="date" min="2022-05-01" />
-                            <Field
-                                className={cn(s.page_form__theme, { [s.page_form__error]: p.errors.theme })}
-                                type="text"
-                                name="theme" />
+                            <div className={s.page_form__date}>
+                                <Field className={cn(s.page_form__dateArea, { [s.page_form__error]: p.errors.date })} type="date" name="date" min="2022-05-01" />
+                                <ErrorMessage className={s.page_form__errorMessage} name="date" component="div" />
+                            </div>
+                            <div className={s.page_form__theme}>
+                                <Field
+                                    className={cn(s.page_form__themeArea, { [s.page_form__error]: p.errors.theme })}
+                                    type="text"
+                                    name="theme" />
+                                <ErrorMessage className={s.page_form__errorMessage} name="theme" component="div" />
+                            </div>
                             <button className={s.page_form__button} type="submit" disabled={p.isSubmitting}>
                                 Submit
                             </button>
-                            <ErrorMessage className={s.page_form__errorMessage} name="theme" component="div" />
                         </Form>
                     )}
                 </Formik>
