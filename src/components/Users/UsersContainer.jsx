@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import {  getStateCurrentPage, getStateFollowingIsProgress, getStateIsFetching, 
     getStatePageSize, getStatePageTotalCount, getStateUsers } from '../../redux/users-selectors';
 import { getSizeApp } from '../../redux/app-selectors';
+import setNamePage from '../common/SetNamePage/setNamePage';
 
 class UsersComponent extends React.Component {
 
@@ -25,6 +26,7 @@ class UsersComponent extends React.Component {
     }
 
     render() {
+        setNamePage('Users');
         return (
             <Users {...this.props}
                 onPageChanged={this.onPageChanged}

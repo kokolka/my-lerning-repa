@@ -6,9 +6,11 @@ import { Textarea } from '../../common/FormControls/FormControl';
 
 const FormProfileInfo = (props) => {
     let ErrorBlock = () => {
+        let jj = '';
         if (props.messageError != '') {
             return props.messageError.map((el) => {
-                return <p key={el}>{el}</p>
+                jj = jj + 1;
+                return <p key={jj}>{el}</p>
             })
         }
         return null;

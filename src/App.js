@@ -19,6 +19,8 @@ import { getInitialized, getIsButtonMenu, getSizeApp } from './redux/app-selecto
 import { getIsAuth } from './redux/auth-selectors';
 import cn from 'classnames';
 import MusicConteiner from './components/Music/MusicConteiner';
+import setNamePage from './components/common/SetNamePage/setNamePage';
+import NoFoundPage from './components/NoFoundPage/NoFoundPage';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const OnlyCatPageContainer = React.lazy(() => import('./components/Infinity cat/OnlyCatPageContainer'));
@@ -69,7 +71,7 @@ class App extends React.Component {
             <Route path='/users' element={<UsersContainer />} />
             <Route path='/login' element={<LoginContainer />} />
             <Route path='/infinityCat' element={<OnlyCatSuspense />} />
-            <Route path='*' element={<div>404 not found</div>} />
+            <Route path='*' element={<NoFoundPage/>} />
           </Routes>
         </div>
       </div>

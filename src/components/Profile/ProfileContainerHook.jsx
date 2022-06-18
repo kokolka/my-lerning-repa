@@ -8,6 +8,7 @@ import { compose } from 'redux';
 import { getCurrentPageUser, getErrorMessageProfile, getNewPostText, 
     getPostData, getProfile, getStatus } from '../../redux/profile-selectors';
 import { getUserId } from '../../redux/auth-selectors';
+import setNamePage from '../common/SetNamePage/setNamePage';
 
 const ProfileContainerHook = (props) => {
 
@@ -21,6 +22,8 @@ const ProfileContainerHook = (props) => {
             props.setCurrentIdUser(data); //dispatch для нициализации перерисовки через componentDidUpdate
         }
     }
+    
+    setNamePage('Profile');
 
     return (
         <Profile

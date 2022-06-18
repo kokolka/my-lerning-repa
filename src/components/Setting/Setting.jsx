@@ -1,8 +1,9 @@
 import React from 'react';
-import prof from './Setting.module.css';
-//import './Profile.css';
+import setNamePage from '../common/SetNamePage/setNamePage';
+import s from './Setting.module.css';
 
 const Setting = () => {
+    setNamePage('Setting');
     return (
         <div>
             Setting

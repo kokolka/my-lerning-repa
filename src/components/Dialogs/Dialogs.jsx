@@ -10,6 +10,7 @@ import { Textarea } from '../common/FormControls/FormControl';
 import { maxLengthCreator } from '../../Utils/Validations/validators';
 
 import dialogIcon from '../../assets/imeges/dialogIcon.png';
+import setNamePage from '../common/SetNamePage/setNamePage';
 
 const Dialogs = (props) => {
 
@@ -61,6 +62,14 @@ const Dialogs = (props) => {
             </Formik>
         </div>
     );
+
+    let result = '';
+    if (actionName != '') {
+        result = `Dialog with ${actionName}`;
+    } else {
+        result = 'Dialogs';
+    }
+    setNamePage(result);
 
     return (
         <div className={s.dialogs}>
