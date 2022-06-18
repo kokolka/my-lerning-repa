@@ -53,6 +53,11 @@ const Dialogs = (props) => {
                             component={Textarea}
                             placeholder='Enter your post'
                             validate={maxLength20}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    p.handleSubmit();
+                                }
+                            }}
                         />
                         <button type="submit" disabled={p.isSubmitting} className={s.send_button}>
                             Send

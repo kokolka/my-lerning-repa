@@ -33,6 +33,11 @@ const MyPost = (props) => {
                             validate={maxLength20}
                             component={Textarea}
                             placeholder='Enter your post'
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    p.handleSubmit();
+                                }
+                            }}
                         />
                         <button type="submit" disabled={p.isSubmitting}>
                             Send
