@@ -11,7 +11,7 @@ import ProfileContainerHook from './components/Profile/ProfileContainerHook';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginContainer from './components/Login/LoginContainer';
 
-import { initializeApp,setSizeApp } from './redux/app-reducer';
+import { initializeApp, setSizeApp, handleAppError } from './redux/app-reducer';
 import { meUser } from './redux/auth-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 import { withSuspense } from './HOC/withSuspense';
@@ -29,9 +29,21 @@ const DialogsSuspense = withSuspense(DialogsContainer);
 const OnlyCatSuspense = withSuspense(OnlyCatPageContainer);
 
 class App extends React.Component {
+  catchAllUnhandledErrors = (reason) => {
+    this.props.handleAppError(reason)
+  }
+
   componentDidMount() {
     this.props.initializeApp();
     this.props.setSizeApp(document.getElementById('root').offsetWidth);
+
+    //подписываемся на перехват всех ошибок
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+  }
+
+  componentWillUnmount() {
+    //отписываемся от перехвата всех ошибок
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
   }
 
   render() {
@@ -91,5 +103,6 @@ const mapStareToProps = (state) => {
 export default connect(mapStareToProps, {
   initializeApp,
   meUser,
-  setSizeApp
+  setSizeApp,
+  handleAppError
 })(App);

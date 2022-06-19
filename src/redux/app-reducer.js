@@ -8,6 +8,7 @@ const SET_IS_BUTTON_MENU = 'SET_IS_BUTTON_MENU/APP';
 const CHANGE_IS_BUTTON_MENU = 'CHANGE_IS_BUTTON_MENU/APP';
 const SET_IS_BUTTON_DIALOG = 'SET_IS_BUTTON_DIALOG/APP';
 const CHANGE_IS_BUTTON_DIALOG = 'CHANGE_IS_BUTTON_DIALOG/APP';
+const SET_APP_MESSAGE_ERROR = 'SET_APP_MESSAGE_ERROR/APP';
 
 let initialState = {
     initialized: false, 
@@ -15,7 +16,8 @@ let initialState = {
     messageError: '',
     sizeApp: null,
     isButtonMenu: true,
-    isButtonDialog: true
+    isButtonDialog: true,
+    appMessageError: null
 };
 
 const appReducer = (state = initialState, action) => {
@@ -62,6 +64,11 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 isButtonDialog: !state.isButtonDialog
             };  
+        case SET_APP_MESSAGE_ERROR: 
+            return {
+                ...state,
+                appMessageError: action.appMessageError
+            };  
         default:
             return state;
     }
@@ -91,6 +98,9 @@ export const setIsButtonDialog = () => {
 export const changeIsButtonDialog = () => {
     return { type: CHANGE_IS_BUTTON_DIALOG}; 
 };
+export const setAppMessageError = (messageError) => {
+    return { type: SET_APP_MESSAGE_ERROR, messageError}; 
+};
 
 export const initializeApp = () => (dispatch) => {
     let init = dispatch(meUser());
@@ -98,6 +108,18 @@ export const initializeApp = () => (dispatch) => {
     init.then(() => {
         dispatch(setInitialized());
     })
+}
+
+export const handleAppError = (messageError) => (dispatch) => {
+    dispatch(setAppMessageError(messageError));
+
+    // if(messageError){ //вывод сообщения об ошибке на экран
+    //     alert(messageError);
+    // }
+    
+    setTimeout(() => {
+        dispatch(setAppMessageError(null));
+    }, 1000)
 }
 
 export default appReducer;
