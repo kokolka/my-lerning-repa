@@ -54,7 +54,10 @@ const Dialogs = (props) => {
                             placeholder='Enter your post'
                             validate={maxLength20}
                             onKeyDown={(e) => {
-                                if (e.key === 'Enter') {
+                                if (e.keyCode === 13 && e.ctrlKey) {
+                                    let a = `${p.values.message}\n`;
+                                    p.setFieldValue('message', a, true);
+                                } else if (e.key === 'Enter') {
                                     p.handleSubmit();
                                 }
                             }}

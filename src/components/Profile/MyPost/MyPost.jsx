@@ -34,9 +34,12 @@ const MyPost = (props) => {
                             component={Textarea}
                             placeholder='Enter your post'
                             onKeyDown={(e) => {
-                                if (e.key === 'Enter') {
+                                if (e.keyCode === 13 && e.ctrlKey) {
+                                    let a = `${p.values.message}\n`;
+                                    p.setFieldValue('message', a, true);
+                                } else if (e.key === 'Enter') {
                                     p.handleSubmit();
-                                }
+                                } 
                             }}
                         />
                         <button type="submit" disabled={p.isSubmitting}>

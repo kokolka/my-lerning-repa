@@ -7,16 +7,22 @@
 
 .profile_info {
     display: grid;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 20% 80%;
     padding: 10px;
+
+    grid-gap: 10px;
 }
 
 .profile_ava{
-    width: 120px;
+    width: 100%;
+    position: relative;
 }
 .profile_ava img{
-    display: block;
     width: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .profile_description {
@@ -73,7 +79,7 @@
         grid-template-columns: 100%;
         grid-template-rows: 220px 1fr;
 
-        grid-gap: 15px;
+        grid-gap: 5px;
     }
     .profile_ava{
         grid-area: a;
