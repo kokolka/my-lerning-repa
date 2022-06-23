@@ -19,7 +19,6 @@ import { getInitialized, getIsButtonMenu, getSizeApp } from './redux/app-selecto
 import { getIsAuth } from './redux/auth-selectors';
 import cn from 'classnames';
 import MusicConteiner from './components/Music/MusicConteiner';
-import setNamePage from './components/common/SetNamePage/setNamePage';
 import NoFoundPage from './components/NoFoundPage/NoFoundPage';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));

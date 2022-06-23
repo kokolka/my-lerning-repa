@@ -40,7 +40,7 @@ let LoginForm = (props) => {
                     <Form>
                         <div>
                             <Field
-                                className={p.errors.email && p.touched.email || props.numberError >= 1
+                                className={(p.errors.email && p.touched.email ) || (props.numberError >= 1)
                                     ? s.entry_field__errors
                                     : ''}
                                 placeholder="Email"
@@ -55,7 +55,7 @@ let LoginForm = (props) => {
                         </div>
                         <div>
                             <Field
-                                className={p.errors.password && p.touched.password || props.numberError >= 1
+                                className={(p.errors.password && p.touched.password) || (props.numberError >= 1)
                                     ? s.entry_field__errors
                                     : ''}
                                 placeholder="Password"

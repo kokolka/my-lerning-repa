@@ -10,7 +10,7 @@ const News = (props) => {
     let [validDate, setValidDate] = useState(props.date);
 
     useEffect(() => {
-        if (props.theme != validTheme && props.theme != '' || props.date != validDate && props.date != '') {
+        if (((props.theme != validTheme) && (props.theme != '')) || ((props.date != validDate) && (props.date != ''))) {
             props.getNewsEverything(props.theme, props.date);
 
             //перезаписываем старые значения

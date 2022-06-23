@@ -1,6 +1,6 @@
 import React from 'react';
 import setNamePage from '../common/SetNamePage/setNamePage';
-import s from './Setting.module.css';
+// import s from './Setting.module.css';
 
 const Setting = () => {
     setNamePage('Setting');
